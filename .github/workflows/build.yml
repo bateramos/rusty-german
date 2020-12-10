@@ -12,9 +12,10 @@ jobs:
       with:
         args: |
           cargo build --release
+          mkdir release
+          cp -r data release
+          cp target/release/german-verben release
     - uses: actions/upload-artifact@v2
       with:
         name: rusty-german
-        path: |
-          target/release/german-verben
-          data
+        path: release
