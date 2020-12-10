@@ -1,0 +1,39 @@
+anfangen;angefangen;haben
+fange an;fängst an;fängt an;fangen an;fangt an;fangen an
+fing an;fingst an;fing an;fingen an;fingt an;fingen an
+
+arbeiten;gearbeitet;haben
+arbeite;arbeitest;arbeitet;arbeiten;arbeitet;arbeiten
+arbeitete;arbeitetest;arbeitete;arbeiteten;arbeitetet;arbeiteten
+
+ansehen;angesehen;haben
+sehe an;sieht an;sieht an;sehen an;seht an;sehen an
+sah an;sahst an;sah an;sahen an;saht an;sahen an
+
+beginnen;begonnen;haben
+beginne;beginnst;beginnt;beginnen;beginnt;beginnen
+begann;begannst;begann;begannen;begannt;begannen
+
+bekommen;bekommen;haben
+bekomme;bekommst;bekommt;bekommen;bekommt;bekommen
+bekam;bekamst;bekam;bekamen;bekamt;bekamen
+
+bleiben;gebleiben;sein
+bleibe;bleibst;bleibt;bleiben;bleibt;bleiben
+bleib;bleibst;bleib;bleiben;bleibt;bleiben
+
+fliegen;geflogen;sein
+fliege;fliegst;fliegt;fliegen;fliegt;fliegen
+flog;flogst;flog;flogen;flogt;flogen
+
+reiten;geritten;sein
+reite;reitest;reitet;reiten;reitet;reiten
+ritt;rittst;ritt;ritten;rittet;ritten
+
+sein;gewesen;sein
+bin;bist;ist;sein;seid;sein
+war;warst;war;waren;wart;waren
+
+tun;getan;haben
+tue;tust;tut;tun;tut;tun
+tat;tatst;tat;taten;tatet;taten
