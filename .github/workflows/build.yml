@@ -6,8 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-  steps:
+    steps:
     - uses: actions/checkout@v2
     - uses: icepuma/rust-action@master
       with:
@@ -16,5 +15,5 @@ jobs:
       with:
         name: rusty-german
         path: |
-          target/release/german-verben
-          data/
+           target/release/german-verben
+           data/
