@@ -11,12 +11,10 @@ jobs:
     - uses: icepuma/rust-action@master
       with:
         args: |
-          cargo build
-          mkdir release
-          mkdir release/data
-          cp target/release/german-verben release/rusty-german
-          cp -r data release/data
+          cargo build --release
     - uses: actions/upload-artifact@v2
       with:
         name: rusty-german
-        path: release/
+        path: |
+          target/release/german-verben
+          data
