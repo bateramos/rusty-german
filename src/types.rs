@@ -14,3 +14,8 @@ pub struct Verb {
     pub zeit_type: ZeitType,
     pub conjugations: [String; 6]
 }
+
+pub struct Pronoun {
+    pub name: &'static str,
+    pub subjects: [&'static str; 6]
+}
