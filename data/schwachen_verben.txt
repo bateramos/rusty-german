@@ -1,3 +1,5 @@
 sagen;gesagt;haben
 
 kaufen;gekauft;haben
+
+argumentieren;argumentiert;haben

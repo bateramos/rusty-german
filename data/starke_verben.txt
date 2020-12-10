@@ -7,8 +7,12 @@ arbeite;arbeitest;arbeitet;arbeiten;arbeitet;arbeiten
 arbeitete;arbeitetest;arbeitete;arbeiteten;arbeitetet;arbeiteten
 
 ansehen;angesehen;haben
-sehe an;sieht an;sieht an;sehen an;seht an;sehen an
+sehe an;siehst an;sieht an;sehen an;seht an;sehen an
 sah an;sahst an;sah an;sahen an;saht an;sahen an
+
+aussehen;ausgesehen;haben
+sehe aus;siehst aus;sieht aus;sehen aus;seht aus;sehen aus
+sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 
 beginnen;begonnen;haben
 beginne;beginnst;beginnt;beginnen;beginnt;beginnen
@@ -17,6 +21,10 @@ begann;begannst;begann;begannen;begannt;begannen
 bekommen;bekommen;haben
 bekomme;bekommst;bekommt;bekommen;bekommt;bekommen
 bekam;bekamst;bekam;bekamen;bekamt;bekamen
+
+betreffen;betroffen;haben
+betreffe;betriffst;betrifft;betreffen;betrefft;betreffen
+betraf;betrafst;betraf;betrafen;betraft;betrafen
 
 bleiben;gebleiben;sein
 bleibe;bleibst;bleibt;bleiben;bleibt;bleiben
