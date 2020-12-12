@@ -14,7 +14,7 @@ use prepositions::get_prepositions_exercises;
 
 fn main() {
     let mut input = String::new();
-    run_preposition_exercise();
+
     println!("1 for verbs, 2 for personal pronouns, 3 for prepositions");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
@@ -34,7 +34,8 @@ fn run_preposition_exercise() {
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
     for preposition in prepositions.iter() {
-        println!("{} {}", preposition.phrase, preposition.preposition);
+        println!("{}", preposition.phrase);
+        wait_for_expected_input(preposition.preposition.to_string());
     }
 }
 

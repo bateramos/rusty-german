@@ -1,6 +1,16 @@
-er trinkt __ der Flasche;aus
-sie kommt __ Essen;aus
-der Fahrstuhl war __ Betrieb;außer
-der Patient ist jetzt __ Gefahr;außer
+Er trinkt __ der Flasche;aus
+Sie kommt __ Essen;aus
+Der Fahrstuhl war __ Betrieb;außer
+Der Patient ist jetzt __ Gefahr;außer
 Alle __ mit kamen zu spät;außer
-
+Feiern wir __ uns?;bei
+__ uns in Schottland ist das kein Problem;bei
+Sie ist __ Bäcker;beim
+Er ist noch __ Friseur;beim
+Er wohnt immer noch __ seinen Eltern;bei
+Er wohnt uns __;gegenüber
+Sie ist mir __ immer sehr freundlich gewesen;gegenüber
+Er ging __ seinen Freuden spazieren;mit
+__ zwei Stunden kam er wieder;nach
+Sie ist __ London gereist;nach
+Ihrem Dialekt __ ist sie Süddeutsche;nach
