@@ -42,6 +42,10 @@ sein;gewesen;sein
 bin;bist;ist;sein;seid;sein
 war;warst;war;waren;wart;waren
 
+geben;gegeben;haben
+gebe;gibst;gibt;geben;gebt;geben
+gab;gabst;gab;gaben;gabt;gaben
+
 tun;getan;haben
 tue;tust;tut;tun;tut;tun
 tat;tatst;tat;taten;tatet;taten

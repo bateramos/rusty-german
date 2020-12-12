@@ -1,10 +1,7 @@
-use std::fs::File;
-use std::io;
-use std::io::Read;
-
 use arrayvec::ArrayVec;
 
 use crate::types::{Verb, VerbType, ZeitType};
+use crate::read_file::read_file_lines;
 
 #[derive(Debug, Copy, Clone)]
 enum PrefixVerb {
@@ -13,19 +10,6 @@ enum PrefixVerb {
 
 fn str(s: &str) -> String {
     String::from(s)
-}
-
-fn read_lines(filename: &str) -> Result<String, io::Error> {
-    let mut file = match File::open(filename) {
-        Ok(file) => file,
-        Err(error) => panic!("Error on loading file {} {}", filename, error)
-    };
-
-    let mut s = String::new();
-    match file.read_to_string(&mut s) {
-        Ok(_) => Ok(s),
-        Err(e) => Err(e),
-    }
 }
 
 fn create_verb(name: &str, verb_type: VerbType, zeit_type: ZeitType, conjugations: &Vec<String>) -> Verb {
@@ -89,14 +73,14 @@ fn create_starke_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb, p
 
 pub fn get_verben() -> Vec<[Verb; 5]> {
     let mut verben = Vec::new();
-    if let Ok(lines) = read_lines("data/starke_verben.txt") {
+    if let Ok(lines) = read_file_lines("data/starke_verben.txt") {
         let mut line_number = 0;
         let mut verb_name = "";
         let mut verb_name_past = "";
         let mut prefix_verb = PrefixVerb::Sein;
         let mut present_conjugation = Vec::new();
         let mut past_conjugation = Vec::new();
-        for line in lines.split("\n") {
+        for line in lines.iter() {
             if line_number == 0 {
                 let attr = line.split(";").collect::<Vec<&str>>();
                 verb_name = attr[0];
@@ -120,8 +104,8 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
             }
         }
     }
-    if let Ok(lines) = read_lines("data/schwachen_verben.txt") {
-        for line in lines.split("\n") {
+    if let Ok(lines) = read_file_lines("data/schwachen_verben.txt") {
+        for line in lines.iter() {
             if line != "" {
                 let attr = line.split(";").collect::<Vec<&str>>();
                 let verb_name = attr[0];

@@ -1,27 +1,41 @@
 use std::io;
-use rand::Rng;
+use rand::{thread_rng, Rng};
+use rand::seq::SliceRandom;
 
 mod types;
 mod verben;
 mod pronouns;
+mod prepositions;
+mod read_file;
 
 use verben::get_verben;
 use pronouns::get_personal_pronouns;
+use prepositions::get_prepositions_exercises;
 
 fn main() {
     let mut input = String::new();
-
-    println!("1 to verbs, 2 for personal pronouns");
+    run_preposition_exercise();
+    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
             match input.trim() {
                 "1" => run_verb_exercise(),
                 "2" => run_personal_pronoun_exercise(),
+                "3" => run_preposition_exercise(),
                 _ => panic!("Invalid option {}", input)
             }
         }
         Err(error) => panic!("Error on receiving input {}", error)
     };
+}
+
+fn run_preposition_exercise() {
+    let mut rng = thread_rng();
+    let mut prepositions = get_prepositions_exercises();
+    prepositions.shuffle(&mut rng);
+    for preposition in prepositions.iter() {
+        println!("{} {}", preposition.phrase, preposition.preposition);
+    }
 }
 
 fn run_personal_pronoun_exercise() {
@@ -80,4 +94,5 @@ fn wait_for_expected_input(expected_input: String) {
             }
         }
     }
+    print!("\x1B[2J\x1B[1;1H");
 }

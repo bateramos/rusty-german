@@ -19,3 +19,8 @@ pub struct Pronoun {
     pub name: &'static str,
     pub subjects: [&'static str; 6]
 }
+
+pub struct PrepositionExercise {
+    pub phrase: String,
+    pub preposition: String
+}
