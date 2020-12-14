@@ -1,4 +1,4 @@
-use crate::types::{Pronoun};
+use crate::types::Pronoun;
 
 pub fn get_personal_pronouns() -> [Pronoun; 4] {
     [Pronoun {
@@ -12,6 +12,6 @@ pub fn get_personal_pronouns() -> [Pronoun; 4] {
         subjects: ["mir", "dir", "ihm ihr ihm", "uns", "euch", "Ihnen"]
     },Pronoun {
         name: "Genitiv",
-        subjects: ["meiner", "deiner", "seiner seiner ihrer", "unserer", "euerer", "Ihrer"]
+        subjects: ["mein", "dein", "sein ihr sein", "unser", "euer", "Ihr"]
     }]
 }

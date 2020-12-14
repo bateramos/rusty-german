@@ -1,5 +1,9 @@
-sagen;gesagt;haben
+argumentieren;argumentiert;haben
+
+fragen;gesagt;haben
+
+fühlen;gefühlt;haben
 
 kaufen;gekauft;haben
 
-argumentieren;argumentiert;haben
+sagen;gesagt;haben

@@ -20,6 +20,12 @@ pub struct Pronoun {
     pub subjects: [&'static str; 6]
 }
 
+pub struct Article {
+    pub name: &'static str,
+    pub case: &'static str,
+    pub gender: &'static str
+}
+
 pub struct PrepositionExercise {
     pub phrase: String,
     pub preposition: String

@@ -7,26 +7,38 @@ mod verben;
 mod pronouns;
 mod prepositions;
 mod read_file;
+mod articles;
 
 use verben::get_verben;
 use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
+use articles::get_articles;
 
 fn main() {
     let mut input = String::new();
 
-    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions");
+    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
             match input.trim() {
                 "1" => run_verb_exercise(),
                 "2" => run_personal_pronoun_exercise(),
                 "3" => run_preposition_exercise(),
+                "4" => run_articles_exercise(),
                 _ => panic!("Invalid option {}", input)
             }
         }
         Err(error) => panic!("Error on receiving input {}", error)
     };
+}
+
+fn run_articles_exercise() {
+    for articles in get_articles().iter() {
+        for article in articles.iter() {
+            println!("{} {}:", article.case, article.gender);
+            wait_for_expected_input(article.name.to_string());
+        }
+    }
 }
 
 fn run_preposition_exercise() {

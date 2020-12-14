@@ -30,6 +30,10 @@ bleiben;gebleiben;sein
 bleibe;bleibst;bleibt;bleiben;bleibt;bleiben
 bleib;bleibst;bleib;bleiben;bleibt;bleiben
 
+erwarten;erwartet;haben
+erwarte;erwartest;erwartet;erwarten;erwartet;erwarten
+erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
+
 fliegen;geflogen;sein
 fliege;fliegst;fliegt;fliegen;fliegt;fliegen
 flog;flogst;flog;flogen;flogt;flogen

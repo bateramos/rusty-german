@@ -1,16 +1,26 @@
-Er trinkt __ der Flasche;aus
-Sie kommt __ Essen;aus
-Der Fahrstuhl war __ Betrieb;außer
-Der Patient ist jetzt __ Gefahr;außer
-Alle __ mit kamen zu spät;außer
-Feiern wir __ uns?;bei
-__ uns in Schottland ist das kein Problem;bei
-Sie ist __ Bäcker;beim
-Er ist noch __ Friseur;beim
-Er wohnt immer noch __ seinen Eltern;bei
-Er wohnt uns __;gegenüber
-Sie ist mir __ immer sehr freundlich gewesen;gegenüber
-Er ging __ seinen Freuden spazieren;mit
-__ zwei Stunden kam er wieder;nach
-Sie ist __ London gereist;nach
-Ihrem Dialekt __ ist sie Süddeutsche;nach
+Er trinkt __ der Flasche (dativ);aus
+Sie kommt __ Essen (dativ);aus
+Der Fahrstuhl war __ Betrieb (dativ);außer
+Der Patient ist jetzt __ Gefahr (dativ);außer
+Alle __ mir kamen zu spät (dativ);außer
+Feiern wir __ uns? (dativ);bei
+__ uns in Schottland ist das kein Problem (dativ);bei
+Sie ist __ Bäcker (dativ);beim
+Er ist noch __ Friseur (dativ);beim
+Er wohnt immer noch __ seinen Eltern (dativ);bei
+Er wohnt uns __ (dativ);gegenüber
+Sie ist mir __ immer sehr freundlich gewesen (dativ);gegenüber
+Er ging __ seinen Freuden spazieren (dativ);mit
+__ zwei Stunden kam er wieder (dativ);nach
+Sie ist __ London gereist (dativ);nach
+Ihrem Dialekt __ ist sie Süddeutsche (dativ);nach
+__ er krank ist, spielt er nicht mehr Fußball (dativ);seit
+Ich wohne __ zwei Jahren in Frankfurt (dativ);seit
+Sie arbeitet __ acht Jahren bei uns (dativ);seit
+__ Berlin sind wir weiter nach Krakau gefahren (dativ);von
+Ich weiß nichts __ ihm (dativ);von
+Sie ist __ unseren Argumenten überzeugt worden (dativ);von
+Die Mutter __ disen Mädchen ist Kunstlerin (dativ);von
+Sie ist eine Freundin __ Alexander (dativ);von
+Er ging __ Arzt (dativ);zum
+Wir sind __ Essen eigeladen (dativ);zum
