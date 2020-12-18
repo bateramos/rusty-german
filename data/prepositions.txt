@@ -1,26 +1,59 @@
-Er trinkt __ der Flasche (dativ);aus
-Sie kommt __ Essen (dativ);aus
-Der Fahrstuhl war __ Betrieb (dativ);außer
-Der Patient ist jetzt __ Gefahr (dativ);außer
-Alle __ mir kamen zu spät (dativ);außer
-Feiern wir __ uns? (dativ);bei
-__ uns in Schottland ist das kein Problem (dativ);bei
-Sie ist __ Bäcker (dativ);beim
-Er ist noch __ Friseur (dativ);beim
-Er wohnt immer noch __ seinen Eltern (dativ);bei
-Er wohnt uns __ (dativ);gegenüber
-Sie ist mir __ immer sehr freundlich gewesen (dativ);gegenüber
-Er ging __ seinen Freuden spazieren (dativ);mit
-__ zwei Stunden kam er wieder (dativ);nach
-Sie ist __ London gereist (dativ);nach
-Ihrem Dialekt __ ist sie Süddeutsche (dativ);nach
-__ er krank ist, spielt er nicht mehr Fußball (dativ);seit
-Ich wohne __ zwei Jahren in Frankfurt (dativ);seit
-Sie arbeitet __ acht Jahren bei uns (dativ);seit
-__ Berlin sind wir weiter nach Krakau gefahren (dativ);von
-Ich weiß nichts __ ihm (dativ);von
-Sie ist __ unseren Argumenten überzeugt worden (dativ);von
-Die Mutter __ disen Mädchen ist Kunstlerin (dativ);von
-Sie ist eine Freundin __ Alexander (dativ);von
-Er ging __ Arzt (dativ);zum
-Wir sind __ Essen eigeladen (dativ);zum
+aus;dativ
+Er trinkt __ der Flasche
+Sie kommt __ Essen
+
+außer;dativ
+Der Fahrstuhl war __ Betrieb
+Der Patient ist jetzt __ Gefahr
+Alle __ mir kamen zu spät
+
+bei;dativ
+Feiern wir __ uns?
+__ uns in Schottland ist das kein Problem
+Er wohnt immer noch __ seinen Eltern
+
+beim;dativ
+Sie ist __ Bäcker
+Er ist noch __ Friseur
+
+gegenüber;dativ
+Er wohnt uns __
+Sie ist mir __ immer sehr freundlich gewesen
+
+mit;dativ
+Er ging __ seinen Freuden spazieren
+
+nach;dativ
+__ zwei Stunden kam er wieder
+Sie ist __ London gereist
+Ihrem Dialekt __ ist sie Süddeutsche
+
+seit;dativ
+__ er krank ist, spielt er nicht mehr Fußball
+Ich wohne __ zwei Jahren in Frankfurt
+Sie arbeitet __ acht Jahren bei uns
+
+von;dativ
+__ Berlin sind wir weiter nach Krakau gefahren
+Ich weiß nichts __ ihm
+Sie ist __ unseren Argumenten überzeugt worden
+Die Mutter __ disen Mädchen ist Kunstlerin
+Sie ist eine Freundin __ Alexander
+
+zum;dativ
+Er ging __ Arzt
+Wir sind __ Essen eigeladen
+
+durch;akkusativ
+Sie guckte __ das Loch
+__ zufall trafen sie sich wieder
+Die Kinder kommen die Straße __
+Ich habe es __ dich getan
+Das ist __ ihn sehr wichtig
+Was __ eins hat er
+Was __ einen Wagen hat sie?
+Was __ Äpfel sind das
+
+gegen;akkusativ
+Stellen es __ die Wand
+
