@@ -48,6 +48,8 @@ durch;akkusativ
 Sie guckte __ das Loch
 __ zufall trafen sie sich wieder
 Die Kinder kommen die Straße __
+
+für;akkusativ
 Ich habe es __ dich getan
 Das ist __ ihn sehr wichtig
 Was __ eins hat er
@@ -57,3 +59,112 @@ Was __ Äpfel sind das
 gegen;akkusativ
 Stellen es __ die Wand
 
+ohne;akkusativ
+__ sie gehts nicht
+
+um;akkusativ around
+Der Bahnhof liegt __ die Ecke
+Es fängt __ neun Uhr an
+Es ist __ zehn Euro billiger
+Sie baten __ ein bisschen mehr Zeit
+Es handelt sich __ dein Benehmen
+
+wider;akkusativ against,contrary to
+Das geht mir __ die Natur
+
+an;akkusativ
+Die Lehrerin schrieb das Wort __ die Tafel
+Ich habe einen Brief __ meine Mutter geschrieben
+Ich ziehe im Sommer __ die Küste
+Sie glaubt __ ihre Schwerster
+
+an;dativ
+Das Wort stand __ der Tafel
+Wir treffen uns __ dem Bahnhof
+Er leidet __ einer tödlichen Krankheit
+
+auf;akkusativ
+Stell die Supper butte __ den Tisch
+Wir fahren morgen __ das Land
+Er warf einen Blick __ das Buch
+Ich verlasse mich __ dich
+Ich freue mich __ die Sommerferien
+Er wartet jeden morgen __ den Bus
+
+auf;dativ
+Die Suppe steht __ dem Tisch
+__ dem Land ist die Luft besser
+Wir bestehen __ sofortiger
+
+hinter;akkusativ
+Stell dich __ deinen Bruder
+
+hinter;dativ
+Sie saß __ mir
+
+in;akkusativ
+Sie ging __ das Zimmer
+Er wollte nicht __ die Schule gehen
+
+in;dativ
+Was hast du heute __ der Schule gemacht?
+__ dem Zimmer warteten viele Leute auf ihn
+
+neben;akkusativ
+Stell dein Rad __ meines
+
+neben;dativ
+Dein Rad steht __ meinem
+
+über;akkusativ
+Zieh den Pullover __ deinen Kopf!
+Sie ging quer __ das Feld
+Flugzeuge dürfen nicht __ dieses Gebiet fliegen
+Wir haben viel __ sie gesprochen
+
+über;dativ
+Die Lampe soll __ dem Tisch hängen
+
+unter;akkusativ
+Sie stellte sich __ den Baum
+Sie lebte dort __ Freunden
+
+vor;akkusativ
+Stell den Stuhl __ das Fenster
+
+vor;dativ
+Auf dem Foto stand sie __ dem Haus
+Ich war __ ihm da
+__ dem Krankenhaus links abbiegen
+
+zwischen;akkusativ
+Er legte es __ die beiden Teller
+
+zwischen;dativ
+Das Dorf liegt __ den Bergen
+
+ußerhalb;dativ outside
+Er liegt __ der Stadt
+
+infolge;dativ as a result of
+__ des starken Regens kam es zu Überschwemmungen
+
+innerhalb;dativ within,inside
+Ich schaffe das nicht __ der gesetzten Frist
+
+statt;dativ instead of
+__ nach Hause zu gehen, sind wir noch in die Stadt gegangen
+Sie kam __ ihres Bruders
+__ dem Abendessen musste ich arbeiten
+
+trotz;dativ in spite of
+__ ihrer Krankheit ging sie jeden Tag spazieren
+__ allem will ich weiterstudieren
+
+während;dativ during
+Was hast du __ der Ferien gemacht?
+__ dem Vortrag schlief er ein
+
+wegen;dativ because of,on account of
+__ des schlechten Wetters wurde die Veranstaltung abgesgt
+__ mir musste sie früh nach Hause
