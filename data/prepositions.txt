@@ -1,170 +1,166 @@
-aus;dativ
+aus;from dativ
 Er trinkt __ der Flasche
 Sie kommt __ Essen
 
-außer;dativ
+außer;out of,except dativ
 Der Fahrstuhl war __ Betrieb
 Der Patient ist jetzt __ Gefahr
 Alle __ mir kamen zu spät
 
-bei;dativ
+bei;at dativ
 Feiern wir __ uns?
 __ uns in Schottland ist das kein Problem
 Er wohnt immer noch __ seinen Eltern
+Sie ist __ dem Bäcker
+Er ist noch __ dem Friseur
 
-beim;dativ
-Sie ist __ Bäcker
-Er ist noch __ Friseur
-
-gegenüber;dativ
+gegenüber;across dativ
 Er wohnt uns __
 Sie ist mir __ immer sehr freundlich gewesen
 
-mit;dativ
+mit;with dativ
 Er ging __ seinen Freuden spazieren
 
-nach;dativ
+nach;after,to dativ
 __ zwei Stunden kam er wieder
 Sie ist __ London gereist
 Ihrem Dialekt __ ist sie Süddeutsche
 
-seit;dativ
+seit;since dativ
 __ er krank ist, spielt er nicht mehr Fußball
 Ich wohne __ zwei Jahren in Frankfurt
 Sie arbeitet __ acht Jahren bei uns
 
-von;dativ
+von;from dativ
 __ Berlin sind wir weiter nach Krakau gefahren
 Ich weiß nichts __ ihm
 Sie ist __ unseren Argumenten überzeugt worden
-Die Mutter __ disen Mädchen ist Kunstlerin
+Die Mutter __ diesem Mädchen ist Künstlerin
 Sie ist eine Freundin __ Alexander
 
-zum;dativ
-Er ging __ Arzt
-Wir sind __ Essen eigeladen
+zu;to dativ
+Er ging __ dem Arzt
+Wir sind __ dem Essen eingeladen
 
-durch;akkusativ
+durch;through,by akkusativ
 Sie guckte __ das Loch
-__ zufall trafen sie sich wieder
-Die Kinder kommen die Straße __
+__ Zufall trafen sie sich wieder
 
-für;akkusativ
+für;for akkusativ
 Ich habe es __ dich getan
 Das ist __ ihn sehr wichtig
-Was __ eins hat er
+Was __ eins hat er?
 Was __ einen Wagen hat sie?
-Was __ Äpfel sind das
+Was __ Äpfel sind das?
 
-gegen;akkusativ
+gegen;against akkusativ
 Stellen es __ die Wand
+Heute spielt Nordkorea __ Deutschland
 
-ohne;akkusativ
+ohne;without akkusativ
 __ sie gehts nicht
 
-um;akkusativ around
+um;around,at akkusativ
 Der Bahnhof liegt __ die Ecke
 Es fängt __ neun Uhr an
 Es ist __ zehn Euro billiger
 Sie baten __ ein bisschen mehr Zeit
 Es handelt sich __ dein Benehmen
 
-wider;akkusativ against,contrary to
-Das geht mir __ die Natur
-
-an;akkusativ
+an;to,on akkusativ
 Die Lehrerin schrieb das Wort __ die Tafel
 Ich habe einen Brief __ meine Mutter geschrieben
 Ich ziehe im Sommer __ die Küste
-Sie glaubt __ ihre Schwerster
+Sie glaubt __ ihre Schwester
 
-an;dativ
+an;to,on dativ
 Das Wort stand __ der Tafel
 Wir treffen uns __ dem Bahnhof
 Er leidet __ einer tödlichen Krankheit
 
-auf;akkusativ
-Stell die Supper butte __ den Tisch
+auf;on top,on akkusativ
+Stell die Suppe bitte __ den Tisch
 Wir fahren morgen __ das Land
 Er warf einen Blick __ das Buch
 Ich verlasse mich __ dich
 Ich freue mich __ die Sommerferien
-Er wartet jeden morgen __ den Bus
+Er wartet jeden Morgen __ den Bus
 
-auf;dativ
+auf;on top,on dativ
 Die Suppe steht __ dem Tisch
 __ dem Land ist die Luft besser
-Wir bestehen __ sofortiger
+Wir bestehen __ sofortige Antwort!
 
-hinter;akkusativ
+hinter;behind akkusativ
 Stell dich __ deinen Bruder
 
-hinter;dativ
+hinter;behind dativ
 Sie saß __ mir
 
-in;akkusativ
+in;in to,to akkusativ
 Sie ging __ das Zimmer
 Er wollte nicht __ die Schule gehen
 
-in;dativ
+in;to dativ
 Was hast du heute __ der Schule gemacht?
 __ dem Zimmer warteten viele Leute auf ihn
 
-neben;akkusativ
+neben;close akkusativ
 Stell dein Rad __ meines
 
-neben;dativ
+neben;close dativ
 Dein Rad steht __ meinem
 
-über;akkusativ
+über;on top akkusativ
 Zieh den Pullover __ deinen Kopf!
 Sie ging quer __ das Feld
 Flugzeuge dürfen nicht __ dieses Gebiet fliegen
 Wir haben viel __ sie gesprochen
 
-über;dativ
+über;on top dativ
 Die Lampe soll __ dem Tisch hängen
 
-unter;akkusativ
+unter;below akkusativ
 Sie stellte sich __ den Baum
 Sie lebte dort __ Freunden
 
-vor;akkusativ
+vor;in front of akkusativ
 Stell den Stuhl __ das Fenster
 
-vor;dativ
+vor;in front of,before dativ
 Auf dem Foto stand sie __ dem Haus
 Ich war __ ihm da
 __ dem Krankenhaus links abbiegen
 
-zwischen;akkusativ
+zwischen;between akkusativ
 Er legte es __ die beiden Teller
 
-zwischen;dativ
+zwischen;between dativ
 Das Dorf liegt __ den Bergen
 
-ußerhalb;dativ outside
+außerhalb;outside of dativ
 Er liegt __ der Stadt
 
-infolge;dativ as a result of
+infolge;as a result of dativ
 __ des starken Regens kam es zu Überschwemmungen
 
-innerhalb;dativ within,inside
+innerhalb;within,inside dativ
 Ich schaffe das nicht __ der gesetzten Frist
 
-statt;dativ instead of
+statt;instead of genitiv
 __ nach Hause zu gehen, sind wir noch in die Stadt gegangen
 Sie kam __ ihres Bruders
-__ dem Abendessen musste ich arbeiten
 
-trotz;dativ in spite of
+trotz;in spite of dativ
 __ ihrer Krankheit ging sie jeden Tag spazieren
 __ allem will ich weiterstudieren
 
-während;dativ during
+während;during genitiv
 Was hast du __ der Ferien gemacht?
-__ dem Vortrag schlief er ein
+__ des Vortrags schlief er ein
 
-wegen;dativ because of,on account of
-__ des schlechten Wetters wurde die Veranstaltung abgesgt
+wegen;because of,on account of dativ
 __ mir musste sie früh nach Hause
+
+wegen;because of,on account of genitiv
+__ des schlechten Wetters wurde die Veranstaltung abgesagt
