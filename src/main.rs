@@ -18,6 +18,7 @@ fn main() {
     let mut input = String::new();
 
     println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles");
+    println!("type exit to quit");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
             match input.trim() {
@@ -96,6 +97,9 @@ fn wait_for_expected_input(expected_input: String) {
         let mut input = String::new();
         match io::stdin().read_line(&mut input) {
             Ok(_n) => {
+                if input.trim() == "exit" {
+                    panic!("Exiting");
+                }
                 match input.trim() == expected_input {
                     true => {
                         break;
