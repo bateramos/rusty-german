@@ -30,6 +30,14 @@ bleiben;gebleiben;sein
 bleibe;bleibst;bleibt;bleiben;bleibt;bleiben
 bleib;bleibst;bleib;bleiben;bleibt;bleiben
 
+blieten;geboten;haben
+bliete;bietest;bietet;bieten;bietet;bieten
+bot;botst;bot;boten;botet;boten
+
+bringen;gebracht;haben
+bringe;bringst;bringen;bringen;bringt;bringen
+brachte;brachtest;brachte;brachten;brachtet;brachten
+
 erwarten;erwartet;haben
 erwarte;erwartest;erwartet;erwarten;erwartet;erwarten
 erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
@@ -37,6 +45,10 @@ erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
 fliegen;geflogen;sein
 fliege;fliegst;fliegt;fliegen;fliegt;fliegen
 flog;flogst;flog;flogen;flogt;flogen
+
+nehmen;genommen;haben
+nehme;nimmst;nimmt;nehmen;nehmt;nehmen
+nahm;nahmst;nahm;nahmen;nahmt;nahmen
 
 reiten;geritten;sein
 reite;reitest;reitet;reiten;reitet;reiten

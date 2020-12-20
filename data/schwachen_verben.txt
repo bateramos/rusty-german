@@ -1,5 +1,7 @@
 argumentieren;argumentiert;haben
 
+brauchen;gebraucht;haben
+
 fragen;gesagt;haben
 
 fühlen;gefühlt;haben

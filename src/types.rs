@@ -28,5 +28,6 @@ pub struct Article {
 
 pub struct PrepositionExercise {
     pub phrase: String,
+    pub case: String,
     pub preposition: String
 }

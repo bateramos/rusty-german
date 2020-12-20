@@ -45,6 +45,7 @@ fn run_preposition_exercise() {
     let mut rng = thread_rng();
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
+    prepositions.sort_by_key(|a| a.case.to_owned());
     for preposition in prepositions.iter() {
         println!("{}", preposition.phrase);
         wait_for_expected_input(preposition.preposition.to_string());
