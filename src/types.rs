@@ -31,3 +31,10 @@ pub struct PrepositionExercise {
     pub case: String,
     pub preposition: String
 }
+
+#[derive(Debug, Clone)]
+pub struct SubstantiveExercise {
+    pub substantive: String,
+    pub article: String,
+    pub tip: String
+}

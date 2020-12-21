@@ -8,16 +8,18 @@ mod pronouns;
 mod prepositions;
 mod read_file;
 mod articles;
+mod substantives;
 
 use verben::get_verben;
 use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
+use substantives::get_substantives_list;
 
 fn main() {
     let mut input = String::new();
 
-    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles");
+    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles, 5 for substantives");
     println!("type exit to quit");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
@@ -26,11 +28,23 @@ fn main() {
                 "2" => run_personal_pronoun_exercise(),
                 "3" => run_preposition_exercise(),
                 "4" => run_articles_exercise(),
+                "5" => run_substantice_exercise(),
                 _ => panic!("Invalid option {}", input)
             }
         }
         Err(error) => panic!("Error on receiving input {}", error)
     };
+}
+
+fn run_substantice_exercise() {
+    let mut rng = thread_rng();
+    let mut substantives = get_substantives_list();
+    substantives.shuffle(&mut rng);
+    substantives = substantives[..40].to_vec();
+    for exercise in substantives.iter() {
+        println!("{}", exercise.substantive);
+        wait_for_expected_input(exercise.article.to_string());
+    }
 }
 
 fn run_articles_exercise() {
