@@ -6,6 +6,8 @@ fragen;gesagt;haben
 
 fühlen;gefühlt;haben
 
+hören;gehört;haben
+
 kaufen;gekauft;haben
 
 sagen;gesagt;haben

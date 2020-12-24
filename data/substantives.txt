@@ -1,4 +1,5 @@
-der;seasons, months, day of the week, weather, points of the compass, things that perform action, ending on: -ant -ast --ismus
+der
+seasons, months, day of the week; weather, points of the compass; things that perform action; ending on: -ant -ast -ismus -or
 Ärger
 Abend
 Abflug
@@ -17,7 +18,7 @@ Arbeitsplatz
 Arm
 Arzt
 Aufenthalt
-Aufzug
+Aufzug (Elevador)
 August
 Ausflug
 Ausgang
@@ -62,7 +63,6 @@ Einwohner
 Empfänger
 Empfang
 Enkel
-Erwachsene
 Export
 Führerschein
 Fahrer
@@ -117,7 +117,7 @@ Kellner
 Kindergarten
 Kinderwagen
 Kiosk
-Koffer
+Koffer (Suitcase)
 Kollege
 Kontakt
 Kopf
@@ -259,7 +259,8 @@ Zoll
 Zucker
 Zug
 
-die;tips
+die
+ending on: -e -ei -ung; ending on: -heit -keit -schaft; numbers used in counting;
 Ärztin
 Übernachtung (Overnicht stay)
 Abfahrt
@@ -290,7 +291,7 @@ Bank
 Batterie
 Beamte
 Beamtin
-Bekannte
+Bekannte (Know)
 Beratung
 Berufsschule
 Bewerbung (candidate)
@@ -298,7 +299,7 @@ Birne
 Bitte
 Blume
 Bluse
-Bohne
+Bohne (Bean)
 Brücke
 Briefmarke
 Brieftasche
@@ -323,9 +324,8 @@ Entschuldigung
 Erfahrung
 Erlaubnis
 Ermäßigung
-Erwachsene
 Fähre
-Führung
+Führung (Guide)
 Fabrik
 Fahrkarte
 Familie
@@ -359,7 +359,7 @@ Haltestelle
 Hand
 Hausaufgabe
 Hausfrau
-Heimat
+Heimat (Homeland)
 Heizung
 Hilfe
 Hose
@@ -367,7 +367,6 @@ Idee
 Industrie
 Information
 Jacke
-Jugendliche
 Küche
 Kündigung
 Kamera
@@ -395,7 +394,7 @@ Kundin
 Lösung
 Lampe
 Landschaft (Landscape)
-Lebensmittel
+Lebensmittel (Food)
 Lehre
 Lehrerin
 Leute
@@ -519,7 +518,8 @@ Zeitung
 Zigarette
 Zitrone
 
-das;tips
+das
+starting with: Ge-; diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum; ending on: -at -ett -fon -ma -ment -um
 Alter
 Angebot
 Appartement
@@ -684,5 +684,10 @@ Wiedersehen
 Wochenende
 Wort
 Zentrum
-Zeugnis
+Zeugnis (Testimony)
 Zimmer
+
+dba
+Defined by articles
+Erwachsene (Adults)
+Jugendliche

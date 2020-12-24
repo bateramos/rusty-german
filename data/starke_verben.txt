@@ -46,6 +46,10 @@ fliegen;geflogen;sein
 fliege;fliegst;fliegt;fliegen;fliegt;fliegen
 flog;flogst;flog;flogen;flogt;flogen
 
+liegen;gelegen;sein
+liege;liegst;liegt;liegen;liegt;liegen
+lag;lagst;lag;lagen;lagt;lagen
+
 nehmen;genommen;haben
 nehme;nimmst;nimmt;nehmen;nehmt;nehmen
 nahm;nahmst;nahm;nahmen;nahmt;nahmen
@@ -61,6 +65,10 @@ war;warst;war;waren;wart;waren
 geben;gegeben;haben
 gebe;gibst;gibt;geben;gebt;geben
 gab;gabst;gab;gaben;gabt;gaben
+
+gehen;gegangen;sein
+gehe;gehst;geht;gehen;geht;gehen
+ging;gingst;ging;gingen;gingt;gingen
 
 tun;getan;haben
 tue;tust;tut;tun;tut;tun

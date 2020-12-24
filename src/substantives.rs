@@ -14,14 +14,12 @@ pub fn get_substantives_list() -> Vec<SubstantiveExercise> {
             }
 
             if article == "" {
-                let attr = line.split(";").collect::<Vec<&str>>();
-                article = attr[0].to_owned();
-                tip = attr[1].to_owned();
+                article = line.to_owned();
+            } else if tip == "" {
+                tip = line.to_owned();
             } else {
                 list.push(SubstantiveExercise { substantive: line.to_owned(), tip: tip.to_owned(), article: article.to_owned() });
             }
-
-            //println!("{}", line);
         }
     }
     list
