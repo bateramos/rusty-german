@@ -105,8 +105,8 @@ fn run_verb_exercise() {
 
     for verb in verben.iter() {
         conjugation_ite = 0;
-        println!(" --- {} ({:?} {:?}) --- ", verb.name, verb.verb_type, verb.zeit_type);
         for conjugation in verb.conjugations.iter() {
+            println!(" --- {} ({:?} {:?}) --- ", verb.name, verb.verb_type, verb.zeit_type);
             println!("{}:", person[conjugation_ite]);
             wait_for_expected_input(conjugation.to_string());
             conjugation_ite += 1;
