@@ -2,7 +2,7 @@ argumentieren;argumentiert;haben
 
 brauchen;gebraucht;haben
 
-fragen;gesagt;haben
+fragen;gefragt;haben
 
 fühlen;gefühlt;haben
 
