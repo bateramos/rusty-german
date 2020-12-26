@@ -14,7 +14,7 @@ use verben::get_verben;
 use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
-use substantives::get_substantives_list;
+use substantives::{get_substantives_list, get_substantives_tips_exercises};
 
 fn main() {
     let mut input = String::new();
@@ -38,6 +38,14 @@ fn main() {
 
 fn run_substantice_exercise() {
     let mut rng = thread_rng();
+    let mut substantives_tips_list = get_substantives_tips_exercises();
+    substantives_tips_list.shuffle(&mut rng);
+
+    for exercise in substantives_tips_list.iter() {
+        println!("{}", exercise.tip);
+        wait_for_expected_input(exercise.article.to_string());
+    }
+
     let mut substantives = get_substantives_list();
     substantives.shuffle(&mut rng);
     substantives = substantives[..40].to_vec();

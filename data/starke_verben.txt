@@ -35,7 +35,7 @@ bliete;bietest;bietet;bieten;bietet;bieten
 bot;botst;bot;boten;botet;boten
 
 bringen;gebracht;haben
-bringe;bringst;bringen;bringen;bringt;bringen
+bringe;bringst;bringt;bringen;bringt;bringen
 brachte;brachtest;brachte;brachten;brachtet;brachten
 
 erwarten;erwartet;haben
