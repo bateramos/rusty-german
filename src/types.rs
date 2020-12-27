@@ -26,6 +26,7 @@ pub struct Article {
     pub gender: &'static str
 }
 
+#[derive(Debug, Clone)]
 pub struct PrepositionExercise {
     pub phrase: String,
     pub case: String,

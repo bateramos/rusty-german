@@ -1,5 +1,5 @@
 der
-seasons, months, day of the week; weather, points of the compass; things that perform action; ending on: -ant -ast -ismus -or
+seasons, months, day of the week; weather, points of the compass; things that perform action; ending on: -ant -ast -ismus -or (Restaurant, Gast, Humanismus, Motor)
 Ärger
 Abend
 Abflug
@@ -34,11 +34,11 @@ Bekannte
 Berg
 Beruf
 Besuch
-Betrag
+Betrag (Amount)
 Bildschirm
 Bleistift
 Blick
-Bogen
+Bogen (Bow)
 Brief
 Briefkasten
 Briefumschlag
@@ -58,7 +58,7 @@ Drucker
 Durst
 Ehemann
 Eingang
-Eintritt
+Eintritt (Entry)
 Einwohner
 Empfänger
 Empfang
@@ -132,7 +132,7 @@ Laden
 Lehrer
 LKW
 Loch
-Lohn
+Lohn (Wage)
 März
 Müll
 Magen
@@ -260,7 +260,7 @@ Zucker
 Zug
 
 die
-ending on: -e -ei -ung; ending on: -heit -keit -schaft; numbers used in counting
+ending on: -e -ei -ung (Adresse, Bäckerei, Ausbildung); ending on: -heit -keit -schaft (Gesundheit, Sehenswürdigkeit, Landschaft); numbers used in counting
 Ärztin
 Übernachtung (Overnicht stay)
 Abfahrt
@@ -281,7 +281,7 @@ Auge
 Ausbildung
 Auskunft (Information desk)
 Ausländerin
-Aussage
+Aussage (Statement)
 Ausstellung
 Autobahn
 Bäckerei
@@ -289,7 +289,7 @@ Bahn
 Banane
 Bank
 Batterie
-Beamte
+Beamte (Officer)
 Beamtin
 Bekannte (Know)
 Beratung
@@ -406,7 +406,7 @@ Mülltonne
 Maschine
 Mehrwertsteuer
 Meinung
-Menge
+Menge (Quantity)
 Miete
 Milch
 Minute
@@ -519,7 +519,7 @@ Zigarette
 Zitrone
 
 das
-starting with: Ge-; diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum; ending on: -at -ett -fon -ma -ment -um
+starting with: Ge- (Geld); diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum (Ergebnis, Datum); ending on: -at -ett -fon -ma -ment -um (Konsulat, Bett, Telefon, Thema, Medikament, Gymnasium)
 Alter
 Angebot
 Appartement
@@ -551,7 +551,7 @@ Einzelzimmer
 Eis
 Ende
 Erdgeschoss
-Ergebnis
+Ergebnis (Result)
 Essen
 Fahrrad
 Fax
@@ -600,8 +600,7 @@ Holz
 Internet
 Jahr
 Junge
-Kennzeichen
-Kfz
+Kennzeichen (Mark)
 Kind
 Kino
 Kleid

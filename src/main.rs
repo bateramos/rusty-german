@@ -68,8 +68,9 @@ fn run_preposition_exercise() {
     let mut rng = thread_rng();
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
-    prepositions.sort_by_key(|a| a.case.to_owned());
-    for preposition in prepositions.iter() {
+    let mut prepositions_subset = prepositions[..20].to_vec();
+    prepositions_subset.sort_by_key(|a| a.case.to_owned());
+    for preposition in prepositions_subset.iter() {
         println!("{}", preposition.phrase);
         wait_for_expected_input(preposition.preposition.to_string());
     }
@@ -80,13 +81,13 @@ fn run_personal_pronoun_exercise() {
 
     for pronoun in pronouns.iter() {
         let mut conjugation_ite = 0;
-        println!(" --- {} --- ", pronoun.name);
         for subject in pronoun.subjects.iter() {
             let case = match conjugation_ite {
                 0..=2 => "single",
                 3..=5 => "plural",
                 _ => panic!("something wrong")
             };
+            println!(" --- {} --- ", pronoun.name);
             println!("{} person, {}:", (conjugation_ite % 3) + 1, case);
             conjugation_ite += 1;
             wait_for_expected_input(subject.to_string());
