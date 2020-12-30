@@ -43,11 +43,27 @@ fn create_verb_prefix(name: &str, perfect_form: &str, prefix_verb: PrefixVerb, v
 }
 
 fn create_schwache_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb) -> [Verb; 5] {
-    let person = ["e", "st", "t", "en", "t", "en"];
-    let person_past = ["te", "test", "te", "ten", "tet", "ten"];
     let mut prefix = str(name);
+    let sufix = prefix.split_off(name.len() - 2);
 
-    prefix.truncate(name.len() - 2);
+    let ending_with_rn = sufix == "rn";
+    let ending_with_alveolar = prefix.ends_with("gn") || prefix.ends_with("d") || prefix.ends_with("t");
+
+    let person = if ending_with_alveolar {
+        ["e", "est", "et", "en", "et", "en"]
+    } else if ending_with_rn {
+        ["re", "rst", "rt", "rn", "rt", "rn"]
+    } else {
+        ["e", "st", "t", "en", "t", "en"]
+    };
+
+    let person_past = if ending_with_alveolar {
+        ["ete", "etest", "ete", "eten", "etet", "eten"]
+    } else if ending_with_rn {
+        ["rte", "rtest", "rte", "rten", "rtet", "rten"]
+    } else {
+        ["te", "test", "te", "ten", "tet", "ten"]
+    };
 
     let present_form : Vec<String> = person.iter().map(|x| prefix.to_owned() + x).collect();
     let past_form : Vec<String> = person_past.iter().map(|x| prefix.to_owned() + x).collect();
@@ -83,6 +99,8 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
         for line in lines.iter() {
             if line_number == 0 {
                 let attr = line.split(";").collect::<Vec<&str>>();
+                assert!(attr.len() == 3, "Line with wrong format: {}", line);
+
                 verb_name = attr[0];
                 verb_name_past = attr[1];
                 prefix_verb = match attr[2] {
@@ -92,8 +110,10 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
                 };
             } else if line_number == 1 {
                 present_conjugation = line.split(";").map(|x| x.to_owned()).collect();
+                assert!(present_conjugation.len() == 6, "Line with wrong format: {}", line);
             } else if line_number == 2 {
                 past_conjugation = line.split(";").map(|x| x.to_owned()).collect();
+                assert!(past_conjugation.len() == 6, "Line with wrong format: {}", line);
             }
 
             if line_number == 3 {
@@ -108,6 +128,7 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
         for line in lines.iter() {
             if line != "" {
                 let attr = line.split(";").collect::<Vec<&str>>();
+                assert!(attr.len() == 3, "Line with wrong format: {}", line);
                 let verb_name = attr[0];
                 let verb_name_past = attr[1];
                 let prefix_verb = match attr[2] {

@@ -1,13 +1,53 @@
+arbeiten;gearbeitet;haben
 argumentieren;argumentiert;haben
+antworten;geantwortet;haben
 
+bauen;gebaut;haben
+bedeuten;bedeutet;haben
 brauchen;gebraucht;haben
+bilden;gebildet;haben
 
+erinnern;erinnert;haben
+erklären;erklärt;haben
+erreichen;erreicht;haben
+erzählen;erzählt;haben
+
+fehlen;gefehlt;haben
 fragen;gefragt;haben
-
+folgen;gefolgt;sein
 fühlen;gefühlt;haben
+
+gehören;gehört;haben
+glauben;geglaubt;haben
 
 hören;gehört;haben
 
+interessieren;interessiert;haben
+
+leben;gelebt;haben
+legen;gelegt;haben
+lernen;gelernt;haben
+
+machen;gemacht;haben
+meinen;gemeint;haben
+
+reden;geredet;haben
+regnen;geregnet;sein
+
 kaufen;gekauft;haben
+kümmern;gekümmert;haben
 
 sagen;gesagt;haben
+schmecken;geschmeckt;haben
+spielen;gespielt;haben
+studieren;studiert;haben
+suchen;gesucht;haben
+
+tanzen;getanzt;sein
+
+verkaufen;verkauft;haben
+versuchen;versucht;haben
+zeigen;gezeigt;haben
+
+warten;gewartet;haben
+wohnen;gewohnt;haben

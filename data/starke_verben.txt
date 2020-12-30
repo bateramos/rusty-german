@@ -2,10 +2,6 @@ anfangen;angefangen;haben
 fange an;fängst an;fängt an;fangen an;fangt an;fangen an
 fing an;fingst an;fing an;fingen an;fingt an;fingen an
 
-arbeiten;gearbeitet;haben
-arbeite;arbeitest;arbeitet;arbeiten;arbeitet;arbeiten
-arbeitete;arbeitetest;arbeitete;arbeiteten;arbeitetet;arbeiteten
-
 ansehen;angesehen;haben
 sehe an;siehst an;sieht an;sehen an;seht an;sehen an
 sah an;sahst an;sah an;sahen an;saht an;sahen an
