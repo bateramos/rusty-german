@@ -42,7 +42,7 @@ fn create_verb_prefix(name: &str, perfect_form: &str, prefix_verb: PrefixVerb, v
     Verb { name: str(name), verb_type, zeit_type, conjugations: vec_conj.into_inner().unwrap() }
 }
 
-fn create_schwache_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb) -> [Verb; 5] {
+fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb) -> [Verb; 5] {
     let mut prefix = str(name);
     let sufix = prefix.split_off(name.len() - 2);
 
@@ -68,11 +68,19 @@ fn create_schwache_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb)
     let present_form : Vec<String> = person.iter().map(|x| prefix.to_owned() + x).collect();
     let past_form : Vec<String> = person_past.iter().map(|x| prefix.to_owned() + x).collect();
 
+    let verb_has_prefix = name.starts_with("ge") || name.starts_with("er") || name.starts_with("be") || name.starts_with("ver");
+
+    let past_tense = if verb_has_prefix || name.ends_with("ieren") {
+        present_form[4].to_owned()
+    } else {
+        str("ge") + &present_form[4].to_owned()
+    };
+
     [
         create_verb(name, VerbType::Schwache, ZeitType::Praesens, &present_form),
         create_verb(name, VerbType::Schwache, ZeitType::Praeteritum, &past_form),
-        create_verb_prefix(name, past_tense, prefix_verb, VerbType::Schwache, ZeitType::Perfekt),
-        create_verb_prefix(name, past_tense, prefix_verb, VerbType::Schwache, ZeitType::Plusquamperfekt),
+        create_verb_prefix(name, &past_tense, prefix_verb, VerbType::Schwache, ZeitType::Perfekt),
+        create_verb_prefix(name, &past_tense, prefix_verb, VerbType::Schwache, ZeitType::Plusquamperfekt),
         create_verb_prefix(name, name, prefix_verb, VerbType::Schwache, ZeitType::Futur)
     ]
 }
@@ -128,15 +136,14 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
         for line in lines.iter() {
             if line != "" {
                 let attr = line.split(";").collect::<Vec<&str>>();
-                assert!(attr.len() == 3, "Line with wrong format: {}", line);
+                assert!(attr.len() == 2, "Line with wrong format: {}", line);
                 let verb_name = attr[0];
-                let verb_name_past = attr[1];
-                let prefix_verb = match attr[2] {
+                let prefix_verb = match attr[1] {
                     "sein" => PrefixVerb::Sein,
                     "haben" => PrefixVerb::Haben,
-                    _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[2])
+                    _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[1])
                 };
-                verben.push(create_schwache_verben(verb_name, verb_name_past, prefix_verb));
+                verben.push(create_schwache_verben(verb_name, prefix_verb));
             }
         }
     }
