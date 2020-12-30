@@ -48,7 +48,7 @@ fn run_substantice_exercise() {
 
     let mut substantives = get_substantives_list();
     substantives.shuffle(&mut rng);
-    substantives = substantives[..40].to_vec();
+    substantives = substantives[..60].to_vec();
     for exercise in substantives.iter() {
         println!("{}", exercise.substantive);
         wait_for_expected_input(exercise.article.to_string());

@@ -2,53 +2,54 @@ arbeiten;haben
 argumentieren;haben
 antworten;haben
 
-gebaut;haben
+bauen;haben
 bedeuten;haben
 brauchen;haben
 bilden;haben
 
-erinnert;haben
+erinnern;haben
 erklären;haben
 erreichen;haben
 erzählen;haben
 
-gefehlt;haben
+fehlen;haben
 fragen;haben
 folgen;sein
 fühlen;haben
 
-gehört;haben
+gehören;haben
 glauben;haben
 
-gehört;haben
+hören;haben
 
-interessiert;haben
+interessieren;haben
 
-gelebt;haben
+leben;haben
 legen;haben
 lernen;haben
 
-gemacht;haben
+machen;haben
 meinen;haben
 
-geredet;haben
+reden;haben
 regnen;sein
 
-gekauft;haben
+kaufen;haben
 kümmern;haben
 
-gesagt;haben
+sagen;haben
 schmecken;haben
 spielen;haben
 studieren;haben
 suchen;haben
 
-getanzt;sein
+tanzen;sein
 
-verkauft;haben
+verkaufen;haben
 versuchen;haben
 
-gezeigt;haben
+zeigen;haben
 
-gewartet;haben
+warten;haben
 wohnen;haben
+

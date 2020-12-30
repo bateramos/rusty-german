@@ -22,7 +22,7 @@ August
 Ausflug
 Ausgang
 Ausländer
-Ausweis
+Ausweis (ID Card)
 Automat
 Bahnhof
 Bahnsteig
@@ -40,7 +40,7 @@ Blick
 Bogen (Bow)
 Brief
 Briefkasten
-Briefumschlag
+Briefumschlag (Envelope)
 Bruder
 Buchstabe
 Bus
@@ -133,7 +133,7 @@ Loch
 Lohn (Wage)
 März
 Müll
-Magen
+Magen (Stomach)
 Mai
 Mann
 Mantel
@@ -190,7 +190,7 @@ Schüler
 Schalter
 Schild
 Schinken
-Schirm
+Schirm (Umbrella)
 Schlüssel
 Schluss
 Schnee
@@ -226,7 +226,7 @@ Tipp
 Tisch
 Topf
 Tourist
-Turm
+Turm (Tower)
 Unfall
 Unterricht
 Unterschied
@@ -251,7 +251,7 @@ Wochentag
 Wunsch
 Zahn
 Zettel
-Zoll
+Zoll (Inch)
 Zucker
 Zug
 
@@ -263,7 +263,7 @@ Abfahrt
 Adresse
 Ampel
 Angst
-Ankunft
+Ankunft (Arrivals)
 Anmeldung
 Anrede
 Ansage
@@ -303,7 +303,7 @@ CD
 CD-ROM
 Creme
 Dame
-Dauer
+Dauer (Durantion)
 Disco
 Durchsage
 Dusche
@@ -335,7 +335,7 @@ Freundin
 Frist (deadline)
 Gabel
 Garage
-Gebühr
+Gebühr (Fee)
 Geldbörse
 Gesamtschule
 Geschwister
@@ -492,7 +492,7 @@ Untersuchung
 Verbindung
 Verkäuferin
 Versicherung
-Verspätung
+Verspätung (Delay)
 Volksschule
 Vorsicht
 Vorwahl
@@ -533,7 +533,6 @@ Blut
 Brötchen
 Brot
 Buch
-Cafe
 Dach
 Datum
 Ding
@@ -567,7 +566,7 @@ Gegenteil
 Geld
 Gemüse
 Gepäck
-Gericht
+Gericht (Dish)
 Geschäft
 Geschenk
 Geschirr
