@@ -122,3 +122,7 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
 
     verben
 }
+
+#[cfg(test)]
+#[path = "verben_tests.rs"]
+mod tests;

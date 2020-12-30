@@ -1,12 +1,11 @@
 der
-seasons, months, day of the week; weather, points of the compass; things that perform action; ending on: -ant -ast -ismus -or (Restaurant, Gast, Humanismus, Motor)
+seasons, months, day of the week; weather, points of the compass; things that perform action (Kassettenrecorder); ending on: -ant -ast -ismus -or (Praktikant, Gast, Humanismus, Motor)
 Ärger
 Abend
 Abflug
 Absender
 Alkohol
 Anfang
-Angestellte (Employee)
 Anruf
 Anrufbeantworter
 Anschluss
@@ -29,12 +28,12 @@ Bahnhof
 Bahnsteig
 Balkon
 Baum
-Beamte
 Bekannte
 Berg
 Beruf
 Besuch
 Betrag (Amount)
+Beamte
 Bildschirm
 Bleistift
 Blick
@@ -48,7 +47,6 @@ Bus
 Chef
 Computer
 Dank
-Deutsche
 Dezember
 Dienstag
 Doktor
@@ -229,7 +227,6 @@ Tisch
 Topf
 Tourist
 Turm
-Tyr
 Unfall
 Unterricht
 Unterschied
@@ -248,7 +245,6 @@ Wald
 Weg
 Wein
 Westen
-Wetter
 Wind
 Winter
 Wochentag
@@ -266,7 +262,6 @@ ending on: -e -ei -ung (Adresse, Bäckerei, Ausbildung); ending on: -heit -keit 
 Abfahrt
 Adresse
 Ampel
-Angestellte
 Angst
 Ankunft
 Anmeldung
@@ -289,8 +284,7 @@ Bahn
 Banane
 Bank
 Batterie
-Beamte (Officer)
-Beamtin
+Beamtin (Officer)
 Bekannte (Know)
 Beratung
 Berufsschule
@@ -310,7 +304,6 @@ CD-ROM
 Creme
 Dame
 Dauer
-Deutsche
 Disco
 Durchsage
 Dusche
@@ -519,7 +512,7 @@ Zigarette
 Zitrone
 
 das
-starting with: Ge- (Geld); diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum (Ergebnis, Datum); ending on: -at -ett -fon -ma -ment -um (Konsulat, Bett, Telefon, Thema, Medikament, Gymnasium)
+starting with: Ge- (Gesetz); diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum (Ergebnis, Datum); ending on: -at -ett -fon -ma -ment -um (Konsulat, Bett, Telefon, Thema, Medikament, Gymnasium)
 Alter
 Angebot
 Appartement
@@ -690,3 +683,5 @@ dba
 Defined by articles
 Erwachsene (Adults)
 Jugendliche
+Angestellte (Employee)
+Deutsche
