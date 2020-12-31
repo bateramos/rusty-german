@@ -95,7 +95,7 @@ fn create_starke_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb, p
     ]
 }
 
-pub fn get_verben() -> Vec<[Verb; 5]> {
+pub fn get_starken_verben() -> Vec<[Verb; 5]> {
     let mut verben = Vec::new();
     if let Ok(lines) = read_file_lines("data/starke_verben.txt") {
         let mut line_number = 0;
@@ -132,6 +132,12 @@ pub fn get_verben() -> Vec<[Verb; 5]> {
             }
         }
     }
+
+    verben
+}
+
+pub fn get_schwachen_verben() -> Vec<[Verb; 5]> {
+    let mut verben = Vec::new();
     if let Ok(lines) = read_file_lines("data/schwachen_verben.txt") {
         for line in lines.iter() {
             if line != "" {

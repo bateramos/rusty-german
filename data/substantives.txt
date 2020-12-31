@@ -266,7 +266,7 @@ Angst
 Ankunft (Arrivals)
 Anmeldung
 Anrede
-Ansage
+Ansage (Announcement)
 Antwort
 Anzeige
 Apotheke

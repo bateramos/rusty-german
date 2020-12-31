@@ -1,4 +1,4 @@
-use super::{get_verben, create_verb, str};
+use super::{get_starken_verben, get_schwachen_verben, create_verb, str};
 use crate::types::{VerbType, ZeitType};
 
 #[test]
@@ -9,8 +9,13 @@ fn it_create_verb() {
 }
 
 #[test]
-fn it_should_load_verb_files() {
-    get_verben();
+fn it_should_load_starken_verben_files() {
+    get_starken_verben();
+}
+
+#[test]
+fn it_should_load_schwachen_verben_files() {
+    get_schwachen_verben();
 }
 
 mod create_schwache_verben_tests {

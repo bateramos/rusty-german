@@ -10,7 +10,7 @@ mod read_file;
 mod articles;
 mod substantives;
 
-use verben::get_verben;
+use verben::{get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
@@ -96,21 +96,29 @@ fn run_personal_pronoun_exercise() {
 }
 
 fn run_verb_exercise() {
-    let verben_list = get_verben();
+    let mut stark_verb_list = get_starken_verben();
+    let mut schwache_verb_list = get_schwachen_verben();
     let person = get_personal_pronouns()[0].subjects;
 
     let mut conjugation_ite;
     let mut rng = rand::thread_rng();
 
-    let verben = &verben_list[rng.gen_range(0, verben_list.len())];
+    let verben_list = vec![
+        schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
+        schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
+        stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
+        stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
+    ];
 
-    for verb in verben.iter() {
-        conjugation_ite = 0;
-        for conjugation in verb.conjugations.iter() {
-            println!(" --- {} ({:?} {:?}) --- ", verb.name, verb.verb_type, verb.zeit_type);
-            println!("{}:", person[conjugation_ite]);
-            wait_for_expected_input(conjugation.to_string());
-            conjugation_ite += 1;
+    for verben in verben_list.iter() {
+        for verb in verben.iter() {
+            conjugation_ite = 0;
+            for conjugation in verb.conjugations.iter() {
+                println!(" --- {} ({:?} {:?}) --- ", verb.name, verb.verb_type, verb.zeit_type);
+                println!("{}:", person[conjugation_ite]);
+                wait_for_expected_input(conjugation.to_string());
+                conjugation_ite += 1;
+            }
         }
     }
 }
