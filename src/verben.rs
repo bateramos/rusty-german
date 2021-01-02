@@ -1,6 +1,6 @@
 use arrayvec::ArrayVec;
 
-use crate::types::{Verb, VerbType, ZeitType};
+use crate::types::{VerbExercise, Verb, VerbType, ZeitType};
 use crate::read_file::read_file_lines;
 
 #[derive(Debug, Copy, Clone)]
@@ -42,7 +42,7 @@ fn create_verb_prefix(name: &str, perfect_form: &str, prefix_verb: PrefixVerb, v
     Verb { name: str(name), verb_type, zeit_type, conjugations: vec_conj.into_inner().unwrap() }
 }
 
-fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb) -> [Verb; 5] {
+fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<String>) -> VerbExercise {
     let mut prefix = str(name);
     let sufix = prefix.split_off(name.len() - 2);
 
@@ -76,39 +76,43 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb) -> [Verb; 5] {
         str("ge") + &present_form[4].to_owned()
     };
 
-    [
+    VerbExercise { verb: str(name), verb_type: VerbType::Schwache, obs, verben: [
         create_verb(name, VerbType::Schwache, ZeitType::Praesens, &present_form),
         create_verb(name, VerbType::Schwache, ZeitType::Praeteritum, &past_form),
         create_verb_prefix(name, &past_tense, prefix_verb, VerbType::Schwache, ZeitType::Perfekt),
         create_verb_prefix(name, &past_tense, prefix_verb, VerbType::Schwache, ZeitType::Plusquamperfekt),
         create_verb_prefix(name, name, prefix_verb, VerbType::Schwache, ZeitType::Futur)
-    ]
+    ] }
 }
 
-fn create_starke_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb, present_form: &Vec<String>, past_form: &Vec<String>) -> [Verb; 5] {
-    [
+fn create_starke_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb, present_form: &Vec<String>, past_form: &Vec<String>, obs: Option<String>) -> VerbExercise {
+    VerbExercise { verb: str(name), verb_type: VerbType::Starke, obs, verben: [
         create_verb(name, VerbType::Starke, ZeitType::Praesens, present_form),
         create_verb(name, VerbType::Starke, ZeitType::Praeteritum, past_form),
         create_verb_prefix(name, past_tense, prefix_verb, VerbType::Starke, ZeitType::Perfekt),
         create_verb_prefix(name, past_tense, prefix_verb, VerbType::Starke, ZeitType::Plusquamperfekt),
         create_verb_prefix(name, name, prefix_verb, VerbType::Starke, ZeitType::Futur)
-    ]
+    ] }
 }
 
-pub fn get_starken_verben() -> Vec<[Verb; 5]> {
+pub fn get_starken_verben() -> Vec<VerbExercise> {
     let mut verben = Vec::new();
     if let Ok(lines) = read_file_lines("data/starke_verben.txt") {
         let mut line_number = 0;
         let mut verb_name = "";
         let mut verb_name_past = "";
+        let mut verb_obs = None;
         let mut prefix_verb = PrefixVerb::Sein;
         let mut present_conjugation = Vec::new();
         let mut past_conjugation = Vec::new();
         for line in lines.iter() {
             if line_number == 0 {
                 let attr = line.split(";").collect::<Vec<&str>>();
-                assert!(attr.len() == 3, "Line with wrong format: {}", line);
-
+                verb_obs = match attr.len() {
+                    4 => Some(attr[3].to_owned()),
+                    3 => None,
+                    _ => panic!("Line with wrong format. {}", line)
+                };
                 verb_name = attr[0];
                 verb_name_past = attr[1];
                 prefix_verb = match attr[2] {
@@ -125,7 +129,11 @@ pub fn get_starken_verben() -> Vec<[Verb; 5]> {
             }
 
             if line_number == 3 {
-                verben.push(create_starke_verben(verb_name, verb_name_past, prefix_verb, &present_conjugation, &past_conjugation));
+                verben.push(create_starke_verben(verb_name, verb_name_past, prefix_verb, &present_conjugation, &past_conjugation, verb_obs));
+
+                verb_name = "";
+                verb_obs = None;
+
                 line_number = 0;
             } else {
                 line_number += 1;
@@ -136,20 +144,24 @@ pub fn get_starken_verben() -> Vec<[Verb; 5]> {
     verben
 }
 
-pub fn get_schwachen_verben() -> Vec<[Verb; 5]> {
+pub fn get_schwachen_verben() -> Vec<VerbExercise> {
     let mut verben = Vec::new();
     if let Ok(lines) = read_file_lines("data/schwachen_verben.txt") {
         for line in lines.iter() {
             if line != "" {
                 let attr = line.split(";").collect::<Vec<&str>>();
-                assert!(attr.len() == 2, "Line with wrong format: {}", line);
+                let obs = match attr.len() {
+                    2 => None,
+                    3 => Some(attr[2].to_owned()),
+                    _ => panic!("Line with the wrong format. {}", line)
+                };
                 let verb_name = attr[0];
                 let prefix_verb = match attr[1] {
                     "sein" => PrefixVerb::Sein,
                     "haben" => PrefixVerb::Haben,
                     _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[1])
                 };
-                verben.push(create_schwache_verben(verb_name, prefix_verb));
+                verben.push(create_schwache_verben(verb_name, prefix_verb, obs));
             }
         }
     }

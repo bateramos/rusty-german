@@ -35,7 +35,7 @@ reden;haben
 regnen;sein
 
 kaufen;haben
-kümmern;haben
+kümmern;haben;sich kümmern um
 
 sagen;haben
 schmecken;haben

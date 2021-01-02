@@ -55,7 +55,7 @@ reite;reitest;reitet;reiten;reitet;reiten
 ritt;rittst;ritt;ritten;rittet;ritten
 
 sein;gewesen;sein
-bin;bist;ist;sein;seid;sein
+bin;bist;ist;sind;seid;sind
 war;warst;war;waren;wart;waren
 
 geben;gegeben;haben

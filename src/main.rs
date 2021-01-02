@@ -42,7 +42,7 @@ fn run_substantice_exercise() {
     substantives_tips_list.shuffle(&mut rng);
 
     for exercise in substantives_tips_list.iter() {
-        println!("{}", exercise.tip);
+        println!("{}", exercise.tip.trim());
         wait_for_expected_input(exercise.article.to_string());
     }
 
@@ -110,11 +110,14 @@ fn run_verb_exercise() {
         stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
     ];
 
-    for verben in verben_list.iter() {
-        for verb in verben.iter() {
+    for exercise in verben_list.iter() {
+        for verb in exercise.verben.iter() {
             conjugation_ite = 0;
             for conjugation in verb.conjugations.iter() {
-                println!(" --- {} ({:?} {:?}) --- ", verb.name, verb.verb_type, verb.zeit_type);
+                println!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
+                if let Some(obs) = &exercise.obs {
+                    println!("Obs: {}", obs)
+                };
                 println!("{}:", person[conjugation_ite]);
                 wait_for_expected_input(conjugation.to_string());
                 conjugation_ite += 1;
