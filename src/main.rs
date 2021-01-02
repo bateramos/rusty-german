@@ -15,6 +15,7 @@ use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
+use types::ZeitType;
 
 fn main() {
     let mut input = String::new();
@@ -112,6 +113,9 @@ fn run_verb_exercise() {
 
     for exercise in verben_list.iter() {
         for verb in exercise.verben.iter() {
+            if verb.zeit_type == ZeitType::Plusquamperfekt {
+                break;
+            }
             conjugation_ite = 0;
             for conjugation in verb.conjugations.iter() {
                 println!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);

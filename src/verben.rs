@@ -85,6 +85,29 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
     ] }
 }
 
+fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str, prefix_verb: PrefixVerb, present_2_3_form_config: Option<String>) -> VerbExercise {
+    let mut present_prefix = str(name);
+    present_prefix.truncate(present_prefix.len() - 2);
+    let mut perfect_prefix = str(perfect_form);
+    perfect_prefix.truncate(perfect_prefix.len() - 2);
+
+    let person = ["e", "st", "t", "en", "t", "en"];
+    let person_past = ["", "st", "", "en", "t", "en"];
+
+    let mut present_form : Vec<String> = person.iter().map(|x| present_prefix.to_owned() + x).collect();
+    let past_form : Vec<String> = person_past.iter().map(|x| perfect_prefix.to_owned() + x).collect();
+
+    if let Some(config) = present_2_3_form_config {
+        let config_vec = config.split(">").collect::<Vec<&str>>();
+        let from = config_vec[0];
+        let to = config_vec[1];
+        present_form[1] = present_form[1].replace(from, to);
+        present_form[2] = present_form[2].replace(from, to);
+    }
+
+    create_starke_verben(name, past_tense, prefix_verb, &present_form, &past_form, None)
+}
+
 fn create_starke_verben(name: &str, past_tense: &str, prefix_verb: PrefixVerb, present_form: &Vec<String>, past_form: &Vec<String>, obs: Option<String>) -> VerbExercise {
     VerbExercise { verb: str(name), verb_type: VerbType::Starke, obs, verben: [
         create_verb(name, VerbType::Starke, ZeitType::Praesens, present_form),
@@ -106,6 +129,29 @@ pub fn get_starken_verben() -> Vec<VerbExercise> {
         let mut present_conjugation = Vec::new();
         let mut past_conjugation = Vec::new();
         for line in lines.iter() {
+            if line == "" {
+                continue;
+            }
+
+            if line.starts_with("#") {
+                let attr = line.split("#").collect::<Vec<&str>>()[1]
+                    .split(";").collect::<Vec<&str>>();
+                verb_name = attr[0];
+                let verb_name_perfect = attr[1];
+                verb_name_past = attr[2];
+                prefix_verb = match attr[3] {
+                    "sein" => PrefixVerb::Sein,
+                    "haben" => PrefixVerb::Haben,
+                    _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[2])
+                };
+                let options = match attr.len() {
+                    5 => Some(str(attr[4])),
+                    _ => None
+                };
+                verben.push(create_regular_stark_verben(verb_name, verb_name_perfect, verb_name_past, prefix_verb, options));
+                continue;
+            }
+
             if line_number == 0 {
                 let attr = line.split(";").collect::<Vec<&str>>();
                 verb_obs = match attr.len() {
@@ -120,12 +166,15 @@ pub fn get_starken_verben() -> Vec<VerbExercise> {
                     "haben" => PrefixVerb::Haben,
                     _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[2])
                 };
+                line_number += 1;
             } else if line_number == 1 {
                 present_conjugation = line.split(";").map(|x| x.to_owned()).collect();
                 assert!(present_conjugation.len() == 6, "Line with wrong format: {}", line);
+                line_number += 1;
             } else if line_number == 2 {
                 past_conjugation = line.split(";").map(|x| x.to_owned()).collect();
                 assert!(past_conjugation.len() == 6, "Line with wrong format: {}", line);
+                line_number += 1;
             }
 
             if line_number == 3 {
@@ -135,8 +184,6 @@ pub fn get_starken_verben() -> Vec<VerbExercise> {
                 verb_obs = None;
 
                 line_number = 0;
-            } else {
-                line_number += 1;
             }
         }
     }

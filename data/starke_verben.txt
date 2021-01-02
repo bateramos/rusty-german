@@ -10,21 +10,15 @@ aussehen;ausgesehen;haben
 sehe aus;siehst aus;sieht aus;sehen aus;seht aus;sehen aus
 sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 
-beginnen;begonnen;haben
-beginne;beginnst;beginnt;beginnen;beginnt;beginnen
-begann;begannst;begann;begannen;begannt;begannen
+backen;gebacken;haben
+backe;backst;backt;backen;backt;backen
+buk;bust;buk;buken;bukt;buken
 
-bekommen;bekommen;haben
-bekomme;bekommst;bekommt;bekommen;bekommt;bekommen
-bekam;bekamst;bekam;bekamen;bekamt;bekamen
-
-betreffen;betroffen;haben
-betreffe;betriffst;betrifft;betreffen;betrefft;betreffen
-betraf;betrafst;betraf;betrafen;betraft;betrafen
-
-bleiben;gebleiben;sein
-bleibe;bleibst;bleibt;bleiben;bleibt;bleiben
-bleib;bleibst;bleib;bleiben;bleibt;bleiben
+#beginnen;begannen;begonnen;haben
+#bekommen;kekamen;bekommen;haben
+#betreffen;betrafen;betroffen;haben
+#brechen;brachen;gebrochen;haben;e>i
+#bleiben;bleiben;gebleiben;sein
 
 blieten;geboten;haben
 bliete;bietest;bietet;bieten;bietet;bieten
@@ -38,33 +32,51 @@ erwarten;erwartet;haben
 erwarte;erwartest;erwartet;erwarten;erwartet;erwarten
 erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
 
-fliegen;geflogen;sein
-fliege;fliegst;fliegt;fliegen;fliegt;fliegen
-flog;flogst;flog;flogen;flogt;flogen
+#empfangen;empfingen;empfangen;haben;a>ä
+#empfehlen;empfahlen;empfohlen;haben;fehl>fiehl
 
-liegen;gelegen;sein
-liege;liegst;liegt;liegen;liegt;liegen
-lag;lagst;lag;lagen;lagt;lagen
+essen;gegessen;haben
+esse;ißt;ißt;essen;eßt;essen
+aß;aßest;aß;aßen;aßt;aßen
 
-nehmen;genommen;haben
-nehme;nimmst;nimmt;nehmen;nehmt;nehmen
-nahm;nahmst;nahm;nahmen;nahmt;nahmen
+#fallen;fielen;gefallen;sein;a>ä
+#fangen;fingen;gefangen;haben;a>ä
+#fahren;fuhren;gefahren;haben;a>ä
+#fliegen;flogen;geflogen;sein
 
-reiten;geritten;sein
-reite;reitest;reitet;reiten;reitet;reiten
-ritt;rittst;ritt;ritten;rittet;ritten
+haben;gehabt;haben
+habe;hast;hat;haben;habt;haben
+hatte;hattest;hatte;hatten;hattet;hatten
+
+#helfen;halfen;geholfen;haben;e>i
+
+#liegen;lagen;gelegen;sein
+
+#nehmen;nahmen;genommen;haben;eh>im
+
+#reiten;ritten;geritten;sein
 
 sein;gewesen;sein
 bin;bist;ist;sind;seid;sind
 war;warst;war;waren;wart;waren
 
-geben;gegeben;haben
-gebe;gibst;gibt;geben;gebt;geben
-gab;gabst;gab;gaben;gabt;gaben
+#sehen;sahen;gesehen;haben;e>ie
+#schlagen;schlug;geschlagen;haben;a>ä
+#schlafen;schlief;geschlafen;haben;a>ä
+#sprechen;sprachen;gesprochen;haben;e>i
 
-gehen;gegangen;sein
-gehe;gehst;geht;gehen;geht;gehen
-ging;gingst;ging;gingen;gingt;gingen
+#geben;gaben;gegeben;haben;e>i
+#gehen;gingen;gegangen;sein
+
+#tragen;trug;getragen;haben;a>ä
+#treffen;trafen;getroffen;haben;e>i
+
+#wachsen;wuchsen;gewaschen;sein;a>ä
+#werfen;warfen;geworfen;haben;e>i
+
+werden;geworden;sein
+werde;wirst;wird;werden;werdet;werden
+wurde;wurdest;wurde;wurden;wurdet;wurden
 
 tun;getan;haben
 tue;tust;tut;tun;tut;tun
