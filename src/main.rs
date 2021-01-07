@@ -69,7 +69,7 @@ fn run_preposition_exercise() {
     let mut rng = thread_rng();
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
-    let mut prepositions_subset = prepositions[..20].to_vec();
+    let mut prepositions_subset = prepositions[..25].to_vec();
     prepositions_subset.sort_by_key(|a| a.case.to_owned());
     for preposition in prepositions_subset.iter() {
         println!("{}", preposition.phrase);
@@ -105,7 +105,6 @@ fn run_verb_exercise() {
     let mut rng = rand::thread_rng();
 
     let verben_list = vec![
-        schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
         schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
         stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
         stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),

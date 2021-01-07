@@ -8,7 +8,7 @@ Alkohol
 Anfang
 Anruf
 Anrufbeantworter
-Anschluss
+Anschluss (Connection)
 Anzug
 Apfel
 Appetit
@@ -369,7 +369,7 @@ Kartoffel
 Kasse
 Kassette
 Katze
-Kenntnisse
+Kenntnisse (Knowledge)
 Kette
 Kirche
 Klasse
@@ -597,7 +597,7 @@ Kind
 Kino
 Kleid
 Konsulat
-Konto
+Konto (Account)
 Konzert
 Laden
 Lager
@@ -632,10 +632,10 @@ Plastik
 Praktikum
 Problem
 Programm
-Rücken
+Rücken (Move)
 Radio
 Rathaus
-Reifen
+Reifen (Tires)
 Reis
 Reisebüro
 Restaurant

@@ -10,18 +10,15 @@ aussehen;ausgesehen;haben
 sehe aus;siehst aus;sieht aus;sehen aus;seht aus;sehen aus
 sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 
-backen;gebacken;haben
-backe;backst;backt;backen;backt;backen
-buk;bust;buk;buken;bukt;buken
-
+#backen;buken;gebacken;haben
 #beginnen;begannen;begonnen;haben
 #bekommen;kekamen;bekommen;haben
 #betreffen;betrafen;betroffen;haben
 #brechen;brachen;gebrochen;haben;e>i
 #bleiben;bleiben;gebleiben;sein
 
-blieten;geboten;haben
-bliete;bietest;bietet;bieten;bietet;bieten
+bieten;geboten;haben
+biete;bietest;bietet;bieten;bietet;bieten
 bot;botst;bot;boten;botet;boten
 
 bringen;gebracht;haben
@@ -54,21 +51,23 @@ hatte;hattest;hatte;hatten;hattet;hatten
 
 #nehmen;nahmen;genommen;haben;eh>im
 
-#reiten;ritten;geritten;sein
+reiten;geritten;sein
+reiten;reitest;reitet;reiten;reitet;reiten
+ritt;rittest;ritt;ritten;rittet;ritten
 
 sein;gewesen;sein
 bin;bist;ist;sind;seid;sind
 war;warst;war;waren;wart;waren
 
 #sehen;sahen;gesehen;haben;e>ie
-#schlagen;schlug;geschlagen;haben;a>ä
-#schlafen;schlief;geschlafen;haben;a>ä
+#schlagen;schlugen;geschlagen;haben;a>ä
+#schlafen;schliefen;geschlafen;haben;a>ä
 #sprechen;sprachen;gesprochen;haben;e>i
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein
 
-#tragen;trug;getragen;haben;a>ä
+#tragen;trugen;getragen;haben;a>ä
 #treffen;trafen;getroffen;haben;e>i
 
 #wachsen;wuchsen;gewaschen;sein;a>ä
