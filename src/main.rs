@@ -15,7 +15,7 @@ use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
-use types::ZeitType;
+use types::{ZeitType, PrepositionExercise, SubstantiveExercise};
 
 fn main() {
     let mut input = String::new();
@@ -49,7 +49,7 @@ fn run_substantice_exercise() {
 
     let mut substantives = get_substantives_list();
     substantives.shuffle(&mut rng);
-    substantives = substantives[..60].to_vec();
+    substantives = substantives.drain(..60).collect::<Vec<SubstantiveExercise>>();
     for exercise in substantives.iter() {
         println!("{}", exercise.substantive);
         wait_for_expected_input(exercise.article.to_string());
@@ -69,7 +69,7 @@ fn run_preposition_exercise() {
     let mut rng = thread_rng();
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
-    let mut prepositions_subset = prepositions[..25].to_vec();
+    let mut prepositions_subset = prepositions.drain(..25).collect::<Vec<PrepositionExercise>>();
     prepositions_subset.sort_by_key(|a| a.case.to_owned());
     for preposition in prepositions_subset.iter() {
         println!("{}", preposition.phrase);

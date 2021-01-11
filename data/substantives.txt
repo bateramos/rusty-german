@@ -200,7 +200,7 @@ Schuh
 See
 September
 Service
-Sessel
+Sessel (Armchair)
 Sohn
 Sommer
 Sonntag
@@ -569,7 +569,7 @@ Gepäck
 Gericht (Dish)
 Geschäft
 Geschenk
-Geschirr
+Geschirr (Dishes)
 Gesicht
 Gespräch
 Getränk

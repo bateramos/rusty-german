@@ -1,4 +1,4 @@
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 pub enum VerbType {
     Starke, Schwache
 }
@@ -33,14 +33,14 @@ pub struct Article {
     pub gender: &'static str
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct PrepositionExercise {
     pub phrase: String,
     pub case: String,
     pub preposition: String
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct SubstantiveExercise {
     pub substantive: String,
     pub article: String,
