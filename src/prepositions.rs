@@ -31,3 +31,7 @@ pub fn get_prepositions_exercises() -> Vec<PrepositionExercise> {
 
     prepositions
 }
+
+#[cfg(test)]
+#[path = "prepositions_tests.rs"]
+mod tests;

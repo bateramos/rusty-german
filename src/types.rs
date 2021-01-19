@@ -33,16 +33,19 @@ pub struct Article {
     pub gender: &'static str
 }
 
-#[derive(Debug)]
 pub struct PrepositionExercise {
     pub phrase: String,
     pub case: String,
     pub preposition: String
 }
 
-#[derive(Debug)]
 pub struct SubstantiveExercise {
     pub substantive: String,
     pub article: String,
     pub tip: String
+}
+
+pub struct ConjunctionExercise {
+    pub phrase: String,
+    pub conjunction: String,
 }

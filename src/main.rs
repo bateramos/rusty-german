@@ -9,18 +9,20 @@ mod prepositions;
 mod read_file;
 mod articles;
 mod substantives;
+mod conjunctions;
 
 use verben::{get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
 use prepositions::get_prepositions_exercises;
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
-use types::{ZeitType, PrepositionExercise, SubstantiveExercise};
+use conjunctions::get_conjunction_exercises;
+use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise};
 
 fn main() {
     let mut input = String::new();
 
-    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles, 5 for substantives");
+    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles, 5 for substantives, 6 for conjunctions");
     println!("type exit to quit");
     match io::stdin().read_line(&mut input) {
         Ok(_n) => {
@@ -30,6 +32,7 @@ fn main() {
                 "3" => run_preposition_exercise(),
                 "4" => run_articles_exercise(),
                 "5" => run_substantice_exercise(),
+                "6" => run_conjunction_exercise(),
                 _ => panic!("Invalid option {}", input)
             }
         }
@@ -74,6 +77,17 @@ fn run_preposition_exercise() {
     for preposition in prepositions_subset.iter() {
         println!("{}", preposition.phrase);
         wait_for_expected_input(preposition.preposition.to_string());
+    }
+}
+
+fn run_conjunction_exercise() {
+    let mut rng = thread_rng();
+    let mut conjunctions = get_conjunction_exercises();
+    conjunctions.shuffle(&mut rng);
+    let conjunctions_subset = conjunctions.drain(..15).collect::<Vec<ConjunctionExercise>>();
+    for conjunction in conjunctions_subset.iter() {
+        println!("{}", conjunction.phrase);
+        wait_for_expected_input(conjunction.conjunction.to_string());
     }
 }
 
