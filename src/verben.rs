@@ -91,8 +91,18 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
     let mut perfect_prefix = str(perfect_form);
     perfect_prefix.truncate(perfect_prefix.len() - 2);
 
-    let person = ["e", "st", "t", "en", "t", "en"];
-    let person_past = ["", "st", "", "en", "t", "en"];
+    let ending_with_s = present_prefix.ends_with("s");
+
+    let person = if ending_with_s {
+        ["e", "t", "t", "en", "t", "en"]
+    } else {
+        ["e", "st", "t", "en", "t", "en"]
+    };
+    let person_past = if ending_with_s {
+        ["", "est", "", "en", "t", "en"]
+    } else {
+        ["", "st", "", "en", "t", "en"]
+    };
 
     let mut present_form : Vec<String> = person.iter().map(|x| present_prefix.to_owned() + x).collect();
     let past_form : Vec<String> = person_past.iter().map(|x| perfect_prefix.to_owned() + x).collect();

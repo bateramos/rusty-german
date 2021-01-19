@@ -34,6 +34,13 @@ mod create_regular_stark_verben_tests {
         assert_eq!(verb.verben[0].conjugations, ["trage", "trägst", "trägt", "tragen", "tragt", "tragen"]);
         assert_eq!(verb.verben[1].conjugations, ["trug", "trugst", "trug", "trugen", "trugt", "trugen"]);
     }
+
+    #[test]
+    fn it_should_create_regular_last_consonant_is_s() {
+        let verb = create_regular_stark_verben("wachsen", "wuchsen", "gewachsen", PrefixVerb::Haben, Some(str("a>ä")));
+        assert_eq!(verb.verben[0].conjugations, ["wachse", "wächst", "wächst", "wachsen", "wachst", "wachsen"]);
+        assert_eq!(verb.verben[1].conjugations, ["wuchs", "wuchsest", "wuchs", "wuchsen", "wuchst", "wuchsen"]);
+    }
 }
 
 mod create_schwache_verben_tests {

@@ -52,3 +52,7 @@ pub fn get_substantives_list() -> Vec<SubstantiveExercise> {
     }
     list
 }
+
+#[cfg(test)]
+#[path = "substantives_tests.rs"]
+mod tests;
