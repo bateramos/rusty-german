@@ -1,7 +1,5 @@
 aber;but can't be use to give a negative meaning
 Wir wollten ins Kino, __ wir hatten kein Geld
-Ich wollte nach Hause, er __ wollte nicht mit
-Zuerst wollte ich fliegen, __ der Flug ist ausgefallen
 Ich habe ein Auto, __ (ich habe) kein Fahrrad
 
 denn;because since
@@ -21,9 +19,12 @@ Das Haus ist nicht alt, __ neu
 und;and
 Er ging in die Stadt __ kaufte sich ein neues Hemd
 
-sowohl als auch; both and
+sowohl als auch;both and
 __ sein Vater __ seine Mutter haben sich darüber gefreut
 __ unser Lehrkörper __ unsere Schüler haben teilgenommen
+Ich mag __ Richard Wagner __ Richard Strauss
+Ich mag __ die salzigen __ die ungesalzenen Brezeln
+__ meine Mutter __ mein Vater kommen aus Deutschland
 
 weder noch;neither nor verb is singular only when both cases are singular
 __ die Lehrer __ die Schüler haben recht
@@ -31,10 +32,12 @@ __ du __ ich würde es schaffen
 __ mag ich ihn __ respektiere ich ihn
 __ sie, __ ich habe es gehört
 Sie ist __ geschickt, __ intelligent
+Es ist __ eine besonders schöne Stadt __ sind ihre Bewohner freundlich
 
 entweder oder;either or
 __ du __ Karla muss es getan haben
 __ komme ich vorbei, __ ich rufe dich an
+__ wir gehen heute ins Kino __ wir gehen morgen
 
 als;when than
 Es regnete, __ ich in Glasgow ankam
@@ -72,7 +75,7 @@ __ du möchtest, kannst du Deutsch lernen
 __ ich singe, fühle ich mich viel besser
 
 weil;because
-Mongen komme ich nicht, __ ich keine Zeit habe
+Morgen komme ich nicht, __ ich keine Zeit habe
 Sie arbeitet heute nicht, __ sie krank sit
 
 um zu;in order to
