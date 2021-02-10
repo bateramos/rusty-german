@@ -20,24 +20,13 @@ use conjunctions::get_conjunction_exercises;
 use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise};
 
 fn main() {
-    let mut input = String::new();
-
-    println!("1 for verbs, 2 for personal pronouns, 3 for prepositions, 4 for articles, 5 for substantives, 6 for conjunctions");
-    println!("type exit to quit");
-    match io::stdin().read_line(&mut input) {
-        Ok(_n) => {
-            match input.trim() {
-                "1" => run_verb_exercise(),
-                "2" => run_personal_pronoun_exercise(),
-                "3" => run_preposition_exercise(),
-                "4" => run_articles_exercise(),
-                "5" => run_substantice_exercise(),
-                "6" => run_conjunction_exercise(),
-                _ => panic!("Invalid option {}", input)
-            }
-        }
-        Err(error) => panic!("Error on receiving input {}", error)
-    };
+    run_articles_exercise();
+    run_personal_pronoun_exercise();
+    run_verb_exercise();
+    run_substantice_exercise();
+    run_preposition_exercise();
+    run_conjunction_exercise();
+    run_verb_exercise();
 }
 
 fn run_substantice_exercise() {
@@ -52,7 +41,7 @@ fn run_substantice_exercise() {
 
     let mut substantives = get_substantives_list();
     substantives.shuffle(&mut rng);
-    substantives = substantives.drain(..60).collect::<Vec<SubstantiveExercise>>();
+    substantives = substantives.drain(..20).collect::<Vec<SubstantiveExercise>>();
     for exercise in substantives.iter() {
         println!("{}", exercise.substantive);
         wait_for_expected_input(exercise.article.to_string());
@@ -72,7 +61,7 @@ fn run_preposition_exercise() {
     let mut rng = thread_rng();
     let mut prepositions = get_prepositions_exercises();
     prepositions.shuffle(&mut rng);
-    let mut prepositions_subset = prepositions.drain(..25).collect::<Vec<PrepositionExercise>>();
+    let mut prepositions_subset = prepositions.drain(..15).collect::<Vec<PrepositionExercise>>();
     prepositions_subset.sort_by_key(|a| a.case.to_owned());
     for preposition in prepositions_subset.iter() {
         println!("{}", preposition.phrase);
