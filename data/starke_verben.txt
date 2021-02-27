@@ -38,7 +38,7 @@ aß;aßest;aß;aßen;aßt;aßen
 
 #fallen;fielen;gefallen;sein;a>ä
 #fangen;fingen;gefangen;haben;a>ä
-#fahren;fuhren;gefahren;haben;a>ä
+#fahren;fuhren;gefahren;sein;a>ä
 #fliegen;flogen;geflogen;sein
 
 haben;gehabt;haben
