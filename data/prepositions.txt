@@ -1,6 +1,15 @@
+bis;until;dativ
+Der Bus fährt __ zum Kino
+Hans ist __ zum Ende der Woche krank
+
+bis;until;akkusativ
+__ nächste Woche sind wir auf Urlaub.
+__ nächsten Dienstag macht Susi Diät.
+
 aus;from;dativ
 Er trinkt __ der Flasche
 Sie kommt __ Essen
+Wann kommt Paul __ der Schule?
 
 außer;out of,except;dativ
 Der Fahrstuhl war __ Betrieb
@@ -13,6 +22,7 @@ __ uns in Schottland ist das kein Problem
 Er wohnt immer noch __ seinen Eltern
 Sie ist __ dem Bäcker
 Er ist noch __ dem Friseur
+Gestern war ich __ Lisa
 
 gegenüber;across;dativ
 Er wohnt uns __
@@ -20,16 +30,19 @@ Sie ist mir __ immer sehr freundlich gewesen
 
 mit;with;dativ
 Er ging __ seinen Freuden spazieren
+Ich möchte __ dir lernen
 
 nach;after,to;dativ
 __ zwei Stunden kam er wieder
 Sie ist __ London gereist
 Ihrem Dialekt __ ist sie Süddeutsche
+Die Kinder spielen __ dem Unterricht
 
 seit;since;dativ
 __ er krank ist, spielt er nicht mehr Fußball
 Ich wohne __ zwei Jahren in Frankfurt
 Sie arbeitet __ acht Jahren bei uns
+__ gestern bin ich krank
 
 von;from;dativ
 __ Berlin sind wir weiter nach Krakau gefahren
@@ -37,6 +50,7 @@ Ich weiß nichts __ ihm
 Sie ist __ unseren Argumenten überzeugt worden
 Die Mutter __ diesem Mädchen ist Künstlerin
 Sie ist eine Freundin __ Alexander
+Ich komme __ dem Arzt
 
 zu;to;dativ
 Er ging __ dem Arzt
@@ -45,20 +59,28 @@ Wir sind __ dem Essen eingeladen
 durch;through,by;akkusativ
 Sie guckte __ das Loch
 __ Zufall trafen sie sich wieder
+Der Zug fährt __ den Wald
+
+ab;until;dativ
+ich mache __ Montag eine Diät
 
 für;for;akkusativ
 Ich habe es __ dich getan
 Das ist __ ihn sehr wichtig
+1,20 Euro sind genug __ einen Kaffee
 Was __ eins hat er?
 Was __ einen Wagen hat sie?
 Was __ Äpfel sind das?
+Was __ ein Restaurant magst du?
 
 gegen;against;akkusativ
 Stellen es __ die Wand
 Heute spielt Nordkorea __ Deutschland
+Er fuhr mit dem Fahrrad __ einen Baum
 
 ohne;without;akkusativ
 __ sie gehts nicht
+__ einen Kaffee kann ich nicht arbeiten
 
 um;around,at;akkusativ
 Der Bahnhof liegt __ die Ecke
@@ -66,6 +88,7 @@ Es fängt __ neun Uhr an
 Es ist __ zehn Euro billiger
 Sie baten __ ein bisschen mehr Zeit
 Es handelt sich __ dein Benehmen
+Er fuhr mit dem Fahrrad um das Haus
 
 an;to,on;akkusativ
 Die Lehrerin schrieb das Wort __ die Tafel

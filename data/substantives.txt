@@ -1,5 +1,5 @@
 der
-seasons, months, day of the week; weather, points of the compass; things that perform action (Kassettenrecorder); ending on: -ant -ast -ismus -or (Praktikant, Gast, Humanismus, Motor)
+seasons, months, day of the week; weather, points of the compass; things that perform action; ending on: -ant -ast -ismus -or
 Ärger
 Abend
 Abflug
@@ -256,7 +256,7 @@ Zucker
 Zug
 
 die
-ending on: -e -ei -ung (Adresse, Bäckerei, Ausbildung); ending on: -heit -keit -schaft (Gesundheit, Sehenswürdigkeit, Landschaft); numbers used in counting
+ending on: -e -ei -ung; ending on: -heit -keit -schaft; numbers used in counting
 Ärztin
 Übernachtung (Overnicht stay)
 Abfahrt
@@ -512,7 +512,7 @@ Zigarette
 Zitrone
 
 das
-starting with: Ge- (Gesetz); diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum (Ergebnis, Datum); ending on: -at -ett -fon -ma -ment -um (Konsulat, Bett, Telefon, Thema, Medikament, Gymnasium)
+starting with: Ge-; diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum; ending on: -at -ett -fon -ma -ment -um
 Alter
 Angebot
 Appartement

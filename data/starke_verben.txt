@@ -80,3 +80,6 @@ wurde;wurdest;wurde;wurden;wurdet;wurden
 tun;getan;haben
 tue;tust;tut;tun;tut;tun
 tat;tatst;tat;taten;tatet;taten
+
+#ziehen;zog;gezogen;haben
+#ziehen;zog;gezogen;sein
