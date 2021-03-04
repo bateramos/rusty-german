@@ -10,6 +10,7 @@ mod read_file;
 mod articles;
 mod substantives;
 mod conjunctions;
+mod temporal_satze;
 
 use verben::{get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -17,9 +18,11 @@ use prepositions::get_prepositions_exercises;
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
-use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise};
+use temporal_satze::get_temporal_satze_exercises;
+use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise, TemporalSatzeExercise};
 
 fn main() {
+    run_temporal_exercise();
     run_articles_exercise();
     run_personal_pronoun_exercise();
     run_verb_exercise();
@@ -27,6 +30,17 @@ fn main() {
     run_preposition_exercise();
     run_conjunction_exercise();
     run_verb_exercise();
+}
+
+fn run_temporal_exercise() {
+    let mut rng = thread_rng();
+    let mut exercises = get_temporal_satze_exercises();
+    exercises.shuffle(&mut rng);
+    let mut exercises_subset = exercises.drain(..3).collect::<Vec<TemporalSatzeExercise>>();
+    for exercise in exercises_subset.iter() {
+        println!("{}", exercise.phrase);
+        wait_for_expected_input(exercise.expected_phrase.to_string());
+    }
 }
 
 fn run_substantice_exercise() {

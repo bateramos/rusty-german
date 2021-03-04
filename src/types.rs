@@ -49,3 +49,9 @@ pub struct ConjunctionExercise {
     pub phrase: String,
     pub conjunction: String,
 }
+
+pub struct TemporalSatzeExercise {
+    pub verbindung: String,
+    pub phrase: String,
+    pub expected_phrase: String,
+}
