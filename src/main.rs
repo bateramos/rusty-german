@@ -1,4 +1,5 @@
 use std::io;
+use std::ops::RangeTo;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 
@@ -19,45 +20,46 @@ use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
 use temporal_satze::get_temporal_satze_exercises;
-use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise, TemporalSatzeExercise};
+use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise, TemporalSatzeExercise, Exercise};
 
 fn main() {
-    run_temporal_exercise();
+    let randon_exercises = true;
+
+    run_exercise::<TemporalSatzeExercise>(&get_temporal_satze_exercises, ..3, randon_exercises);
+
     run_articles_exercise();
     run_personal_pronoun_exercise();
     run_verb_exercise();
-    run_substantice_exercise();
-    run_preposition_exercise();
-    run_conjunction_exercise();
+    run_substantive_exercise();
+    run_exercise::<SubstantiveExercise>(&get_substantives_list, ..20, randon_exercises);
+
+    run_exercise::<PrepositionExercise>(&get_prepositions_exercises, ..15, randon_exercises);
+    run_exercise::<ConjunctionExercise>(&get_conjunction_exercises, ..15, randon_exercises);
+
     run_verb_exercise();
 }
 
-fn run_temporal_exercise() {
-    let mut rng = thread_rng();
-    let mut exercises = get_temporal_satze_exercises();
-    exercises.shuffle(&mut rng);
-    let mut exercises_subset = exercises.drain(..3).collect::<Vec<TemporalSatzeExercise>>();
+fn run_exercise<T>(exercise_fn: &dyn Fn() -> Vec<T>, range: RangeTo<usize>, randon_exercises: bool) where T: Exercise {
+    let mut exercises = exercise_fn();
+    if randon_exercises {
+        let mut rng = thread_rng();
+        exercises.shuffle(&mut rng);
+    }
+    let mut exercises_subset = exercises.drain(range).collect::<Vec<T>>();
+    exercises_subset.sort_by_key(|a| a.get_sort_property());
     for exercise in exercises_subset.iter() {
-        println!("{}", exercise.phrase);
-        wait_for_expected_input(exercise.expected_phrase.to_string());
+        println!("{}", exercise.get_description());
+        wait_for_expected_input(exercise.get_expected_result());
     }
 }
 
-fn run_substantice_exercise() {
+fn run_substantive_exercise() {
     let mut rng = thread_rng();
     let mut substantives_tips_list = get_substantives_tips_exercises();
     substantives_tips_list.shuffle(&mut rng);
 
     for exercise in substantives_tips_list.iter() {
         println!("{}", exercise.tip.trim());
-        wait_for_expected_input(exercise.article.to_string());
-    }
-
-    let mut substantives = get_substantives_list();
-    substantives.shuffle(&mut rng);
-    substantives = substantives.drain(..20).collect::<Vec<SubstantiveExercise>>();
-    for exercise in substantives.iter() {
-        println!("{}", exercise.substantive);
         wait_for_expected_input(exercise.article.to_string());
     }
 }
@@ -68,29 +70,6 @@ fn run_articles_exercise() {
             println!("{} {}:", article.case, article.gender);
             wait_for_expected_input(article.name.to_string());
         }
-    }
-}
-
-fn run_preposition_exercise() {
-    let mut rng = thread_rng();
-    let mut prepositions = get_prepositions_exercises();
-    prepositions.shuffle(&mut rng);
-    let mut prepositions_subset = prepositions.drain(..15).collect::<Vec<PrepositionExercise>>();
-    prepositions_subset.sort_by_key(|a| a.case.to_owned());
-    for preposition in prepositions_subset.iter() {
-        println!("{}", preposition.phrase);
-        wait_for_expected_input(preposition.preposition.to_string());
-    }
-}
-
-fn run_conjunction_exercise() {
-    let mut rng = thread_rng();
-    let mut conjunctions = get_conjunction_exercises();
-    conjunctions.shuffle(&mut rng);
-    let conjunctions_subset = conjunctions.drain(..15).collect::<Vec<ConjunctionExercise>>();
-    for conjunction in conjunctions_subset.iter() {
-        println!("{}", conjunction.phrase);
-        wait_for_expected_input(conjunction.conjunction.to_string());
     }
 }
 

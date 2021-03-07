@@ -26,3 +26,7 @@ pub fn get_temporal_satze_exercises() -> Vec<TemporalSatzeExercise> {
 
     return exercises
 }
+
+#[cfg(test)]
+#[path = "temporal_satze_tests.rs"]
+mod tests;

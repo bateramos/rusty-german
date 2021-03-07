@@ -55,3 +55,65 @@ pub struct TemporalSatzeExercise {
     pub phrase: String,
     pub expected_phrase: String,
 }
+
+pub trait Exercise {
+    fn get_description(&self) -> String;
+    fn get_expected_result(&self) -> String;
+    fn get_sort_property(&self) -> String;
+}
+
+impl Exercise for SubstantiveExercise {
+    fn get_description(&self) -> String {
+        self.substantive.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.article.to_string()
+    }
+
+    fn get_sort_property(&self) -> String {
+        self.substantive.to_string()
+    }
+}
+
+impl Exercise for PrepositionExercise {
+    fn get_description(&self) -> String {
+        self.phrase.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.preposition.to_string()
+    }
+
+    fn get_sort_property(&self) -> String {
+        self.case.to_string()
+    }
+}
+
+impl Exercise for TemporalSatzeExercise {
+    fn get_description(&self) -> String {
+        self.phrase.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.expected_phrase.to_string()
+    }
+
+    fn get_sort_property(&self) -> String {
+        self.verbindung.to_string()
+    }
+}
+
+impl Exercise for ConjunctionExercise {
+    fn get_description(&self) -> String {
+        self.phrase.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.conjunction.to_string()
+    }
+
+    fn get_sort_property(&self) -> String {
+        self.conjunction.to_string()
+    }
+}
