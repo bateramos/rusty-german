@@ -42,7 +42,12 @@ pub struct PrepositionExercise {
 pub struct SubstantiveExercise {
     pub substantive: String,
     pub article: String,
-    pub tip: String
+    pub tip: String,
+}
+
+pub struct SubstantiveTipExercise {
+    pub tip: String,
+    pub article: String,
 }
 
 pub struct ConjunctionExercise {
@@ -60,6 +65,20 @@ pub trait Exercise {
     fn get_description(&self) -> String;
     fn get_expected_result(&self) -> String;
     fn get_sort_property(&self) -> String;
+}
+
+impl Exercise for SubstantiveTipExercise {
+    fn get_description(&self) -> String {
+        self.tip.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.article.to_string()
+    }
+
+    fn get_sort_property(&self) -> String {
+        "".to_string()
+    }
 }
 
 impl Exercise for SubstantiveExercise {

@@ -1,5 +1,5 @@
 use std::io;
-use std::ops::RangeTo;
+use std::ops::RangeBounds;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 
@@ -20,26 +20,30 @@ use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
 use temporal_satze::get_temporal_satze_exercises;
-use types::{ZeitType, PrepositionExercise, SubstantiveExercise, ConjunctionExercise, TemporalSatzeExercise, Exercise};
+use types::{ZeitType, Exercise};
 
 fn main() {
     let randon_exercises = true;
 
-    run_exercise::<TemporalSatzeExercise>(&get_temporal_satze_exercises, ..3, randon_exercises);
+    run_exercise(&get_temporal_satze_exercises, ..3, randon_exercises);
 
     run_articles_exercise();
     run_personal_pronoun_exercise();
     run_verb_exercise();
-    run_substantive_exercise();
-    run_exercise::<SubstantiveExercise>(&get_substantives_list, ..20, randon_exercises);
+    run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
+    run_exercise(&get_substantives_list, ..20, randon_exercises);
 
-    run_exercise::<PrepositionExercise>(&get_prepositions_exercises, ..15, randon_exercises);
-    run_exercise::<ConjunctionExercise>(&get_conjunction_exercises, ..15, randon_exercises);
+    run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
+    run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
 
     run_verb_exercise();
 }
 
-fn run_exercise<T>(exercise_fn: &dyn Fn() -> Vec<T>, range: RangeTo<usize>, randon_exercises: bool) where T: Exercise {
+fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, randon_exercises: bool)
+    where
+        T: Exercise,
+        R: RangeBounds<usize>,
+{
     let mut exercises = exercise_fn();
     if randon_exercises {
         let mut rng = thread_rng();
@@ -50,17 +54,6 @@ fn run_exercise<T>(exercise_fn: &dyn Fn() -> Vec<T>, range: RangeTo<usize>, rand
     for exercise in exercises_subset.iter() {
         println!("{}", exercise.get_description());
         wait_for_expected_input(exercise.get_expected_result());
-    }
-}
-
-fn run_substantive_exercise() {
-    let mut rng = thread_rng();
-    let mut substantives_tips_list = get_substantives_tips_exercises();
-    substantives_tips_list.shuffle(&mut rng);
-
-    for exercise in substantives_tips_list.iter() {
-        println!("{}", exercise.tip.trim());
-        wait_for_expected_input(exercise.article.to_string());
     }
 }
 

@@ -1,7 +1,7 @@
 use crate::read_file::read_file_lines;
-use crate::types::{SubstantiveExercise};
+use crate::types::{SubstantiveExercise, SubstantiveTipExercise};
 
-pub fn get_substantives_tips_exercises() -> Vec<SubstantiveExercise> {
+pub fn get_substantives_tips_exercises() -> Vec<SubstantiveTipExercise> {
     let mut list = Vec::new();
     if let Ok(lines) = read_file_lines("data/substantives.txt") {
         let mut article = "".to_owned();
@@ -20,7 +20,7 @@ pub fn get_substantives_tips_exercises() -> Vec<SubstantiveExercise> {
             } else if tip == "" {
                 tip = line.to_owned();
                 for single_tip in tip.split(";").collect::<Vec<&str>>().iter() {
-                    list.push(SubstantiveExercise { substantive: "".to_owned(), tip: single_tip.to_string(), article: article.to_owned() });
+                    list.push(SubstantiveTipExercise { tip: single_tip.to_string(), article: article.to_owned() });
                 }
             }
         }
