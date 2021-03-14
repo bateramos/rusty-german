@@ -38,9 +38,12 @@ fn main() {
         run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
         run_exercise(&get_substantives_list, ..20, randon_exercises);
     };
+    let run_verben_all_times = || run_verb_exercise(false);
+    let run_verben_only_present = || run_verb_exercise(true);
 
     let options = vec![
-        Options { text: "verbs", exec: &run_verb_exercise },
+        Options { text: "verbs", exec: &run_verben_all_times },
+        Options { text: "verbs (only present)", exec: &run_verben_only_present },
         Options { text: "personal pronoums", exec: &run_personal_pronoun_exercise },
         Options { text: "prepositions", exec: &run_preposition },
         Options { text: "articles", exec: &run_articles_exercise },
@@ -110,7 +113,7 @@ fn run_personal_pronoun_exercise() {
     }
 }
 
-fn run_verb_exercise() {
+fn run_verb_exercise(only_present: bool) {
     let mut stark_verb_list = get_starken_verben();
     let mut schwache_verb_list = get_schwachen_verben();
     let person = get_personal_pronouns()[0].subjects;
@@ -138,6 +141,10 @@ fn run_verb_exercise() {
                 println!("{}:", person[conjugation_ite]);
                 wait_for_expected_input(conjugation.to_string());
                 conjugation_ite += 1;
+            }
+
+            if only_present {
+                break;
             }
         }
     }
