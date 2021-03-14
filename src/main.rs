@@ -22,21 +22,46 @@ use conjunctions::get_conjunction_exercises;
 use temporal_satze::get_temporal_satze_exercises;
 use types::{ZeitType, Exercise};
 
+struct Options <'a> {
+    text: &'a str,
+    exec: &'a dyn Fn() -> (),
+}
+
 fn main() {
     let randon_exercises = true;
+    let mut input = String::new();
 
-    run_exercise(&get_temporal_satze_exercises, ..3, randon_exercises);
+    let run_preposition = || run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
+    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
+    let run_temporal_satze = || run_exercise(&get_temporal_satze_exercises, ..3, randon_exercises);
+    let run_substantive = || {
+        run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
+        run_exercise(&get_substantives_list, ..20, randon_exercises);
+    };
 
-    run_articles_exercise();
-    run_personal_pronoun_exercise();
-    run_verb_exercise();
-    run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
-    run_exercise(&get_substantives_list, ..20, randon_exercises);
+    let options = vec![
+        Options { text: "verbs", exec: &run_verb_exercise },
+        Options { text: "personal pronoums", exec: &run_personal_pronoun_exercise },
+        Options { text: "prepositions", exec: &run_preposition },
+        Options { text: "articles", exec: &run_articles_exercise },
+        Options { text: "substantives", exec: &run_substantive },
+        Options { text: "conjunctions", exec: &run_conjunctions },
+        Options { text: "temporal satze", exec: &run_temporal_satze },
+    ];
 
-    run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
-    run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
+    for (index, option) in options.iter().enumerate() {
+        println!("{} for {}", (index + 1).to_string(), option.text);
+    }
 
-    run_verb_exercise();
+    match io::stdin().read_line(&mut input) {
+        Ok(_n) => {
+            match input.trim().parse::<usize>() {
+                Ok(n) => (options[n - 1].exec)(),
+                Err(_e) => panic!("Invalid option")
+            }
+        }
+        Err(error) => panic!("Error on receiving input {}", error)
+    };
 }
 
 fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, randon_exercises: bool)
