@@ -15,7 +15,7 @@ mod temporal_satze;
 
 use verben::{get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
-use prepositions::get_prepositions_exercises;
+use prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
@@ -31,7 +31,10 @@ fn main() {
     let randon_exercises = true;
     let mut input = String::new();
 
-    let run_preposition = || run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
+    let run_preposition = || {
+        run_exercise(&get_prepositions_case_exercises, ..10, randon_exercises);
+        run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
+    };
     let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
     let run_temporal_satze = || run_exercise(&get_temporal_satze_exercises, ..3, randon_exercises);
     let run_substantive = || {

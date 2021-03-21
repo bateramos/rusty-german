@@ -164,7 +164,7 @@ Das Dorf liegt __ den Bergen
 außerhalb;outside of;dativ
 Er liegt __ der Stadt
 
-infolge;as a result of;dativ
+infolge;as a result of;genitiv
 __ des starken Regens kam es zu Überschwemmungen
 
 innerhalb;within,inside;dativ
@@ -187,3 +187,4 @@ __ mir musste sie früh nach Hause
 
 wegen;because of,on account of;genitiv
 __ des schlechten Wetters wurde die Veranstaltung abgesagt
+__ des Wetter müssen wir los

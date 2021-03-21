@@ -39,6 +39,11 @@ pub struct PrepositionExercise {
     pub preposition: String
 }
 
+pub struct PrepositionCaseExercise {
+    pub case: String,
+    pub preposition: String
+}
+
 pub struct SubstantiveExercise {
     pub substantive: String,
     pub article: String,
@@ -64,7 +69,9 @@ pub struct TemporalSatzeExercise {
 pub trait Exercise {
     fn get_description(&self) -> String;
     fn get_expected_result(&self) -> String;
-    fn get_sort_property(&self) -> String;
+    fn get_sort_property(&self) -> String {
+        "".to_string()
+    }
 }
 
 impl Exercise for SubstantiveTipExercise {
@@ -74,10 +81,6 @@ impl Exercise for SubstantiveTipExercise {
 
     fn get_expected_result(&self) -> String {
         self.article.to_string()
-    }
-
-    fn get_sort_property(&self) -> String {
-        "".to_string()
     }
 }
 
@@ -105,6 +108,16 @@ impl Exercise for PrepositionExercise {
     }
 
     fn get_sort_property(&self) -> String {
+        self.case.to_string()
+    }
+}
+
+impl Exercise for PrepositionCaseExercise {
+    fn get_description(&self) -> String {
+        format!("akkusativ dativ genitiv\nPreposition: {}", self.preposition)
+    }
+
+    fn get_expected_result(&self) -> String {
         self.case.to_string()
     }
 }
