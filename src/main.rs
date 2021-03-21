@@ -1,4 +1,5 @@
 use std::io;
+use std::env;
 use std::ops::RangeBounds;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
@@ -28,6 +29,7 @@ struct Options <'a> {
 }
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
     let randon_exercises = true;
     let mut input = String::new();
 
@@ -55,19 +57,25 @@ fn main() {
         Options { text: "temporal satze", exec: &run_temporal_satze },
     ];
 
-    for (index, option) in options.iter().enumerate() {
-        println!("{} for {}", (index + 1).to_string(), option.text);
-    }
-
-    match io::stdin().read_line(&mut input) {
-        Ok(_n) => {
-            match input.trim().parse::<usize>() {
-                Ok(n) => (options[n - 1].exec)(),
-                Err(_e) => panic!("Invalid option")
-            }
+    if args[1] == "all" {
+        for option in options.into_iter() {
+            (option.exec)();
         }
-        Err(error) => panic!("Error on receiving input {}", error)
-    };
+    } else {
+        for (index, option) in options.iter().enumerate() {
+            println!("{} for {}", (index + 1).to_string(), option.text);
+        }
+
+        match io::stdin().read_line(&mut input) {
+            Ok(_n) => {
+                match input.trim().parse::<usize>() {
+                    Ok(n) => (options[n - 1].exec)(),
+                    Err(_e) => panic!("Invalid option")
+                }
+            }
+            Err(error) => panic!("Error on receiving input {}", error)
+        };
+    }
 }
 
 fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, randon_exercises: bool)
