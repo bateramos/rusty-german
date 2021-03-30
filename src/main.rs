@@ -57,7 +57,7 @@ fn main() {
         Options { text: "temporal satze", exec: &run_temporal_satze },
     ];
 
-    if args[1] == "all" {
+    if args.len() == 2 && args[1] == "all" {
         for option in options.into_iter() {
             (option.exec)();
         }
