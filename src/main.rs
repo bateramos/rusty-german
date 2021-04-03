@@ -14,7 +14,7 @@ mod substantives;
 mod conjunctions;
 mod temporal_satze;
 
-use verben::{get_starken_verben, get_schwachen_verben};
+use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
 use prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
 use articles::get_articles;
@@ -57,7 +57,7 @@ fn main() {
         Options { text: "temporal satze", exec: &run_temporal_satze },
     ];
 
-    if args[1] == "all" {
+    if args.len() == 2 && args[1] == "all" {
         for option in options.into_iter() {
             (option.exec)();
         }
@@ -158,7 +158,21 @@ fn run_verb_exercise(only_present: bool) {
                 break;
             }
         }
+        run_phrase_verb_exercise(&exercise.verb);
     }
+}
+
+fn run_phrase_verb_exercise(verb: &str) {
+    let rt = tokio::runtime::Runtime::new().unwrap();
+    let fut = async {
+        get_verben_phrase_exercise(verb).await
+    };
+    let verb_phrases_exercises = rt.block_on(fut).unwrap();
+    let phrase_exercise = &verb_phrases_exercises[0];
+
+    println!("{}", phrase_exercise.description);
+
+    wait_for_expected_input(phrase_exercise.expect.to_string());
 }
 
 fn wait_for_expected_input(expected_input: String) {

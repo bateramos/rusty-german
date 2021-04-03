@@ -1,6 +1,8 @@
 use arrayvec::ArrayVec;
+use select::document::Document;
+use select::predicate::{Attr, Name};
 
-use crate::types::{VerbExercise, Verb, VerbType, ZeitType};
+use crate::types::{VerbExercise, ExpectDescriptionExercise, Verb, VerbType, ZeitType};
 use crate::read_file::read_file_lines;
 
 #[derive(Debug, Copy, Clone)]
@@ -224,6 +226,33 @@ pub fn get_schwachen_verben() -> Vec<VerbExercise> {
     }
 
     verben
+}
+
+pub async fn get_verben_phrase_exercise(verb: &str) -> Result<Vec<ExpectDescriptionExercise>, Box<dyn std::error::Error>> {
+    let html = reqwest::get(format!("https://dict.leo.org/englisch-deutsch/{}", verb))
+        .await?
+        .text()
+        .await?;
+
+    let document = Document::from(&html[..]);
+
+    let mut phrases : Vec<String> = vec![];
+    for node in document.find(Attr("id", "section-example")) {
+        for samp in node.find(Name("samp")) {
+            phrases.push(samp.text());
+        }
+    }
+
+    let mut exercises : Vec<ExpectDescriptionExercise> = vec![];
+
+    for n in 0..(phrases.len() / 2) {
+        let expect = phrases[n + 1].to_string();
+        let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
+
+        exercises.push(ExpectDescriptionExercise { expect, description });
+    }
+
+    Ok(exercises)
 }
 
 #[cfg(test)]

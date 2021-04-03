@@ -33,6 +33,11 @@ pub struct Article {
     pub gender: &'static str
 }
 
+pub struct ExpectDescriptionExercise {
+    pub expect: String,
+    pub description: String,
+}
+
 pub struct PrepositionExercise {
     pub phrase: String,
     pub case: String,
@@ -71,6 +76,16 @@ pub trait Exercise {
     fn get_expected_result(&self) -> String;
     fn get_sort_property(&self) -> String {
         "".to_string()
+    }
+}
+
+impl Exercise for ExpectDescriptionExercise {
+    fn get_description(&self) -> String {
+        self.description.to_string()
+    }
+
+    fn get_expected_result(&self) -> String {
+        self.expect.to_string()
     }
 }
 
