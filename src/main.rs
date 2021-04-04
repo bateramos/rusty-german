@@ -168,11 +168,14 @@ fn run_phrase_verb_exercise(verb: &str) {
         get_verben_phrase_exercise(verb).await
     };
     let verb_phrases_exercises = rt.block_on(fut).unwrap();
-    let phrase_exercise = &verb_phrases_exercises[0];
 
-    println!("{}", phrase_exercise.description);
+    if !verb_phrases_exercises.is_empty() {
+        let phrase_exercise = &verb_phrases_exercises[0];
 
-    wait_for_expected_input(phrase_exercise.expect.to_string());
+        println!("{}", phrase_exercise.description);
+
+        wait_for_expected_input(phrase_exercise.expect.to_string());
+    }
 }
 
 fn wait_for_expected_input(expected_input: String) {
