@@ -245,11 +245,13 @@ pub async fn get_verben_phrase_exercise(verb: &str) -> Result<Vec<ExpectDescript
 
     let mut exercises : Vec<ExpectDescriptionExercise> = vec![];
 
-    for n in 0..(phrases.len() / 2) {
-        let expect = phrases[n + 1].to_string();
+    let mut n = 0;
+    while n < phrases.len() {
         let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
+        let expect = phrases[n + 1].to_string();
 
         exercises.push(ExpectDescriptionExercise { expect, description });
+        n += 2;
     }
 
     Ok(exercises)

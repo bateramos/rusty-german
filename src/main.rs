@@ -167,9 +167,12 @@ fn run_phrase_verb_exercise(verb: &str) {
     let fut = async {
         get_verben_phrase_exercise(verb).await
     };
-    let verb_phrases_exercises = rt.block_on(fut).unwrap();
+    let mut verb_phrases_exercises = rt.block_on(fut).unwrap();
 
     if !verb_phrases_exercises.is_empty() {
+        let mut rng = thread_rng();
+        verb_phrases_exercises.shuffle(&mut rng);
+
         let phrase_exercise = &verb_phrases_exercises[0];
 
         println!("{}", phrase_exercise.description);
