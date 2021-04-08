@@ -14,3 +14,6 @@ tokio = { version = "1", features = ["full"] }
 select = "0.5.0"
 regex = "1"
 lazy_static = "1.4.0"
+
+[dev-dependencies]
+typed-html = { git = "https://github.com/bodil/typed-html" }

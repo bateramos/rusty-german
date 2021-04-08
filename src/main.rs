@@ -17,6 +17,7 @@ mod articles;
 mod substantives;
 mod conjunctions;
 mod temporal_satze;
+mod clients;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -179,7 +180,7 @@ fn run_phrase_verb_exercise(verb: &str) {
     let fut = async {
         get_verben_phrase_exercise(verb).await
     };
-    let mut verb_phrases_exercises = rt.block_on(fut).unwrap();
+    let mut verb_phrases_exercises = rt.block_on(fut);
 
     if !verb_phrases_exercises.is_empty() {
         let mut rng = thread_rng();

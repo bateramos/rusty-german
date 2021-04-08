@@ -1,9 +1,9 @@
 use arrayvec::ArrayVec;
-use select::document::Document;
-use select::predicate::{Attr, Name};
 
 use crate::types::{VerbExercise, ExpectDescriptionExercise, Verb, VerbType, ZeitType};
 use crate::read_file::read_file_lines;
+
+use crate::clients::online_dictionary;
 
 #[derive(Debug, Copy, Clone)]
 enum PrefixVerb {
@@ -228,33 +228,27 @@ pub fn get_schwachen_verben() -> Vec<VerbExercise> {
     verben
 }
 
-pub async fn get_verben_phrase_exercise(verb: &str) -> Result<Vec<ExpectDescriptionExercise>, Box<dyn std::error::Error>> {
-    let html = reqwest::get(format!("https://dict.leo.org/englisch-deutsch/{}", verb))
-        .await?
-        .text()
-        .await?;
+pub async fn get_verben_phrase_exercise(verb: &str) -> Vec<ExpectDescriptionExercise> {
+    match online_dictionary::fetch_phrases_from(&verb).await {
+        Ok(phrases) => {
+            let mut exercises : Vec<ExpectDescriptionExercise> = vec![];
 
-    let document = Document::from(&html[..]);
+            let mut n = 0;
+            while n < phrases.len() {
+                let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
+                let expect = phrases[n + 1].to_string().replace(".", "");
 
-    let mut phrases : Vec<String> = vec![];
-    for node in document.find(Attr("id", "section-example")) {
-        for samp in node.find(Name("samp")) {
-            phrases.push(samp.text().trim().to_string());
-        }
+                exercises.push(ExpectDescriptionExercise { expect, description });
+                n += 2;
+            }
+
+            exercises
+        },
+        Err(error) => {
+            println!("Error on fetching verb: {}.\n{}\n", verb, error);
+            vec![]
+        },
     }
-
-    let mut exercises : Vec<ExpectDescriptionExercise> = vec![];
-
-    let mut n = 0;
-    while n < phrases.len() {
-        let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
-        let expect = phrases[n + 1].to_string().replace(".", "");
-
-        exercises.push(ExpectDescriptionExercise { expect, description });
-        n += 2;
-    }
-
-    Ok(exercises)
 }
 
 #[cfg(test)]
