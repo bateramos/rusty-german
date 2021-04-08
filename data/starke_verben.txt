@@ -52,7 +52,7 @@ hatte;hattest;hatte;hatten;hattet;hatten
 #nehmen;nahmen;genommen;haben;eh>im
 
 reiten;geritten;sein
-reiten;reitest;reitet;reiten;reitet;reiten
+reite;reitest;reitet;reiten;reitet;reiten
 ritt;rittest;ritt;ritten;rittet;ritten
 
 sein;gewesen;sein

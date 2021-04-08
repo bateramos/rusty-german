@@ -3,6 +3,10 @@ use std::env;
 use std::ops::RangeBounds;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
+use regex::Regex;
+
+#[macro_use]
+extern crate lazy_static;
 
 mod types;
 mod verben;
@@ -28,13 +32,18 @@ struct Options <'a> {
     exec: &'a dyn Fn() -> (),
 }
 
+enum VerbExercise {
+    OnlyPresent,
+    All
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     let randon_exercises = true;
     let mut input = String::new();
 
     let run_preposition = || {
-        run_exercise(&get_prepositions_case_exercises, ..10, randon_exercises);
+        run_exercise(&get_prepositions_case_exercises, ..8, randon_exercises);
         run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
     };
     let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
@@ -43,8 +52,8 @@ fn main() {
         run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
         run_exercise(&get_substantives_list, ..20, randon_exercises);
     };
-    let run_verben_all_times = || run_verb_exercise(false);
-    let run_verben_only_present = || run_verb_exercise(true);
+    let run_verben_all_times = || run_verb_exercise(VerbExercise::All);
+    let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent);
 
     let options = vec![
         Options { text: "verbs", exec: &run_verben_all_times },
@@ -65,6 +74,8 @@ fn main() {
         for (index, option) in options.iter().enumerate() {
             println!("{} for {}", (index + 1).to_string(), option.text);
         }
+
+        println!("\nTip: You can use ae, oe, ue for ä, ö, ü");
 
         match io::stdin().read_line(&mut input) {
             Ok(_n) => {
@@ -124,7 +135,7 @@ fn run_personal_pronoun_exercise() {
     }
 }
 
-fn run_verb_exercise(only_present: bool) {
+fn run_verb_exercise(exercise_run_type: VerbExercise) {
     let mut stark_verb_list = get_starken_verben();
     let mut schwache_verb_list = get_schwachen_verben();
     let person = get_personal_pronouns()[0].subjects;
@@ -154,9 +165,10 @@ fn run_verb_exercise(only_present: bool) {
                 conjugation_ite += 1;
             }
 
-            if only_present {
-                break;
-            }
+            match exercise_run_type {
+                VerbExercise::OnlyPresent => break,
+                _ => continue,
+            };
         }
         run_phrase_verb_exercise(&exercise.verb);
     }
@@ -182,6 +194,11 @@ fn run_phrase_verb_exercise(verb: &str) {
 }
 
 fn wait_for_expected_input(expected_input: String) {
+    lazy_static! {
+        static ref RE_AE: Regex = Regex::new(r"(ae)|(Ae)").unwrap();
+        static ref RE_UE: Regex = Regex::new(r"(ue)|(Ue)").unwrap();
+        static ref RE_OE: Regex = Regex::new(r"(oe)|(Oe)").unwrap();
+    }
     loop {
         let mut input = String::new();
         match io::stdin().read_line(&mut input) {
@@ -189,6 +206,10 @@ fn wait_for_expected_input(expected_input: String) {
                 if input.trim() == "exit" {
                     panic!("Exiting");
                 }
+                input = RE_AE.replace_all(&input, "ä").to_string();
+                input = RE_UE.replace_all(&input, "ü").to_string();
+                input = RE_OE.replace_all(&input, "ö").to_string();
+
                 match input.trim() == expected_input {
                     true => {
                         break;

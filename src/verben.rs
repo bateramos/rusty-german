@@ -239,7 +239,7 @@ pub async fn get_verben_phrase_exercise(verb: &str) -> Result<Vec<ExpectDescript
     let mut phrases : Vec<String> = vec![];
     for node in document.find(Attr("id", "section-example")) {
         for samp in node.find(Name("samp")) {
-            phrases.push(samp.text());
+            phrases.push(samp.text().trim().to_string());
         }
     }
 
@@ -248,7 +248,7 @@ pub async fn get_verben_phrase_exercise(verb: &str) -> Result<Vec<ExpectDescript
     let mut n = 0;
     while n < phrases.len() {
         let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
-        let expect = phrases[n + 1].to_string();
+        let expect = phrases[n + 1].to_string().replace(".", "");
 
         exercises.push(ExpectDescriptionExercise { expect, description });
         n += 2;
