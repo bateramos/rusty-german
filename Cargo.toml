@@ -1,5 +1,5 @@
 [package]
-name = "german-verben"
+name = "rusty-german"
 version = "0.1.0"
 authors = ["pedroramos"]
 edition = "2018"

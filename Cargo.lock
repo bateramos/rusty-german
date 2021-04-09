@@ -375,20 +375,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "german-verben"
-version = "0.1.0"
-dependencies = [
- "arrayvec",
- "lazy_static",
- "rand 0.7.3",
- "regex",
- "reqwest",
- "select",
- "tokio",
- "typed-html",
-]
-
-[[package]]
 name = "getrandom"
 version = "0.1.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1321,6 +1307,20 @@ dependencies = [
  "blake2b_simd",
  "constant_time_eq",
  "crossbeam-utils",
+]
+
+[[package]]
+name = "rusty-german"
+version = "0.1.0"
+dependencies = [
+ "arrayvec",
+ "lazy_static",
+ "rand 0.7.3",
+ "regex",
+ "reqwest",
+ "select",
+ "tokio",
+ "typed-html",
 ]
 
 [[package]]
