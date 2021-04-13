@@ -1,10 +1,8 @@
 bis;until;dativ
 Der Bus fährt __ zum Kino
 Hans ist __ zum Ende der Woche krank
-
-bis;until;akkusativ
-__ nächste Woche sind wir auf Urlaub.
-__ nächsten Dienstag macht Susi Diät.
+__ zur nächste Woche sind wir auf Urlaub.
+__ zum nächsten Dienstag macht Susi Diät.
 
 aus;from;dativ
 Er trinkt __ der Flasche
