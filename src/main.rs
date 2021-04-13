@@ -197,9 +197,11 @@ fn run_phrase_verb_exercise(verb: &str) {
 
 fn wait_for_expected_input(expected_input: String) {
     lazy_static! {
-        static ref RE_AE: Regex = Regex::new(r"(ae)|(Ae)").unwrap();
-        static ref RE_UE: Regex = Regex::new(r"(ue)|(Ue)").unwrap();
-        static ref RE_OE: Regex = Regex::new(r"(oe)|(Oe)").unwrap();
+        static ref REPLACE_CHARS : HashMap<&'static str, Regex> = [
+            ("ä", Regex::new(r"(ae)|(Ae)").unwrap()),
+            ("ü", Regex::new(r"(ue)|(Ue)").unwrap()),
+            ("ö", Regex::new(r"(oe)|(Oe)").unwrap()),
+        ].iter().cloned().collect();
     }
     loop {
         let mut input = String::new();
@@ -208,13 +210,10 @@ fn wait_for_expected_input(expected_input: String) {
                 if input.trim() == "exit" {
                     panic!("Exiting");
                 }
-                match ["ä","ü","ö"].to_vec().into_iter().find(|s| expected_input.contains(s)) {
-                    Some(_) => {
-                        input = RE_AE.replace_all(&input, "ä").to_string();
-                        input = RE_UE.replace_all(&input, "ü").to_string();
-                        input = RE_OE.replace_all(&input, "ö").to_string();
-                    },
-                    None => {}
+                for &umlaut_char in REPLACE_CHARS.keys() {
+                    if expected_input.contains(umlaut_char) {
+                        input = REPLACE_CHARS.get(umlaut_char).unwrap().replace_all(&input, umlaut_char).to_string();
+                    }
                 }
 
                 match input.trim() == expected_input {
