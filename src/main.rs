@@ -1,6 +1,7 @@
 use std::io;
 use std::env;
 use std::ops::RangeBounds;
+use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 use regex::Regex;
@@ -207,9 +208,14 @@ fn wait_for_expected_input(expected_input: String) {
                 if input.trim() == "exit" {
                     panic!("Exiting");
                 }
-                input = RE_AE.replace_all(&input, "ä").to_string();
-                input = RE_UE.replace_all(&input, "ü").to_string();
-                input = RE_OE.replace_all(&input, "ö").to_string();
+                match ["ä","ü","ö"].to_vec().into_iter().find(|s| expected_input.contains(s)) {
+                    Some(_) => {
+                        input = RE_AE.replace_all(&input, "ä").to_string();
+                        input = RE_UE.replace_all(&input, "ü").to_string();
+                        input = RE_OE.replace_all(&input, "ö").to_string();
+                    },
+                    None => {}
+                }
 
                 match input.trim() == expected_input {
                     true => {
