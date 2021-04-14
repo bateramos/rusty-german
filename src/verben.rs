@@ -27,7 +27,6 @@ fn create_verb_prefix(name: &str, perfect_form: &str, prefix_verb: PrefixVerb, v
                 ZeitType::Plusquamperfekt => ["war", "warst", "war", "waren", "wart", "waren"],
                 ZeitType::Futur => ["werde", "wirst", "wird", "werden", "werdet", "werden"],
                 _ => panic!("Wrong ZeitType ({:?}) for {}", zeit_type, name)
-                
             }
         }
         PrefixVerb::Haben => {
@@ -235,7 +234,7 @@ pub async fn get_verben_phrase_exercise(verb: &str) -> Vec<ExpectDescriptionExer
 
             let mut n = 0;
             while n < phrases.len() {
-                let description = format!("{}\nWrite translation to:\n{}", verb, phrases[n]);
+                let description = format!("{}\nWrite translation of:\n{}", verb, phrases[n]);
                 let expect = phrases[n + 1].to_string().replace(".", "");
 
                 exercises.push(ExpectDescriptionExercise { expect, description });
