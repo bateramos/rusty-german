@@ -17,8 +17,8 @@ mod read_file;
 mod articles;
 mod substantives;
 mod conjunctions;
-mod temporal_satze;
 mod clients;
+mod relativ_pronomen;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -26,7 +26,7 @@ use prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
-use temporal_satze::get_temporal_satze_exercises;
+use relativ_pronomen::get_relativ_pronomen_exercises;
 use types::{ZeitType, Exercise};
 
 struct Options <'a> {
@@ -49,7 +49,7 @@ fn main() {
         run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
     };
     let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
-    let run_temporal_satze = || run_exercise(&get_temporal_satze_exercises, ..3, randon_exercises);
+    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, randon_exercises);
     let run_substantive = || {
         run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
         run_exercise(&get_substantives_list, ..20, randon_exercises);
@@ -65,7 +65,7 @@ fn main() {
         Options { text: "articles", exec: &run_articles_exercise },
         Options { text: "substantives", exec: &run_substantive },
         Options { text: "conjunctions", exec: &run_conjunctions },
-        Options { text: "temporal satze", exec: &run_temporal_satze },
+        Options { text: "relativ pronomen", exec: &run_relativ_pronomen },
     ];
 
     if args.len() == 2 && args[1] == "all" {
@@ -105,7 +105,7 @@ fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, randon_exercis
     exercises_subset.sort_by_key(|a| a.get_sort_property());
     for exercise in exercises_subset.iter() {
         println!("{}", exercise.get_description());
-        wait_for_expected_input(exercise.get_expected_result());
+        wait_for_expected_inputs(exercise.get_expected_results());
     }
 }
 
@@ -194,8 +194,11 @@ fn run_phrase_verb_exercise(verb: &str) {
         wait_for_expected_input(phrase_exercise.expect.to_string());
     }
 }
-
 fn wait_for_expected_input(expected_input: String) {
+    wait_for_expected_inputs(vec![expected_input]);
+}
+
+fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
     lazy_static! {
         static ref REPLACE_CHARS : HashMap<&'static str, Regex> = [
             ("ä", Regex::new(r"(ae)|(Ae)").unwrap()),
@@ -210,17 +213,30 @@ fn wait_for_expected_input(expected_input: String) {
                 if input.trim() == "exit" {
                     panic!("Exiting");
                 }
-                for &umlaut_char in REPLACE_CHARS.keys() {
-                    if expected_input.contains(umlaut_char) {
-                        input = REPLACE_CHARS.get(umlaut_char).unwrap().replace_all(&input, umlaut_char).to_string();
+                if input.trim() == "skip" {
+                    break;
+                }
+                let mut correct_input = false;
+
+                for expected_input in &expected_inputs {
+                    let mut input = input.to_string();
+                    for &umlaut_char in REPLACE_CHARS.keys() {
+                        if expected_input.contains(umlaut_char) {
+                            input = REPLACE_CHARS.get(umlaut_char).unwrap().replace_all(&input, umlaut_char).to_string();
+                        }
+                    }
+
+                    match input.trim() == expected_input {
+                        true => {
+                            correct_input = true;
+                            break;
+                        }
+                        _ => println!("{} != {}", input.trim(), expected_input)
                     }
                 }
 
-                match input.trim() == expected_input {
-                    true => {
-                        break;
-                    }
-                    _ => println!("{} != {}", input.trim(), expected_input)
+                if correct_input {
+                    break;
                 }
             }
             Err(error) => {

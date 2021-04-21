@@ -24,7 +24,7 @@ pub fn get_temporal_satze_exercises() -> Vec<TemporalSatzeExercise> {
         }
     }
 
-    return exercises
+    exercises
 }
 
 #[cfg(test)]

@@ -71,9 +71,20 @@ pub struct TemporalSatzeExercise {
     pub expected_phrase: String,
 }
 
+pub struct RelativPronomenExercise {
+    pub phrase: String,
+    pub expected_phrases: Vec<String>,
+}
+
 pub trait Exercise {
     fn get_description(&self) -> String;
-    fn get_expected_result(&self) -> String;
+    fn get_expected_result(&self) -> String {
+        "".to_string()
+    }
+    fn get_expected_results(&self) -> Vec<String> {
+        let expected_result = self.get_expected_result();
+        vec![expected_result]
+    }
     fn get_sort_property(&self) -> String {
         "".to_string()
     }
@@ -162,5 +173,15 @@ impl Exercise for ConjunctionExercise {
 
     fn get_sort_property(&self) -> String {
         self.conjunction.to_string()
+    }
+}
+
+impl Exercise for RelativPronomenExercise {
+    fn get_description(&self) -> String {
+        self.phrase.to_string()
+    }
+
+    fn get_expected_results(&self) -> Vec<String> {
+        self.expected_phrases.clone()
     }
 }
