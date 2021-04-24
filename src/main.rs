@@ -40,9 +40,14 @@ enum VerbExercise {
 }
 
 fn main() {
+    menu();
+}
+
+fn menu() {
+    clean_screen();
+
     let args: Vec<String> = env::args().collect();
     let randon_exercises = true;
-    let mut input = String::new();
 
     let run_preposition = || {
         run_exercise(&get_prepositions_case_exercises, ..8, randon_exercises);
@@ -78,16 +83,26 @@ fn main() {
         }
 
         println!("\nTip: You can use ae, oe, ue for ä, ö, ü");
+        println!("\nexit: to exit");
+        println!("skip: to skip an exercise");
+        println!("menu: go back to menu");
 
-        match io::stdin().read_line(&mut input) {
-            Ok(_n) => {
-                match input.trim().parse::<usize>() {
-                    Ok(n) => (options[n - 1].exec)(),
-                    Err(_e) => panic!("Invalid option")
+        loop {
+            let mut input = String::new();
+            match io::stdin().read_line(&mut input) {
+                Ok(_n) => {
+                    match input.trim().parse::<usize>() {
+                        Ok(n) => {
+                            clean_screen();
+                            (options[n - 1].exec)();
+                            break;
+                        }
+                        Err(_e) => println!("Invalid option, only nummerals are allowed.")
+                    }
                 }
-            }
-            Err(error) => panic!("Error on receiving input {}", error)
-        };
+                Err(error) => panic!("Error on receiving input {}", error)
+            };
+        }
     }
 }
 
@@ -194,6 +209,11 @@ fn run_phrase_verb_exercise(verb: &str) {
         wait_for_expected_input(phrase_exercise.expect.to_string());
     }
 }
+
+fn clean_screen() {
+    print!("\x1B[2J\x1B[1;1H");
+}
+
 fn wait_for_expected_input(expected_input: String) {
     wait_for_expected_inputs(vec![expected_input]);
 }
@@ -214,6 +234,10 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
                     panic!("Exiting");
                 }
                 if input.trim() == "skip" {
+                    break;
+                }
+                if input.trim() == "menu" {
+                    menu();
                     break;
                 }
                 let mut correct_input = false;
@@ -244,5 +268,5 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
             }
         }
     }
-    print!("\x1B[2J\x1B[1;1H");
+    clean_screen();
 }
