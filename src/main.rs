@@ -14,11 +14,13 @@ mod verben;
 mod pronouns;
 mod prepositions;
 mod read_file;
+mod read_file_multi_options_exercise;
 mod articles;
 mod substantives;
 mod conjunctions;
 mod clients;
 mod relativ_pronomen;
+mod nebensatze;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -27,6 +29,7 @@ use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
 use relativ_pronomen::get_relativ_pronomen_exercises;
+use nebensatze::get_nebensatze_exercise;
 use types::{ZeitType, Exercise};
 
 struct Options <'a> {
@@ -47,17 +50,18 @@ fn menu() {
     clean_screen();
 
     let args: Vec<String> = env::args().collect();
-    let randon_exercises = true;
+    let random_exercises = true;
 
     let run_preposition = || {
-        run_exercise(&get_prepositions_case_exercises, ..8, randon_exercises);
-        run_exercise(&get_prepositions_exercises, ..15, randon_exercises);
+        run_exercise(&get_prepositions_case_exercises, ..8, random_exercises);
+        run_exercise(&get_prepositions_exercises, ..15, random_exercises);
     };
-    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, randon_exercises);
-    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, randon_exercises);
+    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, random_exercises);
+    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises);
+    let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises);
     let run_substantive = || {
-        run_exercise(&get_substantives_tips_exercises, .., randon_exercises);
-        run_exercise(&get_substantives_list, ..20, randon_exercises);
+        run_exercise(&get_substantives_tips_exercises, .., random_exercises);
+        run_exercise(&get_substantives_list, ..20, random_exercises);
     };
     let run_verben_all_times = || run_verb_exercise(VerbExercise::All);
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent);
@@ -71,6 +75,7 @@ fn menu() {
         Options { text: "substantives", exec: &run_substantive },
         Options { text: "conjunctions", exec: &run_conjunctions },
         Options { text: "relativ pronomen", exec: &run_relativ_pronomen },
+        Options { text: "nebensätze", exec: &run_nenbensatze },
     ];
 
     if args.len() == 2 && args[1] == "all" {
@@ -85,7 +90,7 @@ fn menu() {
         println!("\nTip: You can use ae, oe, ue for ä, ö, ü");
         println!("\nexit: to exit");
         println!("skip: to skip an exercise");
-        println!("menu: go back to menu");
+        println!("menu: to go back to menu");
 
         loop {
             let mut input = String::new();
@@ -106,13 +111,13 @@ fn menu() {
     }
 }
 
-fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, randon_exercises: bool)
+fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool)
     where
         T: Exercise,
         R: RangeBounds<usize>,
 {
     let mut exercises = exercise_fn();
-    if randon_exercises {
+    if random_exercises {
         let mut rng = thread_rng();
         exercises.shuffle(&mut rng);
     }

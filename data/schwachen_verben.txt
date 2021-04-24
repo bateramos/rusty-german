@@ -39,6 +39,7 @@ kümmern;haben;sich kümmern um
 
 sagen;haben
 schmecken;haben
+sparen;haben
 spielen;haben
 studieren;haben
 suchen;haben

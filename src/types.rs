@@ -71,7 +71,7 @@ pub struct TemporalSatzeExercise {
     pub expected_phrase: String,
 }
 
-pub struct RelativPronomenExercise {
+pub struct MultiOptionsExercise {
     pub phrase: String,
     pub expected_phrases: Vec<String>,
 }
@@ -176,7 +176,7 @@ impl Exercise for ConjunctionExercise {
     }
 }
 
-impl Exercise for RelativPronomenExercise {
+impl Exercise for MultiOptionsExercise {
     fn get_description(&self) -> String {
         self.phrase.to_string()
     }
