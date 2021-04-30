@@ -23,6 +23,7 @@ Ausflug
 Ausgang
 Ausländer
 Ausweis (ID Card)
+Außenbereich (outdoor area)
 Automat
 Bahnhof
 Bahnsteig
@@ -128,6 +129,7 @@ Kurs
 Löffel
 Laden
 Lehrer
+Lehrplan
 LKW
 Loch
 Lohn (Wage)
@@ -298,6 +300,7 @@ Brücke
 Briefmarke
 Brieftasche
 Brille
+Buchhandlung
 Butter
 CD
 CD-ROM
@@ -374,6 +377,7 @@ Kette
 Kirche
 Klasse
 Kleidung
+Klausur (Exam)
 Kneipe
 Kollegin
 Kontrolle
@@ -418,9 +422,11 @@ Notiz
 Nudel
 Nummer
 Oma
+Oper
 Operation
 Orange
 Ordnung
+Olive
 Panne
 Partei
 Partnerin
@@ -493,6 +499,8 @@ Verbindung
 Verkäuferin
 Versicherung
 Verspätung (Delay)
+Veränderung
+Vermutung (Guest)
 Volksschule
 Vorsicht
 Vorwahl
@@ -510,6 +518,7 @@ Zeitschrift
 Zeitung
 Zigarette
 Zitrone
+Zukunft
 
 das
 starting with: Ge-; diminutives; fraction; young humans and animals; infinitive verbs; ending on: -nis -tum; ending on: -at -ett -fon -ma -ment -um
@@ -589,6 +598,7 @@ Hemd
 Herz
 Hobby
 Holz
+Hochhaus (skyscraper)
 Internet
 Jahr
 Junge
@@ -620,6 +630,7 @@ Metall
 Mittel
 Moment
 Morgen
+Motiv
 Museum
 Obst
 Orange
@@ -667,6 +678,7 @@ Ticket
 Tier
 Trinkgeld
 Video
+Volk
 Wasser
 Werkzeug
 Wetter
