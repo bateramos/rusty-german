@@ -53,15 +53,15 @@ fn menu() {
     let random_exercises = true;
 
     let run_preposition = || {
-        run_exercise(&get_prepositions_case_exercises, ..8, random_exercises);
-        run_exercise(&get_prepositions_exercises, ..15, random_exercises);
+        run_exercise(&get_prepositions_case_exercises, ..5, random_exercises);
+        run_exercise(&get_prepositions_exercises, ..8, random_exercises);
     };
-    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..15, random_exercises);
+    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..10, random_exercises);
     let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises);
     let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises);
     let run_substantive = || {
         run_exercise(&get_substantives_tips_exercises, .., random_exercises);
-        run_exercise(&get_substantives_list, ..20, random_exercises);
+        run_exercise(&get_substantives_list, ..10, random_exercises);
     };
     let run_verben_all_times = || run_verb_exercise(VerbExercise::All);
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent);
@@ -157,12 +157,12 @@ fn run_personal_pronoun_exercise() {
     }
 }
 
-fn run_verb_exercise(exercise_run_type: VerbExercise) {
+#[tokio::main]
+async fn run_verb_exercise(exercise_run_type: VerbExercise) {
     let mut stark_verb_list = get_starken_verben();
     let mut schwache_verb_list = get_schwachen_verben();
     let person = get_personal_pronouns()[0].subjects;
 
-    let mut conjugation_ite;
     let mut rng = rand::thread_rng();
 
     let verben_list = vec![
@@ -172,46 +172,48 @@ fn run_verb_exercise(exercise_run_type: VerbExercise) {
     ];
 
     for exercise in verben_list.iter() {
-        for verb in exercise.verben.iter() {
-            if verb.zeit_type == ZeitType::Plusquamperfekt {
-                break;
-            }
-            conjugation_ite = 0;
-            for conjugation in verb.conjugations.iter() {
-                println!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
-                if let Some(obs) = &exercise.obs {
-                    println!("Obs: {}", obs)
+        let search_verb = exercise.verb.to_owned();
+        let verb_phrases_exercises = tokio::spawn(async move {
+            get_verben_phrase_exercise(&search_verb).await
+        });
+
+        let run_exercise = async {
+            for verb in exercise.verben.iter() {
+
+                if verb.zeit_type == ZeitType::Plusquamperfekt {
+                    break;
+                }
+                let mut conjugation_ite = 0;
+                for conjugation in verb.conjugations.iter() {
+                    println!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
+                    if let Some(obs) = &exercise.obs {
+                        println!("Obs: {}", obs)
+                    };
+                    println!("{}:", person[conjugation_ite]);
+                    wait_for_expected_input(conjugation.to_string());
+                    conjugation_ite += 1;
+                }
+
+                match exercise_run_type {
+                    VerbExercise::OnlyPresent => break,
+                    _ => continue,
                 };
-                println!("{}:", person[conjugation_ite]);
-                wait_for_expected_input(conjugation.to_string());
-                conjugation_ite += 1;
             }
+        };
 
-            match exercise_run_type {
-                VerbExercise::OnlyPresent => break,
-                _ => continue,
-            };
+        let (_, verb_phrases) = tokio::join!(run_exercise, verb_phrases_exercises);
+
+        let mut verb_phrases_exercises = verb_phrases.unwrap();
+        if !verb_phrases_exercises.is_empty() {
+            let mut rng = thread_rng();
+            verb_phrases_exercises.shuffle(&mut rng);
+
+            let phrase_exercise = &verb_phrases_exercises[0];
+
+            println!("{}", phrase_exercise.description);
+
+            wait_for_expected_input(phrase_exercise.expect.to_string());
         }
-        run_phrase_verb_exercise(&exercise.verb);
-    }
-}
-
-fn run_phrase_verb_exercise(verb: &str) {
-    let rt = tokio::runtime::Runtime::new().unwrap();
-    let fut = async {
-        get_verben_phrase_exercise(verb).await
-    };
-    let mut verb_phrases_exercises = rt.block_on(fut);
-
-    if !verb_phrases_exercises.is_empty() {
-        let mut rng = thread_rng();
-        verb_phrases_exercises.shuffle(&mut rng);
-
-        let phrase_exercise = &verb_phrases_exercises[0];
-
-        println!("{}", phrase_exercise.description);
-
-        wait_for_expected_input(phrase_exercise.expect.to_string());
     }
 }
 
