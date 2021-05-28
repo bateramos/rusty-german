@@ -25,6 +25,10 @@ bringen;gebracht;haben
 bringe;bringst;bringt;bringen;bringt;bringen
 brachte;brachtest;brachte;brachten;brachtet;brachten
 
+dürfen;gedurft;haben
+darf;darfst;darf;dürfen;dürft;dürfen
+durfte;durftest;durfte;durften;durftet;durften
+
 erwarten;erwartet;haben
 erwarte;erwartest;erwartet;erwarten;erwartet;erwarten
 erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
@@ -66,6 +70,7 @@ war;warst;war;waren;wart;waren
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein
+#gelten;galten;gegolten;haben;e>i
 
 #tragen;trugen;getragen;haben;a>ä
 #treffen;trafen;getroffen;haben;e>i

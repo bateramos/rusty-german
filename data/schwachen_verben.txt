@@ -27,6 +27,7 @@ interessieren;haben
 leben;haben
 legen;haben
 lernen;haben
+lenken;haben
 
 machen;haben
 meinen;haben
