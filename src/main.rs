@@ -257,7 +257,7 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
                         }
                     }
 
-                    match input.trim() == expected_input {
+                    match input.trim() == expected_input.trim() {
                         true => {
                             correct_input = true;
                             break;

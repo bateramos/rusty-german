@@ -70,7 +70,10 @@ war;warst;war;waren;wart;waren
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein
-#gelten;galten;gegolten;haben;e>i
+
+gelten;gegolten;haben
+gelte;giltst;gilt;gelten;geltet;gelten
+galt;galtst;galt;galten;galtet;galten
 
 #tragen;trugen;getragen;haben;a>ä
 #treffen;trafen;getroffen;haben;e>i
