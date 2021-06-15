@@ -21,6 +21,7 @@ mod conjunctions;
 mod clients;
 mod relativ_pronomen;
 mod nebensatze;
+mod storage;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -31,6 +32,7 @@ use conjunctions::get_conjunction_exercises;
 use relativ_pronomen::get_relativ_pronomen_exercises;
 use nebensatze::get_nebensatze_exercise;
 use types::{ZeitType, Exercise};
+use storage::{TextStorage, StorageInterface};
 
 struct Options <'a> {
     text: &'a str,
@@ -47,21 +49,23 @@ fn main() {
 }
 
 fn menu() {
+    let ts = TextStorage::initialize();
+
     clean_screen();
 
     let args: Vec<String> = env::args().collect();
     let random_exercises = true;
 
     let run_preposition = || {
-        run_exercise(&get_prepositions_case_exercises, ..5, random_exercises);
-        run_exercise(&get_prepositions_exercises, ..8, random_exercises);
+        run_exercise(&get_prepositions_case_exercises, ..5, random_exercises, &ts);
+        run_exercise(&get_prepositions_exercises, ..8, random_exercises, &ts);
     };
-    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..10, random_exercises);
-    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises);
-    let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises);
+    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..10, random_exercises, &ts);
+    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises, &ts);
+    let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises, &ts);
     let run_substantive = || {
-        run_exercise(&get_substantives_tips_exercises, .., random_exercises);
-        run_exercise(&get_substantives_list, ..10, random_exercises);
+        run_exercise(&get_substantives_tips_exercises, .., random_exercises, &ts);
+        run_exercise(&get_substantives_list, ..10, random_exercises, &ts);
     };
     let run_verben_all_times = || run_verb_exercise(VerbExercise::All);
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent);
@@ -111,10 +115,11 @@ fn menu() {
     }
 }
 
-fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool)
+fn run_exercise<T, R, C>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool, storage: &C)
     where
         T: Exercise,
         R: RangeBounds<usize>,
+        C: StorageInterface,
 {
     let mut exercises = exercise_fn();
     if random_exercises {
@@ -125,7 +130,10 @@ fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercis
     exercises_subset.sort_by_key(|a| a.get_sort_property());
     for exercise in exercises_subset.iter() {
         println!("{}", exercise.get_description());
-        wait_for_expected_inputs(exercise.get_expected_results());
+        wait_for_expected_inputs(exercise.get_expected_results(), Some(&|correct| {
+            let category = std::any::type_name::<T>();
+            storage.save_exercise_result(category, &exercise.get_description(), correct);
+        }));
     }
 }
 
@@ -177,7 +185,7 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise) {
             get_verben_phrase_exercise(&search_verb).await
         });
 
-        let run_exercise = async {
+        let run_exercise_async = async {
             for verb in exercise.verben.iter() {
 
                 if verb.zeit_type == ZeitType::Plusquamperfekt {
@@ -201,7 +209,7 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise) {
             }
         };
 
-        let (_, verb_phrases) = tokio::join!(run_exercise, verb_phrases_exercises);
+        let (_, verb_phrases) = tokio::join!(run_exercise_async, verb_phrases_exercises);
 
         let mut verb_phrases_exercises = verb_phrases.unwrap();
         if !verb_phrases_exercises.is_empty() {
@@ -222,10 +230,10 @@ fn clean_screen() {
 }
 
 fn wait_for_expected_input(expected_input: String) {
-    wait_for_expected_inputs(vec![expected_input]);
+    wait_for_expected_inputs(vec![expected_input], None);
 }
 
-fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
+fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<&dyn Fn(bool)>) {
     lazy_static! {
         static ref REPLACE_CHARS : HashMap<&'static str, Regex> = [
             ("ä", Regex::new(r"(ae)|(Ae)").unwrap()),
@@ -266,6 +274,10 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>) {
                     }
                 }
 
+                match on_answer {
+                    Some(f) => f(correct_input),
+                    None => {}
+                }
                 if correct_input {
                     break;
                 }
