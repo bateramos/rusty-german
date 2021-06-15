@@ -12,7 +12,7 @@ Das Fenster, das rund ist, zeigt zum Garten.
 
 Die Küche hat eine Terrasse. Die Küche liegt im Erdgeschoss.
 Die Küche, die im Erdgeschoss liegt, hat eine Terrasse.
-Die Küche, die eine Terrase hat, liegt im Erdgeschoss.
+Die Küche, die eine Terrasse hat, liegt im Erdgeschoss.
 
 Die Regale sind noch leer. Sie stehen im Arbeitszimmer.
 Die Regale, die im Arbeitszimmer stehen, sind noch leer.
