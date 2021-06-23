@@ -1348,6 +1348,7 @@ dependencies = [
  "arrayvec",
  "chrono",
  "lazy_static",
+ "openssl",
  "rand 0.7.3",
  "regex",
  "reqwest",
