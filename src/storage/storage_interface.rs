@@ -1,4 +1,4 @@
 pub trait StorageInterface {
     fn initialize() -> Self;
-    fn save_exercise_result(&self, category: &str, exercise: &str, result: bool);
+    fn save_exercise_result<S: Into<String>>(&self, category: S, exercise: S, result: bool);
 }

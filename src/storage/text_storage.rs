@@ -31,7 +31,7 @@ impl StorageInterface for TextStorage {
         TextStorage { tx }
     }
 
-    fn save_exercise_result(&self, category: &str, exercise: &str, result: bool) {
-        self.tx.send(format!("\n[{:?}] {} {} result: {}", Utc::now(), category, exercise, result)).unwrap();
+    fn save_exercise_result<S: Into<String>>(&self, category: S, exercise: S, result: bool) {
+        self.tx.send(format!("\n[{:?}] {} {} result: {}", Utc::now(), category.into(), exercise.into(), result)).unwrap();
     }
 }
