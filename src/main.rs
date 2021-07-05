@@ -63,10 +63,7 @@ fn menu() {
         let ts = &ts;
 
         Box::new(move |is_correct| {
-            let cat = category.as_str();
-            let exec = exercise.as_str();
-
-            ts.save_exercise_result(cat, exec, is_correct);
+            ts.save_exercise_result(&category, &exercise, is_correct);
         })
     };
 
@@ -78,8 +75,8 @@ fn menu() {
     let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises, &on_answer);
     let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises, &on_answer);
     let run_substantive = || {
-        run_exercise(&get_substantives_tips_exercises, .., random_exercises, &on_answer);
-        run_exercise(&get_substantives_list, ..10, random_exercises, &on_answer);
+        run_exercise(&get_substantives_tips_exercises, ..5, random_exercises, &on_answer);
+        run_exercise(&get_substantives_list, ..15, random_exercises, &on_answer);
     };
     let run_verben_all_times = || run_verb_exercise(VerbExercise::All, &on_answer);
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent, &on_answer);
@@ -246,6 +243,10 @@ fn clean_screen() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
+fn normalize_string(string: String) -> String {
+    Regex::new("[.]$").unwrap().replace(&string.trim().to_lowercase(), "").to_string()
+}
+
 fn wait_for_expected_input(expected_input: String, on_answer: OnAnswer) {
     wait_for_expected_inputs(vec![expected_input], Some(on_answer));
 }
@@ -282,7 +283,7 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAn
                         }
                     }
 
-                    correct_input = input.trim() == expected_input.trim();
+                    correct_input = normalize_string(input) == normalize_string(expected_input.to_owned());
 
                     if correct_input {
                         break;

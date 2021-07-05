@@ -14,6 +14,7 @@ sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 #beginnen;begannen;begonnen;haben
 #bekommen;bekamen;bekommen;haben
 #betreffen;betrafen;betroffen;haben
+#binden;banden;gebunden;haben
 #brechen;brachen;gebrochen;haben;e>i
 #bleiben;bleiben;geblieben;sein
 
@@ -70,6 +71,7 @@ war;warst;war;waren;wart;waren
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein
+#genießen;genossen;genossen;haben
 
 gelten;gegolten;haben
 gelte;giltst;gilt;gelten;geltet;gelten

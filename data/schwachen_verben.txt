@@ -6,6 +6,7 @@ bauen;haben
 bedeuten;haben
 brauchen;haben
 bilden;haben
+bummeln;sein;spazieren
 
 erinnern;haben
 erklären;haben
@@ -32,6 +33,7 @@ lenken;haben
 machen;haben
 meinen;haben
 
+räume;haben
 reden;haben
 regnen;sein
 
