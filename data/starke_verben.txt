@@ -68,6 +68,7 @@ war;warst;war;waren;wart;waren
 #schlagen;schlugen;geschlagen;haben;a>ä
 #schlafen;schliefen;geschlafen;haben;a>ä
 #sprechen;sprachen;gesprochen;haben;e>i
+#singen;sangen;singen;haben
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein

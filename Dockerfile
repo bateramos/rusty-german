@@ -10,6 +10,7 @@ RUN rustup target add x86_64-unknown-linux-musl
 RUN USER=root cargo new rusty-german
 WORKDIR /usr/src/rusty-german
 COPY Cargo.toml Cargo.lock ./
+
 RUN cargo build --features vendored --release
 
 COPY src ./src

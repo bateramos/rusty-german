@@ -16,6 +16,8 @@ select = "0.5.0"
 regex = "1"
 lazy_static = "1.4.0"
 openssl = { version = "=0.10.33", optional = true, features = ["vendored"] }
+rusty_entity_macro = { path = "../rusty-entity-macro" }
+rusty_types = { path = "../rusty-types" }
 
 [dev-dependencies]
 typed-html = { git = "https://github.com/bodil/typed-html" }

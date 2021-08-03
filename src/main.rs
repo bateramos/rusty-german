@@ -5,6 +5,7 @@ use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 use regex::Regex;
+use rusty_types::Exercise;
 
 #[macro_use]
 extern crate lazy_static;
@@ -31,7 +32,7 @@ use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
 use relativ_pronomen::get_relativ_pronomen_exercises;
 use nebensatze::get_nebensatze_exercise;
-use types::{ZeitType, Exercise};
+use types::ZeitType;
 use storage::{TextStorage, StorageInterface};
 
 struct Options <'a> {

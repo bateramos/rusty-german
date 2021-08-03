@@ -1,0 +1,14 @@
+bestimmten
+nominativ;e;e;e;en
+akkusativ;en;e;e;en
+dativ;en;en;en;en
+
+unbestimmten
+nominativ;er;e;es
+akkusativ;en;e;es
+dativ;en;en;en
+
+ohne Artikel
+nominativ;er;e;es;e
+akkusativ;en;e;es;e
+dativ;em;er;em;en

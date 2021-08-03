@@ -1362,10 +1362,25 @@ dependencies = [
  "rand 0.7.3",
  "regex",
  "reqwest",
+ "rusty_entity_macro",
+ "rusty_types",
  "select",
  "tokio",
  "typed-html",
 ]
+
+[[package]]
+name = "rusty_entity_macro"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "rusty_types",
+ "syn",
+]
+
+[[package]]
+name = "rusty_types"
+version = "0.1.0"
 
 [[package]]
 name = "ryu"
@@ -1606,9 +1621,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "1.0.68"
+version = "1.0.74"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3ce15dd3ed8aa2f8eeac4716d6ef5ab58b6b9256db41d7e1a0224c2788e8fd87"
+checksum = "1873d832550d4588c3dbc20f01361ab00bfe741048f71e3fecf145a7cc18b29c"
 dependencies = [
  "proc-macro2",
  "quote",

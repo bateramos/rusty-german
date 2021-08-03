@@ -1,3 +1,6 @@
+use rusty_entity_macro::RustyEntity;
+use rusty_types::Exercise;
+
 #[derive(Debug)]
 pub enum VerbType {
     Starke, Schwache
@@ -33,14 +36,21 @@ pub struct Article {
     pub gender: &'static str
 }
 
+#[derive(RustyEntity)]
 pub struct ExpectDescriptionExercise {
+    #[entity(expected_result)]
     pub expect: String,
+    #[entity(description)]
     pub description: String,
 }
 
+#[derive(RustyEntity)]
 pub struct PrepositionExercise {
+    #[entity(description)]
     pub phrase: String,
+    #[entity(sort)]
     pub case: String,
+    #[entity(expected_result)]
     pub preposition: String
 }
 
@@ -49,93 +59,54 @@ pub struct PrepositionCaseExercise {
     pub preposition: String
 }
 
+#[derive(RustyEntity)]
 pub struct SubstantiveExercise {
+    #[entity(sort)]
+    #[entity(description)]
     pub substantive: String,
+    #[entity(expected_result)]
     pub article: String,
     pub tip: String,
 }
 
+#[derive(RustyEntity)]
 pub struct SubstantiveTipExercise {
+    #[entity(description)]
     pub tip: String,
+    #[entity(expected_result)]
     pub article: String,
 }
 
+#[derive(RustyEntity)]
 pub struct ConjunctionExercise {
+    #[entity(description)]
     pub phrase: String,
+    #[entity(expected_result)]
     pub conjunction: String,
 }
 
+#[derive(RustyEntity)]
 pub struct TemporalSatzeExercise {
+    #[entity(sort)]
     pub verbindung: String,
+    #[entity(description)]
     pub phrase: String,
+    #[entity(expected_result)]
     pub expected_phrase: String,
 }
 
+#[derive(RustyEntity)]
 pub struct MultiOptionsExercise {
+    #[entity(description)]
     pub phrase: String,
+    #[entity(expected_results)]
     pub expected_phrases: Vec<String>,
 }
 
-pub trait Exercise {
-    fn get_description(&self) -> String;
-    fn get_expected_result(&self) -> String {
-        "".to_string()
-    }
-    fn get_expected_results(&self) -> Vec<String> {
-        let expected_result = self.get_expected_result();
-        vec![expected_result]
-    }
-    fn get_sort_property(&self) -> String {
-        "".to_string()
-    }
-}
-
-impl Exercise for ExpectDescriptionExercise {
-    fn get_description(&self) -> String {
-        self.description.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.expect.to_string()
-    }
-}
-
-impl Exercise for SubstantiveTipExercise {
-    fn get_description(&self) -> String {
-        self.tip.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.article.to_string()
-    }
-}
-
-impl Exercise for SubstantiveExercise {
-    fn get_description(&self) -> String {
-        self.substantive.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.article.to_string()
-    }
-
-    fn get_sort_property(&self) -> String {
-        self.substantive.to_string()
-    }
-}
-
-impl Exercise for PrepositionExercise {
-    fn get_description(&self) -> String {
-        self.phrase.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.preposition.to_string()
-    }
-
-    fn get_sort_property(&self) -> String {
-        self.case.to_string()
-    }
+pub struct AdjektivendungenExercise {
+    pub case: String,
+    pub gender: String,
+    pub end: String,
 }
 
 impl Exercise for PrepositionCaseExercise {
@@ -145,43 +116,5 @@ impl Exercise for PrepositionCaseExercise {
 
     fn get_expected_result(&self) -> String {
         self.case.to_string()
-    }
-}
-
-impl Exercise for TemporalSatzeExercise {
-    fn get_description(&self) -> String {
-        self.phrase.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.expected_phrase.to_string()
-    }
-
-    fn get_sort_property(&self) -> String {
-        self.verbindung.to_string()
-    }
-}
-
-impl Exercise for ConjunctionExercise {
-    fn get_description(&self) -> String {
-        self.phrase.to_string()
-    }
-
-    fn get_expected_result(&self) -> String {
-        self.conjunction.to_string()
-    }
-
-    fn get_sort_property(&self) -> String {
-        self.conjunction.to_string()
-    }
-}
-
-impl Exercise for MultiOptionsExercise {
-    fn get_description(&self) -> String {
-        self.phrase.to_string()
-    }
-
-    fn get_expected_results(&self) -> Vec<String> {
-        self.expected_phrases.clone()
     }
 }
