@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 use regex::Regex;
-use rusty_types::Exercise;
+use rusty_german_types::Exercise;
 
 #[macro_use]
 extern crate lazy_static;
@@ -23,6 +23,7 @@ mod clients;
 mod relativ_pronomen;
 mod nebensatze;
 mod storage;
+mod adjektivendungen;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -34,6 +35,7 @@ use relativ_pronomen::get_relativ_pronomen_exercises;
 use nebensatze::get_nebensatze_exercise;
 use types::ZeitType;
 use storage::{TextStorage, StorageInterface};
+use adjektivendungen::get_adjetivendungen_exercise;
 
 struct Options <'a> {
     text: &'a str,
@@ -83,6 +85,7 @@ fn menu() {
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent, &on_answer);
     let run_personal_pronoun = || run_personal_pronoun_exercise(&on_answer);
     let run_articles = || run_articles_exercise(&on_answer);
+    let run_adjetiv = || run_exercise(&get_adjetivendungen_exercise, .., false, &on_answer);
 
     let options = vec![
         Options { text: "verbs", exec: &run_verben_all_times },
@@ -94,6 +97,7 @@ fn menu() {
         Options { text: "conjunctions", exec: &run_conjunctions },
         Options { text: "relativ pronomen", exec: &run_relativ_pronomen },
         Options { text: "nebensätze", exec: &run_nenbensatze },
+        Options { text: "adjetivendungen", exec: &run_adjetiv },
     ];
 
     if args.len() == 2 && args[1] == "all" {

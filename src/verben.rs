@@ -153,7 +153,7 @@ pub fn get_starken_verben() -> Vec<VerbExercise> {
                 prefix_verb = match attr[3] {
                     "sein" => PrefixVerb::Sein,
                     "haben" => PrefixVerb::Haben,
-                    _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[2])
+                    _ => panic!("Wrong prefix verb for {}. value: {}", verb_name, attr[3])
                 };
                 let options = match attr.len() {
                     5 => Some(str(attr[4])),

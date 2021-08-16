@@ -1,5 +1,5 @@
-use rusty_entity_macro::RustyEntity;
-use rusty_types::Exercise;
+use rusty_german_entity_macro::RustyEntity;
+use rusty_german_types::Exercise;
 
 #[derive(Debug)]
 pub enum VerbType {
@@ -103,9 +103,17 @@ pub struct MultiOptionsExercise {
     pub expected_phrases: Vec<String>,
 }
 
+// 
+// [derive(RustyParser(
+//    file = data/adjektivendungen.txt
+//    regex = (?m)(^[a-zA-Z0-9_ ]*\n)?((^\w+);(\w+);(\w+);(\w+);?(\w+)?)
+//    map = {{ category = {1}, case = {3}, end = {4..7} }}
+// )]
+#[derive(RustyEntity)]
 pub struct AdjektivendungenExercise {
-    pub case: String,
-    pub gender: String,
+    #[entity(description)]
+    pub category: String,
+    #[entity(expected_result)]
     pub end: String,
 }
 

@@ -3,15 +3,23 @@ argumentieren;haben
 antworten;haben
 
 bauen;haben
+bearbeiten;haben
+beachten;haben
 bedeuten;haben
+bewundern;haben;admires
 brauchen;haben
 bilden;haben
 bummeln;sein;spazieren
+
+drohen;haben
+drehen;haben
 
 erinnern;haben
 erklären;haben
 erreichen;haben
 erzählen;haben
+erholen;haben
+erwähnen;haben
 
 fehlen;haben
 fragen;haben
@@ -35,6 +43,7 @@ meinen;haben
 
 räume;haben
 reden;haben
+retten;haben
 regnen;sein
 
 kaufen;haben
@@ -49,8 +58,14 @@ suchen;haben
 
 tanzen;sein
 
+überlegen;sein
+
+vereinbaren;haben
 verkaufen;haben
+verlangen;haben
 versuchen;haben
+verstärken;haben
+verwelken;sein;recessar
 
 zeigen;haben
 

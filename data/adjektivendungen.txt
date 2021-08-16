@@ -1,14 +1,19 @@
-bestimmten
+bestimmten der/die/das (adj) Pronomen
 nominativ;e;e;e;en
 akkusativ;en;e;e;en
 dativ;en;en;en;en
 
-unbestimmten
+unbestimmten ein/eine/ein (adj) Pronomen
 nominativ;er;e;es
 akkusativ;en;e;es
 dativ;en;en;en
 
-ohne Artikel
+ohne Artikel (adj) Pronomen
 nominativ;er;e;es;e
 akkusativ;en;e;es;e
 dativ;em;er;em;en
+
+possessivartikel mein/sein/dein/... (adj) Pronomen
+nominativ;er;e;es;en
+akkusativ;en;e;es;en
+dativ;en;en;en;en
