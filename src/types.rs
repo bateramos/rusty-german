@@ -117,6 +117,15 @@ pub struct AdjektivendungenExercise {
     pub end: String,
 }
 
+#[derive(RustyEntity)]
+pub struct VerbPrapositionExercise {
+    pub category: String,
+    #[entity(description)]
+    pub verb: String,
+    #[entity(expected_result)]
+    pub preposition: String,
+}
+
 impl Exercise for PrepositionCaseExercise {
     fn get_description(&self) -> String {
         format!("akkusativ dativ genitiv\nPreposition: {}", self.preposition)

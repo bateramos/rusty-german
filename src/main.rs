@@ -24,6 +24,7 @@ mod relativ_pronomen;
 mod nebensatze;
 mod storage;
 mod adjektivendungen;
+mod verben_praposition;
 
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
@@ -36,8 +37,9 @@ use nebensatze::get_nebensatze_exercise;
 use types::ZeitType;
 use storage::{TextStorage, StorageInterface};
 use adjektivendungen::get_adjetivendungen_exercise;
+use verben_praposition::get_verb_preposition_exercises;
 
-struct Options <'a> {
+struct MenuOption <'a> {
     text: &'a str,
     exec: &'a dyn Fn() -> (),
 }
@@ -86,18 +88,20 @@ fn menu() {
     let run_personal_pronoun = || run_personal_pronoun_exercise(&on_answer);
     let run_articles = || run_articles_exercise(&on_answer);
     let run_adjetiv = || run_exercise(&get_adjetivendungen_exercise, .., false, &on_answer);
+    let run_verb_prap = || run_exercise(&get_verb_preposition_exercises, ..6, random_exercises, &on_answer);
 
     let options = vec![
-        Options { text: "verbs", exec: &run_verben_all_times },
-        Options { text: "verbs (only present)", exec: &run_verben_only_present },
-        Options { text: "personal pronoums", exec: &run_personal_pronoun },
-        Options { text: "prepositions", exec: &run_preposition },
-        Options { text: "articles", exec: &run_articles },
-        Options { text: "substantives", exec: &run_substantive },
-        Options { text: "conjunctions", exec: &run_conjunctions },
-        Options { text: "relativ pronomen", exec: &run_relativ_pronomen },
-        Options { text: "nebensätze", exec: &run_nenbensatze },
-        Options { text: "adjetivendungen", exec: &run_adjetiv },
+        MenuOption { text: "verbs", exec: &run_verben_all_times },
+        MenuOption { text: "verbs (only present)", exec: &run_verben_only_present },
+        MenuOption { text: "personal pronoums", exec: &run_personal_pronoun },
+        MenuOption { text: "prepositions", exec: &run_preposition },
+        MenuOption { text: "articles", exec: &run_articles },
+        MenuOption { text: "substantives", exec: &run_substantive },
+        MenuOption { text: "conjunctions", exec: &run_conjunctions },
+        MenuOption { text: "relativ pronomen", exec: &run_relativ_pronomen },
+        MenuOption { text: "nebensätze", exec: &run_nenbensatze },
+        MenuOption { text: "adjetivendungen", exec: &run_adjetiv },
+        MenuOption { text: "verben praposition", exec: &run_verb_prap },
     ];
 
     if args.len() == 2 && args[1] == "all" {
