@@ -10,6 +10,10 @@ aussehen;ausgesehen;haben
 sehe aus;siehst aus;sieht aus;sehen aus;seht aus;sehen aus
 sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 
+#[an]nehmen;[an]nahmen;angenommen;haben
+#[ab]geben;[ab]gaben;abgegeben;haben;e>i
+#[an]bieten;[an]boten;angeboten;haben
+
 #backen;buken;gebacken;haben
 #beginnen;begannen;begonnen;haben
 #bekommen;bekamen;bekommen;haben
@@ -18,6 +22,7 @@ sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 #binden;banden;gebunden;haben
 #brechen;brachen;gebrochen;haben;e>i
 #bleiben;bleiben;geblieben;sein
+#[bei]tretten;[bei]traten;beigetreten;haben;e>i
 
 bieten;geboten;haben
 biete;bietest;bietet;bieten;bietet;bieten
@@ -74,6 +79,8 @@ war;warst;war;waren;wart;waren
 #singen;sangen;singen;haben
 #stehen;standen;gestanden;haben
 #stehen;standen;gestanden;sein
+#[schief]laufen;[schief]liefen;schiefgelaufen;sein;a>ä
+#[schief]gehen;[schief]gingen;schiefgegangen;sein
 
 #geben;gaben;gegeben;haben;e>i
 #gehen;gingen;gegangen;sein
@@ -103,3 +110,4 @@ tat;tatst;tat;taten;tatet;taten
 #ziehen;zogen;gezogen;sein
 
 #verschweigen;verschwiegen;verschwiegen;haben
+#[vor]schlagen;[vor]schlugen;vorgeschlagen;haben;a>ä

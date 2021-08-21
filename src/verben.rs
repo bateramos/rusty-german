@@ -1,3 +1,4 @@
+use regex::Regex;
 use arrayvec::ArrayVec;
 
 use crate::types::{VerbExercise, ExpectDescriptionExercise, Verb, VerbType, ZeitType};
@@ -92,6 +93,30 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
     let mut perfect_prefix = str(perfect_form);
     perfect_prefix.truncate(perfect_prefix.len() - 2);
 
+    let mut prefix = "";
+
+    let regex = Regex::new(r"(\[(\w*)\])?([a-zA-Zä-ü]*)").unwrap();
+
+    let to_capture = &present_prefix.clone();
+    if let Some(captures) = regex.captures(to_capture) {
+        if let Some(p) = captures.get(2) {
+            prefix = p.as_str();
+        }
+        if let Some(sufix) = captures.get(3) {
+            present_prefix = sufix.as_str().to_owned();
+        }
+    }
+
+    let to_capture = &perfect_prefix.clone();
+    if let Some(captures) = regex.captures(to_capture) {
+        if let Some(p) = captures.get(2) {
+            prefix = p.as_str();
+        }
+        if let Some(sufix) = captures.get(3) {
+            perfect_prefix = sufix.as_str().to_owned();
+        }
+    }
+
     let ending_with_s = present_prefix.ends_with("s");
 
     let person = if ending_with_s {
@@ -105,8 +130,8 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
         ["", "st", "", "en", "t", "en"]
     };
 
-    let mut present_form : Vec<String> = person.iter().map(|x| present_prefix.to_owned() + x).collect();
-    let past_form : Vec<String> = person_past.iter().map(|x| perfect_prefix.to_owned() + x).collect();
+    let mut present_form : Vec<String> = person.iter().map(|x| format!("{} {}", present_prefix.to_owned() + x, prefix).trim().to_owned()).collect();
+    let past_form : Vec<String> = person_past.iter().map(|x| format!("{} {}", perfect_prefix.to_owned() + x, prefix).trim().to_owned()).collect();
 
     if let Some(config) = present_2_3_form_config {
         let config_vec = config.split(">").collect::<Vec<&str>>();

@@ -1,7 +1,7 @@
 use crate::read_file::read_file_lines;
 use crate::types::MultiOptionsExercise;
 
-pub fn get_multiple_options_exercise(file_path: &str) -> Vec<MultiOptionsExercise> {
+pub fn get_multiple_options_exercise(file_path: &str, title: &str) -> Vec<MultiOptionsExercise> {
     let mut exercise = vec![];
     if let Ok(lines) = read_file_lines(file_path) {
         let mut iter = lines.iter();
@@ -25,7 +25,7 @@ pub fn get_multiple_options_exercise(file_path: &str) -> Vec<MultiOptionsExercis
                 }
             }
 
-            exercise.push(MultiOptionsExercise { phrase, expected_phrases });
+            exercise.push(MultiOptionsExercise { phrase: format!("{}\n{}", title, phrase), expected_phrases });
         }
     }
     exercise

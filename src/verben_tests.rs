@@ -41,6 +41,13 @@ mod create_regular_stark_verben_tests {
         assert_eq!(verb.verben[0].conjugations, ["wachse", "wächst", "wächst", "wachsen", "wachst", "wachsen"]);
         assert_eq!(verb.verben[1].conjugations, ["wuchs", "wuchsest", "wuchs", "wuchsen", "wuchst", "wuchsen"]);
     }
+
+    #[test]
+    fn it_should_create_separated_verb() {
+        let verb = create_regular_stark_verben("[an]nehmen", "[an]nahmen", "angenommen", PrefixVerb::Haben, Some(str("e>i")));
+        assert_eq!(verb.verben[0].conjugations, ["nehme an", "nihmst an", "nihmt an", "nehmen an", "nehmt an", "nehmen an"]);
+        assert_eq!(verb.verben[1].conjugations, ["nahm an", "nahmst an", "nahm an", "nahmen an", "nahmt an", "nahmen an"]);
+    }
 }
 
 mod create_schwache_verben_tests {

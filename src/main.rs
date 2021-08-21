@@ -234,12 +234,11 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
 
         let (_, verb_phrases) = tokio::join!(run_exercise_async, verb_phrases_exercises);
 
-        let mut verb_phrases_exercises = verb_phrases.unwrap();
+        let verb_phrases_exercises = verb_phrases.unwrap();
         if !verb_phrases_exercises.is_empty() {
-            let mut rng = thread_rng();
-            verb_phrases_exercises.shuffle(&mut rng);
+            let index = rng.gen_range(0, verb_phrases_exercises.len().min(5));
 
-            let phrase_exercise = &verb_phrases_exercises[0];
+            let phrase_exercise = &verb_phrases_exercises[index];
 
             println!("{}", phrase_exercise.description);
 
