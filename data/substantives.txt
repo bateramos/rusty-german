@@ -186,6 +186,7 @@ Reis
 Reiseführer
 Rock
 Rosé
+Rohstroff (raw material)
 Rundgang
 Süden
 Saft
@@ -201,6 +202,7 @@ Schluss
 Schnee
 Schnupfen
 Schrank
+Schott (scrap)
 Schuh
 See
 September
@@ -211,6 +213,7 @@ Sommer
 Sonntag
 Spaß
 Spaziergang
+Sperrmüll
 Spielplatz
 Stempel
 Stock

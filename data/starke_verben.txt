@@ -60,6 +60,7 @@ hatte;hattest;hatte;hatten;hattet;hatten
 #hinterlassen;hinterließen;hinterlassen;haben;a>ä
 
 #liegen;lagen;gelegen;sein
+#leihen;liehen;geliehen;haben
 
 #nehmen;nahmen;genommen;haben;eh>im
 
@@ -79,6 +80,7 @@ war;warst;war;waren;wart;waren
 #singen;sangen;singen;haben
 #stehen;standen;gestanden;haben
 #stehen;standen;gestanden;sein
+#stehlen;stahlen;gestohlen;haben;e>ie
 #[schief]laufen;[schief]liefen;schiefgelaufen;sein;a>ä
 #[schief]gehen;[schief]gingen;schiefgegangen;sein
 
@@ -95,8 +97,12 @@ galt;galtst;galt;galten;galtet;galten
 #tragen;trugen;getragen;haben;a>ä
 #treffen;trafen;getroffen;haben;e>i
 
+#verbringen;verbrachten;verbracht;haben
+#verschieben;verschoben;verschoben;haben
+
 #wachsen;wuchsen;gewaschsen;sein;a>ä
 #werfen;warfen;geworfen;haben;e>i
+#[weg]werfen;[weg]warfen;weggeworfen;haben;e>i
 
 werden;geworden;sein
 werde;wirst;wird;werden;werdet;werden

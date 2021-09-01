@@ -1,3 +1,4 @@
+achten;haben
 arbeiten;haben
 argumentieren;haben
 antworten;haben
@@ -6,7 +7,10 @@ bauen;haben
 bearbeiten;haben
 beachten;haben
 bedeuten;haben
+beenden;haben
+besichtigen;haben
 bewundern;haben;admires
+bewältigen;haben;cope
 brauchen;haben
 bilden;haben
 bummeln;sein;spazieren
@@ -20,6 +24,8 @@ erreichen;haben
 erzählen;haben
 erholen;haben
 erwähnen;haben
+erlernen;haben
+entsorgen;haben
 
 fehlen;haben
 fragen;haben
@@ -36,7 +42,7 @@ interessieren;haben
 leben;haben
 legen;haben
 lernen;haben
-lenken;haben
+lenken;haben;guide/steer
 
 machen;haben
 meinen;haben
@@ -47,6 +53,7 @@ retten;haben
 regnen;sein
 
 kaufen;haben
+klauen;haben
 kümmern;haben;sich kümmern um
 
 sagen;haben
@@ -60,6 +67,7 @@ tanzen;sein
 
 überlegen;sein
 
+verdeutlichen;haben
 vereinbaren;haben
 verkaufen;haben
 verlangen;haben
