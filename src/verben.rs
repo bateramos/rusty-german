@@ -95,7 +95,7 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
 
     let mut prefix = "";
 
-    let regex = Regex::new(r"(\[(\w*)\])?([a-zA-Zä-ü]*)").unwrap();
+    let regex = Regex::new(r"(\[(\w*)\])?([a-zA-Zä-üẞß]*)").unwrap();
 
     let to_capture = &present_prefix.clone();
     if let Some(captures) = regex.captures(to_capture) {
@@ -118,13 +118,14 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
     }
 
     let ending_with_s = present_prefix.ends_with("s");
+    let ending_with_eszett = present_prefix.ends_with("ß");
 
-    let person = if ending_with_s {
+    let person = if ending_with_s || ending_with_eszett {
         ["e", "t", "t", "en", "t", "en"]
     } else {
         ["e", "st", "t", "en", "t", "en"]
     };
-    let person_past = if ending_with_s {
+    let person_past = if ending_with_s || ending_with_eszett {
         ["", "est", "", "en", "t", "en"]
     } else {
         ["", "st", "", "en", "t", "en"]

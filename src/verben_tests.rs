@@ -48,6 +48,12 @@ mod create_regular_stark_verben_tests {
         assert_eq!(verb.verben[0].conjugations, ["nehme an", "nihmst an", "nihmt an", "nehmen an", "nehmt an", "nehmen an"]);
         assert_eq!(verb.verben[1].conjugations, ["nahm an", "nahmst an", "nahm an", "nahmen an", "nahmt an", "nahmen an"]);
     }
+
+    #[test]
+    fn it_should_create_verb_with_eszett() {
+        let verb = create_regular_stark_verben("genießen", "genossen", "genossen", PrefixVerb::Haben, None);
+        assert_eq!(verb.verben[0].conjugations, ["genieße", "genießt", "genießt", "genießen", "genießt", "genießen"]);
+    }
 }
 
 mod create_schwache_verben_tests {
