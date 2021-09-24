@@ -1,18 +1,9 @@
-anfangen;angefangen;haben
-fange an;fängst an;fängt an;fangen an;fangt an;fangen an
-fing an;fingst an;fing an;fingen an;fingt an;fingen an
-
-ansehen;angesehen;haben
-sehe an;siehst an;sieht an;sehen an;seht an;sehen an
-sah an;sahst an;sah an;sahen an;saht an;sahen an
-
-aussehen;ausgesehen;haben
-sehe aus;siehst aus;sieht aus;sehen aus;seht aus;sehen aus
-sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
-
+#[an]sehen;[an]sahen;angesehen;haben;e>ei
+#[an]fangen;[an]fingen;angefangen;haben;a>ä
 #[an]nehmen;[an]nahmen;angenommen;haben
 #[ab]geben;[ab]gaben;abgegeben;haben;e>i
 #[an]bieten;[an]boten;angeboten;haben
+#[aus]sehen;[aus]sahen;ausgesehen;haben;e>ei
 
 #backen;buken;gebacken;haben
 #beginnen;begannen;begonnen;haben
@@ -24,22 +15,14 @@ sah aus;sahst aus;sah aus;sahen aus;saht aus;sahen aus
 #bleiben;bleiben;geblieben;sein
 #[bei]treten;[bei]traten;beigetreten;haben;e>i
 
-bieten;geboten;haben
-biete;bietest;bietet;bieten;bietet;bieten
-bot;botst;bot;boten;botet;boten
-
-bringen;gebracht;haben
-bringe;bringst;bringt;bringen;bringt;bringen
-brachte;brachtest;brachte;brachten;brachtet;brachten
+#bieten;boten;angeboten;haben
+#bringen;brachten;gebracht;haben
 
 dürfen;gedurft;haben
 darf;darfst;darf;dürfen;dürft;dürfen
 durfte;durftest;durfte;durften;durftet;durften
 
-erwarten;erwartet;haben
-erwarte;erwartest;erwartet;erwarten;erwartet;erwarten
-erwartete;erwartetest;erwartete;erwarteten;erwartetet;erwarteten
-
+#erwarten;erwarteten;erwartet;haben
 #empfangen;empfingen;empfangen;haben;a>ä
 #empfehlen;empfahlen;empfohlen;haben;fehl>fiehl
 

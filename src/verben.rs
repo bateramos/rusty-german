@@ -119,13 +119,18 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
 
     let ending_with_s = present_prefix.ends_with("s");
     let ending_with_eszett = present_prefix.ends_with("ß");
+    let ending_with_alveolar = present_prefix.ends_with("gn") || present_prefix.ends_with("d") || present_prefix.ends_with("t");
 
-    let person = if ending_with_s || ending_with_eszett {
+    let person = if ending_with_alveolar {
+        ["e", "est", "et", "en", "et", "en"]
+    } else if ending_with_s || ending_with_eszett {
         ["e", "t", "t", "en", "t", "en"]
     } else {
         ["e", "st", "t", "en", "t", "en"]
     };
-    let person_past = if ending_with_s || ending_with_eszett {
+    let person_past = if ending_with_alveolar {
+        ["", "est", "", "en", "et", "en"]
+    } else if ending_with_s || ending_with_eszett {
         ["", "est", "", "en", "t", "en"]
     } else {
         ["", "st", "", "en", "t", "en"]

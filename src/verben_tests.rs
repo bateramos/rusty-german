@@ -54,6 +54,13 @@ mod create_regular_stark_verben_tests {
         let verb = create_regular_stark_verben("genießen", "genossen", "genossen", PrefixVerb::Haben, None);
         assert_eq!(verb.verben[0].conjugations, ["genieße", "genießt", "genießt", "genießen", "genießt", "genießen"]);
     }
+
+    #[test]
+    fn it_should_create_verb_ending_with_t_alveolar() {
+        let verb = create_regular_stark_verben("[an]bieten", "[an]boten", "angeboten", PrefixVerb::Haben, None);
+        assert_eq!(verb.verben[0].conjugations, ["biete an", "bietest an", "bietet an", "bieten an", "bietet an", "bieten an"]);
+        assert_eq!(verb.verben[1].conjugations, ["bot an", "botest an", "bot an", "boten an", "botet an", "boten an"]);
+    }
 }
 
 mod create_schwache_verben_tests {
