@@ -20,20 +20,17 @@ mod articles;
 mod substantives;
 mod conjunctions;
 mod clients;
-mod relativ_pronomen;
-mod nebensatze;
 mod storage;
 mod adjektivendungen;
 mod verben_praposition;
 
+use read_file_multi_options_exercise::get_multiple_options_exercise;
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
 use prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
 use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
-use relativ_pronomen::get_relativ_pronomen_exercises;
-use nebensatze::get_nebensatze_exercise;
 use types::ZeitType;
 use storage::{TextStorage, StorageInterface};
 use adjektivendungen::get_adjetivendungen_exercise;
@@ -77,8 +74,8 @@ fn menu() {
         run_exercise(&get_prepositions_exercises, ..8, random_exercises, &on_answer);
     };
     let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..10, random_exercises, &on_answer);
-    let run_relativ_pronomen = || run_exercise(&get_relativ_pronomen_exercises, ..2, random_exercises, &on_answer);
-    let run_nenbensatze = || run_exercise(&get_nebensatze_exercise, ..2, random_exercises, &on_answer);
+    let run_relativ_pronomen = || run_exercise(&|| get_multiple_options_exercise("data/relativ-pronomen.txt", "relativ pronomen"), ..2, random_exercises, &on_answer);
+    let run_nenbensatze = || run_exercise(&|| get_multiple_options_exercise("data/nebensatze.txt", "nebensatze"), ..2, random_exercises, &on_answer);
     let run_substantive = || {
         run_exercise(&get_substantives_tips_exercises, ..5, random_exercises, &on_answer);
         run_exercise(&get_substantives_list, ..15, random_exercises, &on_answer);
@@ -89,6 +86,7 @@ fn menu() {
     let run_articles = || run_articles_exercise(&on_answer);
     let run_adjetiv = || run_exercise(&get_adjetivendungen_exercise, .., false, &on_answer);
     let run_verb_prap = || run_exercise(&get_verb_preposition_exercises, ..6, random_exercises, &on_answer);
+    let run_lokaladverbien = || run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), .., random_exercises, &on_answer);
 
     let options = vec![
         MenuOption { text: "verbs", exec: &run_verben_all_times },
@@ -102,6 +100,7 @@ fn menu() {
         MenuOption { text: "nebensätze", exec: &run_nenbensatze },
         MenuOption { text: "adjetivendungen", exec: &run_adjetiv },
         MenuOption { text: "verben praposition", exec: &run_verb_prap },
+        MenuOption { text: "lokaladverbien", exec: &run_lokaladverbien  },
     ];
 
     if args.len() == 2 && args[1] == "all" {
