@@ -10,17 +10,11 @@ hin
 Komm mal __, ich möchte dir etwas zeigen!
 her
 
-Du musst mehr aus dir __, wenn du sie für dich gewinnen willst.
-herausgehen
-
 Bitte stell das Glas hin, sonst fällt es noch __.
 runter
 
 Die Universität ist ganz in der Nähe __ Bahnhof.
 vom
-
-Gehen Sie gerade aus, am Brunnen __ bis zum Frauentor.
-vorbei
 
 Kommen Sie bitte __!
 herein

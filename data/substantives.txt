@@ -401,6 +401,7 @@ Kreuzung
 Kunde
 Kundin
 Lösung
+Last
 Lampe
 Landschaft (Landscape)
 Lebensmittel (Food)

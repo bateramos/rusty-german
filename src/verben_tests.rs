@@ -56,6 +56,12 @@ mod create_regular_stark_verben_tests {
     }
 
     #[test]
+    fn it_should_create_verb_with_prateritum_eszett() {
+        let verb = create_regular_stark_verben("besitzen", "besaßen", "besessen", PrefixVerb::Haben, None);
+        assert_eq!(verb.verben[1].conjugations, ["besaß", "besaßest", "besaß", "besaßen", "besaßt", "besaßen"]);
+    }
+
+    #[test]
     fn it_should_create_verb_ending_with_t_alveolar() {
         let verb = create_regular_stark_verben("[an]bieten", "[an]boten", "angeboten", PrefixVerb::Haben, None);
         assert_eq!(verb.verben[0].conjugations, ["biete an", "bietest an", "bietet an", "bieten an", "bietet an", "bieten an"]);

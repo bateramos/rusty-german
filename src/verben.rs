@@ -117,8 +117,11 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
         }
     }
 
-    let ending_with_s = present_prefix.ends_with("s");
-    let ending_with_eszett = present_prefix.ends_with("ß");
+    let end_with = |prefix: &str, end: &str| prefix.ends_with(end);
+
+    let ending_with_s = end_with(&present_prefix, "s");
+    let ending_with_eszett = end_with(&present_prefix, "ß");
+    let perfect_ending_with_eszett = end_with(&perfect_prefix, "ß");
     let ending_with_alveolar = present_prefix.ends_with("gn") || present_prefix.ends_with("d") || present_prefix.ends_with("t");
 
     let person = if ending_with_alveolar {
@@ -130,7 +133,7 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
     };
     let person_past = if ending_with_alveolar {
         ["", "est", "", "en", "et", "en"]
-    } else if ending_with_s || ending_with_eszett {
+    } else if ending_with_s || perfect_ending_with_eszett {
         ["", "est", "", "en", "t", "en"]
     } else {
         ["", "st", "", "en", "t", "en"]
