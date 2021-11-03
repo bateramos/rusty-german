@@ -87,6 +87,7 @@ fn menu() {
     let run_adjetiv = || run_exercise(&get_adjetivendungen_exercise, .., false, &on_answer);
     let run_verb_prap = || run_exercise(&get_verb_preposition_exercises, ..6, random_exercises, &on_answer);
     let run_lokaladverbien = || run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), .., random_exercises, &on_answer);
+    let run_konjuntiv_ii  = || run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), .., random_exercises, &on_answer);
 
     let options = vec![
         MenuOption { text: "verbs", exec: &run_verben_all_times },
@@ -101,6 +102,7 @@ fn menu() {
         MenuOption { text: "adjetivendungen", exec: &run_adjetiv },
         MenuOption { text: "verben praposition", exec: &run_verb_prap },
         MenuOption { text: "lokaladverbien", exec: &run_lokaladverbien  },
+        MenuOption { text: "Konjuntiv II", exec: &run_konjuntiv_ii },
     ];
 
     if args.len() == 2 && args[1] == "all" {
@@ -121,7 +123,13 @@ fn menu() {
             let mut input = String::new();
             match io::stdin().read_line(&mut input) {
                 Ok(_n) => {
-                    match input.trim().parse::<usize>() {
+                    input = input.trim().to_string();
+
+                    if input == "exit" {
+                        break;
+                    }
+
+                    match input.parse::<usize>() {
                         Ok(n) => {
                             clean_screen();
                             (options[n - 1].exec)();
@@ -271,7 +279,7 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAn
         match io::stdin().read_line(&mut input) {
             Ok(_n) => {
                 if input.trim() == "exit" {
-                    panic!("Exiting");
+                    std::process::exit(1);
                 }
                 if input.trim() == "skip" {
                     break;
