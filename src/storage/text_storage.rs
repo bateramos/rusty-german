@@ -9,12 +9,12 @@ use chrono::prelude::*;
 use crate::storage::storage_interface::StorageInterface;
 
 pub struct TextStorage {
-    tx: Sender<String>
+    sender: Sender<String>
 }
 
-impl StorageInterface for TextStorage {
+impl StorageInterface <String> for TextStorage {
     fn initialize() -> Self {
-        let (tx, rx) : (Sender<String>, Receiver<String>) = mpsc::channel();
+        let (sender, receiver) : (Sender<String>, Receiver<String>) = mpsc::channel();
 
         thread::spawn(move || {
             let mut file = OpenOptions::new()
@@ -23,15 +23,15 @@ impl StorageInterface for TextStorage {
                 .open("storage.txt")
                 .unwrap();
 
-            for message in rx {
+            for message in receiver {
                 file.write(message.as_bytes()).unwrap();
             }
         });
 
-        TextStorage { tx }
+        TextStorage { sender }
     }
 
-    fn save_exercise_result<S: Into<String>>(&self, category: S, exercise: S, result: bool) {
-        self.tx.send(format!("\n[{:?}] {} {} result: {}", Utc::now(), category.into(), exercise.into(), result)).unwrap();
+    fn save_exercise_result(&self, category: String, exercise: String, result: bool) {
+        self.sender.send(format!("\n[{:?}] {} {} result: {}", Utc::now(), category, exercise, result)).unwrap();
     }
 }

@@ -32,7 +32,7 @@ use articles::get_articles;
 use substantives::{get_substantives_list, get_substantives_tips_exercises};
 use conjunctions::get_conjunction_exercises;
 use types::ZeitType;
-use storage::{TextStorage, StorageInterface};
+use storage::{SqliteStorage, StorageInterface};
 use adjektivendungen::get_adjetivendungen_exercise;
 use verben_praposition::get_verb_preposition_exercises;
 
@@ -47,25 +47,25 @@ enum VerbExercise {
 }
 
 type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
-type CreateOnAnswer <'a> = &'a dyn Fn(String, String) -> OnAnswer<'a>;
+type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 
 fn main() {
     menu();
 }
 
 fn menu() {
-    let ts = TextStorage::initialize();
+    let ts = SqliteStorage::initialize();
 
     clean_screen();
 
     let args: Vec<String> = env::args().collect();
     let random_exercises = true;
 
-    let on_answer : CreateOnAnswer = &|category, exercise| -> OnAnswer {
+    let on_answer : CreateOnAnswer = &|category, exercise, expected_values| -> OnAnswer {
         let ts = &ts;
 
         Box::new(move |is_correct| {
-            ts.save_exercise_result(&category, &exercise, is_correct);
+            ts.save_exercise_result(category.to_string(), format!("{}; {}", exercise.to_string(), expected_values.to_string()), is_correct);
         })
     };
 
@@ -159,8 +159,10 @@ fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercis
     for exercise in exercises_subset.iter() {
         println!("{}", exercise.get_description());
         let category = std::any::type_name::<T>().to_string();
-        let exec = exercise.get_description();
-        wait_for_expected_inputs(exercise.get_expected_results(), Some(on_answer(category, exec)));
+        let expected_values = exercise.get_expected_results().into_iter().fold("".to_owned(), |acc, item| {
+            format!("{}|{}", acc, item)
+        });
+        wait_for_expected_inputs(exercise.get_expected_results(), Some(on_answer(category, exercise.get_description(), expected_values)));
     }
 }
 
@@ -169,7 +171,7 @@ fn run_articles_exercise(on_answer: CreateOnAnswer) {
         for article in articles.iter() {
             let exercise = format!("{} {}", article.case, article.gender);
             println!("{}:", exercise);
-            wait_for_expected_input(article.name.to_string(), on_answer("article".to_owned(), exercise));
+            wait_for_expected_input(article.name.to_string(), on_answer("article".to_owned(), exercise, article.name.to_string()));
         }
     }
 }
@@ -188,7 +190,7 @@ fn run_personal_pronoun_exercise(on_answer: CreateOnAnswer) {
             println!(" --- {} --- ", pronoun.name);
             println!("{} person, {}:", (conjugation_ite % 3) + 1, case);
             conjugation_ite += 1;
-            wait_for_expected_input(subject.to_string(), on_answer("personal_pronoun".into(), pronoun.name.to_owned()));
+            wait_for_expected_input(subject.to_string(), on_answer("personal_pronoun".into(), pronoun.name.to_owned(), subject.to_string()));
         }
     }
 }
@@ -228,7 +230,7 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
                     };
                     let time = person[conjugation_ite];
                     println!("{}:", time);
-                    wait_for_expected_input(conjugation.to_string(), on_answer("verb_exercise".into(), time.into()));
+                    wait_for_expected_input(conjugation.to_string(), on_answer("verb_exercise".into(), time.into(), conjugation.to_string()));
                     conjugation_ite += 1;
                 }
 
@@ -249,7 +251,8 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
 
             println!("{}", phrase_exercise.description);
 
-            wait_for_expected_input(phrase_exercise.expect.to_string(), on_answer("verb_translation".into(), exercise.verb.to_owned()));
+            let expect = phrase_exercise.expect.to_string();
+            wait_for_expected_input(expect.to_string(), on_answer("verb_translation".into(), exercise.verb.to_owned(), expect));
         }
     }
 }

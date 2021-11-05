@@ -15,6 +15,7 @@ tokio = { version = "1", features = ["full"] }
 select = "0.5.0"
 regex = "1"
 lazy_static = "1.4.0"
+sqlite = "0.26.0"
 openssl = { version = "=0.10.33", optional = true, features = ["vendored"] }
 rusty_german_entity_macro = "0.1.0"
 rusty_german_types = "0.1.0"

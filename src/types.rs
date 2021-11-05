@@ -103,7 +103,6 @@ pub struct MultiOptionsExercise {
     pub expected_phrases: Vec<String>,
 }
 
-// 
 // [derive(RustyParser(
 //    file = data/adjektivendungen.txt
 //    regex = (?m)(^[a-zA-Z0-9_ ]*\n)?((^\w+);(\w+);(\w+);(\w+);?(\w+)?)
