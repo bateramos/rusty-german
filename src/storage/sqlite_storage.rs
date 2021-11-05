@@ -45,37 +45,23 @@ impl StorageInterface <String> for SqliteStorage {
                         let exercise_id = generate_hash(&exercise) as i64;
 
                         let mut stmt = conn.prepare("
-                            INSERT INTO Category VALUES (:id, :name);
+                            INSERT OR IGNORE INTO Category VALUES (:id, :name);
                         ").unwrap();
 
                         stmt.bind_by_name(":id", category_id).unwrap();
                         stmt.bind_by_name(":name", category.as_str()).unwrap();
 
-                        match stmt.next() {
-                            Ok(_) => {},
-                            Err(error) => {
-                                if error.code.unwrap() != 19 {
-                                    panic!("{}", error);
-                                }
-                            }
-                        }
+                        stmt.next().unwrap();
 
                         let mut stmt = conn.prepare("
-                            INSERT INTO Exercise VALUES (:id, :name, :category);
+                            INSERT OR IGNORE INTO Exercise VALUES (:id, :name, :category);
                         ").unwrap();
 
                         stmt.bind_by_name(":id", exercise_id).unwrap();
                         stmt.bind_by_name(":name", exercise.as_str()).unwrap();
                         stmt.bind_by_name(":category", category_id).unwrap();
 
-                        match stmt.next() {
-                            Ok(_) => {},
-                            Err(error) => {
-                                if error.code.unwrap() != 19 {
-                                    panic!("{}", error);
-                                }
-                            }
-                        }
+                        stmt.next().unwrap();
 
                         let mut stmt = conn.prepare("
                             INSERT INTO ExerciseResult (exercise, date, result) VALUES (:exercise, date('now'), :result);
