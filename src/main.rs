@@ -88,6 +88,7 @@ fn menu() {
     let run_verb_prap = || run_exercise(&get_verb_preposition_exercises, ..6, random_exercises, &on_answer);
     let run_lokaladverbien = || run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), .., random_exercises, &on_answer);
     let run_konjuntiv_ii  = || run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), .., random_exercises, &on_answer);
+    let run_review_exercises_menu = || run_review_exercises(&ts);
 
     let options = vec![
         MenuOption { text: "verbs", exec: &run_verben_all_times },
@@ -103,6 +104,7 @@ fn menu() {
         MenuOption { text: "verben praposition", exec: &run_verb_prap },
         MenuOption { text: "lokaladverbien", exec: &run_lokaladverbien  },
         MenuOption { text: "Konjuntiv II", exec: &run_konjuntiv_ii },
+        MenuOption { text: "Review Exercises", exec: &run_review_exercises_menu },
     ];
 
     if args.len() == 2 && args[1] == "all" {
@@ -166,6 +168,25 @@ fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercis
     }
 }
 
+fn run_review_exercises(ts: &SqliteStorage) {
+    let reviews = ts.fetch_exercises_with_result_false();
+    println!("{}", reviews.len());
+
+    reviews.iter().for_each(|review| {
+        let parts : Vec<&str> = review.split(";").collect();
+        let description = parts[0];
+        let expected_results : Vec<String> = parts[1].split("|").filter_map(|item| {
+            if item.trim().is_empty() {
+                None
+            } else {
+                Some(item.trim().to_string())
+            }
+        }).collect();
+        println!("{}", description);
+        wait_for_expected_inputs(expected_results, None);
+    });
+}
+
 fn run_articles_exercise(on_answer: CreateOnAnswer) {
     for articles in get_articles().iter() {
         for article in articles.iter() {
@@ -223,14 +244,14 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
                 }
                 let mut conjugation_ite = 0;
                 for conjugation in verb.conjugations.iter() {
-                    let verb_exercise = format!("{} ({:?} {:?})", exercise.verb, exercise.verb_type, verb.zeit_type);
-                    println!(" --- {} --- ", verb_exercise);
+                    let mut verb_exercise = format!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
                     if let Some(obs) = &exercise.obs {
-                        println!("Obs: {}", obs)
+                        verb_exercise = format!("{}\n Obs: {}", verb_exercise, obs);
                     };
                     let time = person[conjugation_ite];
-                    println!("{}:", time);
-                    wait_for_expected_input(conjugation.to_string(), on_answer("verb_exercise".into(), time.into(), conjugation.to_string()));
+                    verb_exercise = format!("{}\n{}:", verb_exercise, time);
+                    println!("{}", verb_exercise);
+                    wait_for_expected_input(conjugation.into(), on_answer("verb_exercise".into(), verb_exercise, conjugation.into()));
                     conjugation_ite += 1;
                 }
 
@@ -248,11 +269,12 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
             let index = rng.gen_range(0, verb_phrases_exercises.len().min(5));
 
             let phrase_exercise = &verb_phrases_exercises[index];
+            let description = format!("{}\n{}", "verb_translation", phrase_exercise.description);
 
-            println!("{}", phrase_exercise.description);
+            println!("{}", description);
 
             let expect = phrase_exercise.expect.to_string();
-            wait_for_expected_input(expect.to_string(), on_answer("verb_translation".into(), exercise.verb.to_owned(), expect));
+            wait_for_expected_input(expect.to_string(), on_answer(description, exercise.verb.to_owned(), expect));
         }
     }
 }

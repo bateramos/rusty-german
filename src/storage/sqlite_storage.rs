@@ -17,7 +17,7 @@ enum Operation {
 pub struct SqliteStorage {
     sender: mpsc::Sender<Operation>,
     #[allow(dead_code)]
-    thread: thread::JoinHandle<()>,
+    thread: Option<thread::JoinHandle<()>>,
     #[allow(dead_code)]
     connection: Arc<Mutex<sqlite::Connection>>,
 }
@@ -45,7 +45,7 @@ impl StorageInterface <String> for SqliteStorage {
                         let exercise_id = generate_hash(&exercise) as i64;
 
                         let mut stmt = conn.prepare("
-                            INSERT OR IGNORE INTO Category VALUES (:id, :name);
+                            INSERT OR IGNORE INTO Category (id, name) VALUES (:id, :name);
                         ").unwrap();
 
                         stmt.bind_by_name(":id", category_id).unwrap();
@@ -54,7 +54,7 @@ impl StorageInterface <String> for SqliteStorage {
                         stmt.next().unwrap();
 
                         let mut stmt = conn.prepare("
-                            INSERT OR IGNORE INTO Exercise VALUES (:id, :name, :category);
+                            INSERT OR IGNORE INTO Exercise (id, name, category) VALUES (:id, :name, :category);
                         ").unwrap();
 
                         stmt.bind_by_name(":id", exercise_id).unwrap();
@@ -76,11 +76,41 @@ impl StorageInterface <String> for SqliteStorage {
             }
         });
 
-        SqliteStorage { sender, thread, connection }
+        SqliteStorage { sender, thread: Some(thread), connection }
     }
 
     fn save_exercise_result(&self, category: String, exercise: String, result: bool) {
-        self.sender.send(Operation::Save{ category, exercise, result }).unwrap();
+        self.sender.send(Operation::Save { category, exercise, result }).unwrap();
+    }
+}
+
+impl SqliteStorage {
+    pub fn fetch_exercises_with_result_false(&self) -> Vec<String> {
+        let mut exercises = Vec::new();
+        let connection = self.connection.lock().unwrap();
+        let mut cursor = connection
+            .prepare("select distinct e.name from ExerciseResult er
+                left join Exercise e on e.id = er.exercise
+                where er.result = 'false' AND er.date > date('now', '-2 days')
+            ")
+            .unwrap()
+            .into_cursor();
+
+
+        while let Some(row) = cursor.next().unwrap() {
+            exercises.push(row[0].as_string().unwrap().to_string());
+        }
+
+        exercises
+    }
+
+    #[allow(dead_code)]
+    fn drop_thread(&mut self) {
+        self.sender.send(Operation::ShutDown).unwrap();
+
+        if let Some(thread) = self.thread.take() {
+            thread.join().unwrap();
+        }
     }
 }
 
