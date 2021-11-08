@@ -67,6 +67,13 @@ mod create_regular_stark_verben_tests {
         assert_eq!(verb.verben[0].conjugations, ["biete an", "bietest an", "bietet an", "bieten an", "bietet an", "bieten an"]);
         assert_eq!(verb.verben[1].conjugations, ["bot an", "botest an", "bot an", "boten an", "botet an", "boten an"]);
     }
+
+    #[test]
+    fn it_should_create_verb_sparated_with_umlaut() {
+        let verb = create_regular_stark_verben("[an]fangen", "[an]fingen", "angefangen", PrefixVerb::Haben, Some(str("a>ä")));
+        assert_eq!(verb.verben[0].conjugations, ["fange an", "fängst an", "fängt an", "fangen an", "fangt an", "fangen an"]);
+        assert_eq!(verb.verben[1].conjugations, ["fing an", "fingst an", "fing an", "fingen an", "fingt an", "fingen an"]);
+    }
 }
 
 mod create_schwache_verben_tests {

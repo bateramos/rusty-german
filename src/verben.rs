@@ -146,8 +146,8 @@ fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str,
         let config_vec = config.split(">").collect::<Vec<&str>>();
         let from = config_vec[0];
         let to = config_vec[1];
-        present_form[1] = present_form[1].replace(from, to);
-        present_form[2] = present_form[2].replace(from, to);
+        present_form[1] = present_form[1].replacen(from, to, 1);
+        present_form[2] = present_form[2].replacen(from, to, 1);
     }
 
     create_starke_verben(name, past_tense, prefix_verb, &present_form, &past_form, None)
