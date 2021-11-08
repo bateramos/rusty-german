@@ -170,7 +170,6 @@ fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercis
 
 fn run_review_exercises(ts: &SqliteStorage) {
     let reviews = ts.fetch_exercises_with_result_false();
-    println!("{}", reviews.len());
 
     reviews.iter().for_each(|review| {
         let parts : Vec<&str> = review.split(";").collect();
@@ -268,13 +267,14 @@ async fn run_verb_exercise(exercise_run_type: VerbExercise, on_answer: CreateOnA
         if !verb_phrases_exercises.is_empty() {
             let index = rng.gen_range(0, verb_phrases_exercises.len().min(5));
 
-            let phrase_exercise = &verb_phrases_exercises[index];
-            let description = format!("{}\n{}", "verb_translation", phrase_exercise.description);
+            let category = "verb_translation";
 
-            println!("{}", description);
+            let phrase_exercise = &verb_phrases_exercises[index];
+
+            println!("{}\n{}", category, phrase_exercise.description);
 
             let expect = phrase_exercise.expect.to_string();
-            wait_for_expected_input(expect.to_string(), on_answer(description, exercise.verb.to_owned(), expect));
+            wait_for_expected_input(expect.to_string(), on_answer(category.into(), phrase_exercise.description.to_string(), expect));
         }
     }
 }
