@@ -21,6 +21,7 @@ drehen;haben
 erinnern;haben
 erklären;haben
 erreichen;haben
+erscheinen;sein
 erzählen;haben
 erholen;haben
 erwähnen;haben
@@ -46,6 +47,7 @@ lenken;haben;guide/steer
 
 machen;haben
 meinen;haben
+[mit]wirken;haben
 
 räume;haben
 reden;haben

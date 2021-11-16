@@ -51,6 +51,8 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
     let ending_with_rn = sufix == "rn";
     let ending_with_alveolar = prefix.ends_with("gn") || prefix.ends_with("d") || prefix.ends_with("t");
 
+    let (prefix, trennbar) = get_trennbar_verb_parts(&prefix);
+
     let person = if ending_with_alveolar {
         ["e", "est", "et", "en", "et", "en"]
     } else if ending_with_rn {
@@ -67,13 +69,17 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
         ["te", "test", "te", "ten", "tet", "ten"]
     };
 
-    let present_form : Vec<String> = person.iter().map(|x| prefix.to_owned() + x).collect();
-    let past_form : Vec<String> = person_past.iter().map(|x| prefix.to_owned() + x).collect();
+    let conjugate = |form: [&str; 6]| -> Vec<String> {form.iter().map(|x| format!("{}{} {}", prefix, x, trennbar).trim().to_owned()).collect()};
+
+    let present_form = conjugate(person);
+    let past_form = conjugate(person_past);
 
     let verb_has_prefix = name.starts_with("ge") || name.starts_with("er") || name.starts_with("be") || name.starts_with("ver");
 
     let past_tense = if verb_has_prefix || name.ends_with("ieren") {
         present_form[4].to_owned()
+    } else if !trennbar.is_empty() {
+        format!("{}{}{}", trennbar, "ge", present_form[4].replace(&format!(" {}", trennbar), ""))
     } else {
         str("ge") + &present_form[4].to_owned()
     };
@@ -87,41 +93,40 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
     ] }
 }
 
+fn get_trennbar_verb_parts(verb: &str) -> (&str, &str) {
+    let regex = Regex::new(r"(\[(\w*)\])?([a-zA-Zä-üẞß]*)").unwrap();
+
+    let to_capture = verb;
+    if let Some(captures) = regex.captures(&to_capture) {
+        let prefix = if let Some(p) = captures.get(2) {
+            p.as_str().clone()
+        } else {
+            ""
+        };
+        let verb = if let Some(sufix) = captures.get(3) {
+            sufix.as_str()
+        } else {
+            verb
+        };
+
+        (verb, prefix)
+    } else {
+        ("", "")
+    }
+}
+
 fn create_regular_stark_verben(name: &str, perfect_form: &str, past_tense: &str, prefix_verb: PrefixVerb, present_2_3_form_config: Option<String>) -> VerbExercise {
     let mut present_prefix = str(name);
     present_prefix.truncate(present_prefix.len() - 2);
     let mut perfect_prefix = str(perfect_form);
     perfect_prefix.truncate(perfect_prefix.len() - 2);
 
-    let mut prefix = "";
+    let (present_prefix, prefix) = get_trennbar_verb_parts(&present_prefix);
+    let (perfect_prefix, _) = get_trennbar_verb_parts(&perfect_prefix);
 
-    let regex = Regex::new(r"(\[(\w*)\])?([a-zA-Zä-üẞß]*)").unwrap();
-
-    let to_capture = &present_prefix.clone();
-    if let Some(captures) = regex.captures(to_capture) {
-        if let Some(p) = captures.get(2) {
-            prefix = p.as_str();
-        }
-        if let Some(sufix) = captures.get(3) {
-            present_prefix = sufix.as_str().to_owned();
-        }
-    }
-
-    let to_capture = &perfect_prefix.clone();
-    if let Some(captures) = regex.captures(to_capture) {
-        if let Some(p) = captures.get(2) {
-            prefix = p.as_str();
-        }
-        if let Some(sufix) = captures.get(3) {
-            perfect_prefix = sufix.as_str().to_owned();
-        }
-    }
-
-    let end_with = |prefix: &str, end: &str| prefix.ends_with(end);
-
-    let ending_with_s = end_with(&present_prefix, "s");
-    let ending_with_eszett = end_with(&present_prefix, "ß");
-    let perfect_ending_with_eszett = end_with(&perfect_prefix, "ß");
+    let ending_with_s = present_prefix.ends_with("s");
+    let ending_with_eszett = present_prefix.ends_with("ß");
+    let perfect_ending_with_eszett = perfect_prefix.ends_with("ß");
     let ending_with_alveolar = present_prefix.ends_with("gn") || present_prefix.ends_with("d") || present_prefix.ends_with("t");
 
     let person = if ending_with_alveolar {

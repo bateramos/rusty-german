@@ -99,4 +99,5 @@ tat;tatst;tat;taten;tatet;taten
 #ziehen;zogen;gezogen;sein
 
 #verschweigen;verschwiegen;verschwiegen;haben
+#verbreiten;verbritten;verbritten;sein
 #[vor]schlagen;[vor]schlugen;vorgeschlagen;haben;a>ä

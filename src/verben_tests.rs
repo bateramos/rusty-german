@@ -137,4 +137,12 @@ mod create_schwache_verben_tests {
         let verb = create_schwache_verben("leben", PrefixVerb::Haben, None);
         assert_eq!(verb.verben[2].conjugations[0], "habe gelebt");
     }
+
+    #[test]
+    fn it_should_create_verb_separated() {
+        let verb = create_schwache_verben("[mit]wirken", PrefixVerb::Haben, None);
+        assert_eq!(verb.verben[0].conjugations, ["wirke mit", "wirkst mit", "wirkt mit", "wirken mit", "wirkt mit", "wirken mit"]);
+        assert_eq!(verb.verben[1].conjugations, ["wirkte mit", "wirktest mit", "wirkte mit", "wirkten mit", "wirktet mit", "wirkten mit"]);
+        assert_eq!(verb.verben[2].conjugations[0], "habe mitgewirkt");
+    }
 }
