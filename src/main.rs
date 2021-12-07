@@ -1,11 +1,11 @@
 use std::io;
-use std::env;
 use std::ops::RangeBounds;
 use std::collections::HashMap;
 use rand::{thread_rng, Rng};
 use rand::seq::SliceRandom;
 use regex::Regex;
 use rusty_german_types::Exercise;
+use clap::Parser;
 
 #[macro_use]
 extern crate lazy_static;
@@ -23,6 +23,7 @@ mod clients;
 mod storage;
 mod adjektivendungen;
 mod verben_praposition;
+mod config;
 
 use read_file_multi_options_exercise::get_multiple_options_exercise;
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
@@ -35,16 +36,7 @@ use types::ZeitType;
 use storage::{SqliteStorage, StorageInterface};
 use adjektivendungen::get_adjetivendungen_exercise;
 use verben_praposition::get_verb_preposition_exercises;
-
-struct MenuOption <'a> {
-    text: &'a str,
-    exec: &'a dyn Fn() -> (),
-}
-
-enum VerbExercise {
-    OnlyPresent,
-    All
-}
+use config::{Args, MenuOption, VerbExercise};
 
 type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
@@ -54,11 +46,12 @@ fn main() {
 }
 
 fn menu() {
+    let args = Args::parse();
+
     let ts = SqliteStorage::initialize();
 
     clean_screen();
 
-    let args: Vec<String> = env::args().collect();
     let random_exercises = true;
 
     let on_answer : CreateOnAnswer = &|category, exercise, expected_values| -> OnAnswer {
@@ -107,7 +100,7 @@ fn menu() {
         MenuOption { text: "Review Exercises", exec: &run_review_exercises_menu },
     ];
 
-    if args.len() == 2 && args[1] == "all" {
+    if args.all {
         for option in options.into_iter() {
             (option.exec)();
         }

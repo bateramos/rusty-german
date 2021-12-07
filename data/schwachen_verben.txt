@@ -76,9 +76,9 @@ verlangen;haben
 versuchen;haben
 verstärken;haben
 verwelken;sein;recessar
+verlegen;haben
 
 zeigen;haben
 
 warten;haben
 wohnen;haben
-

@@ -696,6 +696,7 @@ Ticket
 Tier
 Trinkgeld
 Video
+Versehen (Error)
 Volk
 Wasser
 Werkzeug

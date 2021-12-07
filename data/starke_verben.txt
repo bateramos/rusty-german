@@ -6,21 +6,27 @@
 #[aus]sehen;[aus]sahen;ausgesehen;haben;e>ei
 
 #backen;buken;gebacken;haben
+#bergen;bargen;geborgen;haben;e>i
+#bersten;barsten;geborsten;sein;e>i
 #beginnen;begannen;begonnen;haben
 #bekommen;bekamen;bekommen;haben
 #betreffen;betrafen;betroffen;haben
 #besitzen;besaßen;besessen;haben
+#blasen;bliesen;gelasen;haben;a>ä
 #binden;banden;gebunden;haben
+#biegen;bogen;gebogen;haben
+#bitten;baten;gebeten;haben
 #brechen;brachen;gebrochen;haben;e>i
 #bleiben;bleiben;geblieben;sein
 #[bei]treten;[bei]traten;beigetreten;haben;e>i
-
 #bieten;boten;angeboten;haben
 #bringen;brachten;gebracht;haben
 
 dürfen;gedurft;haben
 darf;darfst;darf;dürfen;dürft;dürfen
 durfte;durftest;durfte;durften;durftet;durften
+
+#denken;dachten;gedacht;haben
 
 #erwarten;erwarteten;erwartet;haben
 #empfangen;empfingen;empfangen;haben;a>ä
@@ -34,6 +40,14 @@ aß;aßest;aß;aßen;aßt;aßen
 #fangen;fingen;gefangen;haben;a>ä
 #fahren;fuhren;gefahren;sein;a>ä
 #fliegen;flogen;geflogen;sein
+#finden;fanden;gefunden;haben
+
+#gewinnen;gewannen;gewonnen;haben
+#gebären;gebaren;geboren;haben
+
+#laden;luden;geladen;haben;a>ä
+#laufen;liefen;gelaufen;haben;a>ä
+#nennen;nannten;genannt;haben
 
 haben;gehabt;haben
 habe;hast;hat;haben;habt;haben
@@ -41,15 +55,39 @@ hatte;hattest;hatte;hatten;hattet;hatten
 
 #helfen;halfen;geholfen;haben;e>i
 #hinterlassen;hinterließen;hinterlassen;haben;a>ä
+#heißen;hießen;geheißen;haben
+
+#pfeifen;pfiffen;gepfiffen;haben
+
+#kommen;kamen;gekommen;sein
+
+können;gekonnt;sein
+kann;kannst;kann;können;könnt;können
+konnte;konntest;konnte;konnten;konntet;konnten
 
 #liegen;lagen;gelegen;sein
 #leihen;liehen;geliehen;haben
+#lesen;lasen;gelesen;haben;e>ie
+
+mögen;gemocht;haben
+mag;magst;mag;mögen;mögt;mögen
+mochte;mochtest;mochte;mochten;mochtet;mochten
+
+müssen;gemusst;haben
+muss;musst;muss;müssen;müsst;müssen
+musste;musstest;musste;mussten;musstet;mussten
 
 #nehmen;nahmen;genommen;haben;eh>im
 
 reiten;geritten;sein
 reite;reitest;reitet;reiten;reitet;reiten
 ritt;rittest;ritt;ritten;rittet;ritten
+
+#rufen;riefen;gerufen;haben
+#rennen;rannten;gerannt;sein
+#riechen;rochen;gerochen;haben
+#reißen;rissen;gerissen;haben
+#ringen;rangen;gerungen;haben
 
 sein;gewesen;sein
 bin;bist;ist;sind;seid;sind
@@ -59,11 +97,24 @@ war;warst;war;waren;wart;waren
 #springen;sprangen;gesprungen;sein
 #schlagen;schlugen;geschlagen;haben;a>ä
 #schlafen;schliefen;geschlafen;haben;a>ä
+#schließen;schlossen;geschlossen;haben
+#schmelzen;schmolzen;geschmolzen;haben;e>i
+#schwellen;schwollen;geschwollen;sein;e>i
+#schwinden;schwanden;geschwunden;sein
+#schreiten;schritten;geschritten;sein
+#schwören;schworen;geschworen;haben
 #sprechen;sprachen;gesprochen;haben;e>i
+#spinnen;spannen;gesponnen;haben
+#schreiben;schrieben;geschrieben;haben
 #singen;sangen;singen;haben
+#sitzen;saßen;gesessen;haben
 #stehen;standen;gestanden;haben
 #stehen;standen;gestanden;sein
 #stehlen;stahlen;gestohlen;haben;e>ie
+#sterben;starben;gestorben;sein;e>i
+#stechen;stachen;gestochen;haben;e>i
+#stoßen;stießen;gestoßen;haben;o>ö
+#streichen;strichen;gestrichen;haben
 #[schief]laufen;[schief]liefen;schiefgelaufen;sein;a>ä
 #[schief]gehen;[schief]gingen;schiefgegangen;sein
 
@@ -79,12 +130,21 @@ galt;galtst;galt;galten;galtet;galten
 
 #tragen;trugen;getragen;haben;a>ä
 #treffen;trafen;getroffen;haben;e>i
+#treiben;trieben;getrieben;haben
 
 #verbringen;verbrachten;verbracht;haben
 #verschieben;verschoben;verschoben;haben
+#versehen;versahen;versehen;haben
+#vergessen;vergaßen;vergessen;haben;ge>gi
+#verlieren;verloren;verloren;haben
+#verderben;verdarben;verdorben;haben;de>di
 
 #wachsen;wuchsen;gewaschsen;sein;a>ä
+#waschen;wunschen;gewaschen;haben;a>ä
 #werfen;warfen;geworfen;haben;e>i
+#weichen;wichen;gewichen;sein
+#wenden;wandten;gewandt;haben
+#winden;wanden;gewunden;haben
 #[weg]werfen;[weg]warfen;weggeworfen;haben;e>i
 
 werden;geworden;sein
