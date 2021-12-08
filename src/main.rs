@@ -1,10 +1,5 @@
 use std::io;
-use std::ops::RangeBounds;
-use std::collections::HashMap;
-use rand::{thread_rng, Rng};
-use rand::seq::SliceRandom;
-use regex::Regex;
-use rusty_german_types::Exercise;
+use rand::Rng;
 use clap::Parser;
 
 #[macro_use]
@@ -24,19 +19,17 @@ mod storage;
 mod adjektivendungen;
 mod verben_praposition;
 mod config;
+mod comparator;
+mod exercise;
 
-use read_file_multi_options_exercise::get_multiple_options_exercise;
 use verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
 use pronouns::get_personal_pronouns;
-use prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
 use articles::get_articles;
-use substantives::{get_substantives_list, get_substantives_tips_exercises};
-use conjunctions::get_conjunction_exercises;
 use types::ZeitType;
 use storage::{SqliteStorage, StorageInterface};
-use adjektivendungen::get_adjetivendungen_exercise;
-use verben_praposition::get_verb_preposition_exercises;
 use config::{Args, MenuOption, VerbExercise};
+use comparator::is_match;
+use exercise::{Exercises, ProcessInput};
 
 type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
@@ -52,8 +45,6 @@ fn menu() {
 
     clean_screen();
 
-    let random_exercises = true;
-
     let on_answer : CreateOnAnswer = &|category, exercise, expected_values| -> OnAnswer {
         let ts = &ts;
 
@@ -62,25 +53,25 @@ fn menu() {
         })
     };
 
-    let run_preposition = || {
-        run_exercise(&get_prepositions_case_exercises, ..5, random_exercises, &on_answer);
-        run_exercise(&get_prepositions_exercises, ..8, random_exercises, &on_answer);
+    let process_input : ProcessInput = &|exercise, on_answer| {
+        wait_for_expected_inputs(exercise, on_answer);
     };
-    let run_conjunctions = || run_exercise(&get_conjunction_exercises, ..10, random_exercises, &on_answer);
-    let run_relativ_pronomen = || run_exercise(&|| get_multiple_options_exercise("data/relativ-pronomen.txt", "relativ pronomen"), ..2, random_exercises, &on_answer);
-    let run_nenbensatze = || run_exercise(&|| get_multiple_options_exercise("data/nebensatze.txt", "nebensatze"), ..2, random_exercises, &on_answer);
-    let run_substantive = || {
-        run_exercise(&get_substantives_tips_exercises, ..5, random_exercises, &on_answer);
-        run_exercise(&get_substantives_list, ..15, random_exercises, &on_answer);
-    };
+
+    let exercises = Exercises::init(&process_input, &on_answer);
+
+    let run_preposition = || exercises.preposition();
+    let run_conjunctions = || exercises.conjunctions();
+    let run_relativ_pronomen = || exercises.relativ_pronomen();
+    let run_nenbensatze = || exercises.nebensatze();
+    let run_substantive = || exercises.substantive();
     let run_verben_all_times = || run_verb_exercise(VerbExercise::All, &on_answer);
     let run_verben_only_present = || run_verb_exercise(VerbExercise::OnlyPresent, &on_answer);
     let run_personal_pronoun = || run_personal_pronoun_exercise(&on_answer);
     let run_articles = || run_articles_exercise(&on_answer);
-    let run_adjetiv = || run_exercise(&get_adjetivendungen_exercise, .., false, &on_answer);
-    let run_verb_prap = || run_exercise(&get_verb_preposition_exercises, ..6, random_exercises, &on_answer);
-    let run_lokaladverbien = || run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), .., random_exercises, &on_answer);
-    let run_konjuntiv_ii  = || run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), .., random_exercises, &on_answer);
+    let run_adjetiv = || exercises.adjetiv();
+    let run_verb_prap = || exercises.verb_preposition();
+    let run_lokaladverbien = || exercises.local_adverb();
+    let run_konjuntiv_ii  = || exercises.konjuntiv_ii();
     let run_review_exercises_menu = || run_review_exercises(&ts);
 
     let options = vec![
@@ -136,28 +127,6 @@ fn menu() {
                 Err(error) => panic!("Error on receiving input {}", error)
             };
         }
-    }
-}
-
-fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool, on_answer: CreateOnAnswer)
-    where
-        T: Exercise,
-        R: RangeBounds<usize>,
-{
-    let mut exercises = exercise_fn();
-    if random_exercises {
-        let mut rng = thread_rng();
-        exercises.shuffle(&mut rng);
-    }
-    let mut exercises_subset = exercises.drain(range).collect::<Vec<T>>();
-    exercises_subset.sort_by_key(|a| a.get_sort_property());
-    for exercise in exercises_subset.iter() {
-        println!("{}", exercise.get_description());
-        let category = std::any::type_name::<T>().to_string();
-        let expected_values = exercise.get_expected_results().into_iter().fold("".to_owned(), |acc, item| {
-            format!("{}|{}", acc, item)
-        });
-        wait_for_expected_inputs(exercise.get_expected_results(), Some(on_answer(category, exercise.get_description(), expected_values)));
     }
 }
 
@@ -276,22 +245,11 @@ fn clean_screen() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
-fn normalize_string(string: String) -> String {
-    Regex::new("[.]$").unwrap().replace(&string.trim().to_lowercase(), "").to_string()
-}
-
 fn wait_for_expected_input(expected_input: String, on_answer: OnAnswer) {
     wait_for_expected_inputs(vec![expected_input], Some(on_answer));
 }
 
 fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAnswer>) {
-    lazy_static! {
-        static ref REPLACE_CHARS : HashMap<&'static str, Regex> = [
-            ("ä", Regex::new(r"(ae)|(Ae)").unwrap()),
-            ("ü", Regex::new(r"(ue)|(Ue)").unwrap()),
-            ("ö", Regex::new(r"(oe)|(Oe)").unwrap()),
-        ].iter().cloned().collect();
-    }
     loop {
         let mut input = String::new();
         match io::stdin().read_line(&mut input) {
@@ -306,24 +264,7 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAn
                     menu();
                     break;
                 }
-                let mut correct_input = false;
-
-                for expected_input in &expected_inputs {
-                    let mut input = input.to_string();
-                    for &umlaut_char in REPLACE_CHARS.keys() {
-                        if expected_input.contains(umlaut_char) {
-                            input = REPLACE_CHARS.get(umlaut_char).unwrap().replace_all(&input, umlaut_char).to_string();
-                        }
-                    }
-
-                    correct_input = normalize_string(input) == normalize_string(expected_input.to_owned());
-
-                    if correct_input {
-                        break;
-                    } else {
-                        println!("Correct Option:\n{}", expected_input);
-                    }
-                }
+                let correct_input = is_match(input.to_string(), &expected_inputs);
 
                 match on_answer {
                     Some(ref f) => f(correct_input),
