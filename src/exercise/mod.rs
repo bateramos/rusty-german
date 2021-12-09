@@ -6,7 +6,9 @@ use crate::conjunctions::get_conjunction_exercises;
 use crate::substantives::{get_substantives_list, get_substantives_tips_exercises};
 use crate::adjektivendungen::get_adjetivendungen_exercise;
 use crate::verben_praposition::get_verb_preposition_exercises;
-use runner::{run_exercise, CreateOnAnswer};
+use crate::config::VerbExercise;
+
+use runner::{run_exercise, run_personal_pronoun_exercise, run_articles_exercise, run_verb_exercise, CreateOnAnswer};
 
 pub use runner::ProcessInput;
 
@@ -61,4 +63,15 @@ impl <'a> Exercises <'a> {
         run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), .., RANDOM_ORDER, self.process_input, self.create_on_answer);
     }
 
+    pub fn verb(&self, exercise_type: VerbExercise) {
+        run_verb_exercise(exercise_type, self.process_input, self.create_on_answer);
+    }
+
+    pub fn personal_pronoun(&self) {
+        run_personal_pronoun_exercise(self.process_input, self.create_on_answer);
+    }
+
+    pub fn articles(&self) {
+        run_articles_exercise(self.process_input, self.create_on_answer);
+    }
 }

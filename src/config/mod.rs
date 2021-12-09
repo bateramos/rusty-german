@@ -1,6 +1,6 @@
 mod options;
 
-pub use options::Args;
+pub use options::{Args, VerbSubcommand};
 
 pub struct MenuOption <'a> {
     pub text: &'a str,
