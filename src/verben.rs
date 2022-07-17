@@ -49,6 +49,7 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
     let sufix = prefix.split_off(name.len() - 2);
 
     let ending_with_rn = sufix == "rn";
+    let ending_with_ln = sufix == "ln";
     let ending_with_alveolar = prefix.ends_with("gn") || prefix.ends_with("d") || prefix.ends_with("t");
 
     let (prefix, trennbar) = get_trennbar_verb_parts(&prefix);
@@ -57,6 +58,8 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
         ["e", "est", "et", "en", "et", "en"]
     } else if ending_with_rn {
         ["re", "rst", "rt", "rn", "rt", "rn"]
+    } else if ending_with_ln {
+        ["le", "lst", "lt", "ln", "lt", "ln"]
     } else {
         ["e", "st", "t", "en", "t", "en"]
     };
@@ -65,6 +68,8 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
         ["ete", "etest", "ete", "eten", "etet", "eten"]
     } else if ending_with_rn {
         ["rte", "rtest", "rte", "rten", "rtet", "rten"]
+    } else if ending_with_ln {
+        ["lte", "ltest", "lte", "lten", "ltet", "lten"]
     } else {
         ["te", "test", "te", "ten", "tet", "ten"]
     };

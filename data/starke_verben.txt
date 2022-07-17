@@ -106,7 +106,7 @@ war;warst;war;waren;wart;waren
 #sprechen;sprachen;gesprochen;haben;e>i
 #spinnen;spannen;gesponnen;haben
 #schreiben;schrieben;geschrieben;haben
-#singen;sangen;singen;haben
+#singen;sangen;gesungen;haben
 #sitzen;saßen;gesessen;haben
 #stehen;standen;gestanden;haben
 #stehen;standen;gestanden;sein

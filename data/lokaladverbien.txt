@@ -1,44 +1,44 @@
-Im Kofferraum ist noch Platz. Du kannst deine Tasche __ stellen.
+Im Kofferraum ist noch Platz. Du kannst deine Tasche __ (inside) stellen.
 hinein
 
-Der Liegestuhl ist im Keller. Ich gehe gleich __ und hole ihn.
+Der Liegestuhl ist im Keller. Ich gehe gleich __ (down) und hole ihn.
 hinunter
 
-Nach der Ansprache setzten sich alle __.
+Nach der Ansprache setzten sich alle __ (down).
 hin
 
-Komm mal __, ich möchte dir etwas zeigen!
+Komm mal __ (location here), ich möchte dir etwas zeigen!
 her
 
-Bitte stell das Glas hin, sonst fällt es noch __.
+Bitte stell das Glas hin, sonst fällt es noch __ (down).
 runter
 
-Die Universität ist ganz in der Nähe __ Bahnhof.
+Die Universität ist ganz in der Nähe __ (from) Bahnhof.
 vom
 
-Kommen Sie bitte __!
+Kommen Sie bitte __ (in)!
 herein
 
-Gehen Sie __!
+Gehen Sie __ (in)!
 hinein
 
-Komm sofort __!
+Komm sofort __ (here)!
 her
 
-Geh sofort __!
+Geh sofort __ (there)!
 hin
 
-__ kommst du?
+__ (Where) kommst du?
 woher
 
-Stell den Schrank __!
+Stell den Schrank __ (direction here)!
 hierher
 
-Gehen Sie aus meinem Zimmer __. Kommst du aus deinem Schneckenhaus __?
+Gehen Sie aus meinem Zimmer __ (direction in->out). Kommst du aus deinem Schneckenhaus __ (direction in<-out)?
 hinaus heraus
 
-Bring den Tisch __. Stell mir den Stuhl __.
+Bring den Tisch __ (to there). Stell mir den Stuhl __ (direction here).
 dorthin hierher
 
-Gehen Sie in diese Wohnung __. Kommen Sie in mein Büro __.
+Gehen Sie in diese Wohnung __ (here ->). Kommen Sie in mein Büro __ (-> here).
 hinein herein

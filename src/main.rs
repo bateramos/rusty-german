@@ -90,6 +90,7 @@ fn menu() {
         match verb_args {
             VerbSubcommand::Verb{ verb } => {
                 if let Some(verb) = verb {
+                    exercises.verb(VerbExercise::OnlyVerb(verb));
                 } else {
                     exercises.verb(VerbExercise::All);
                 }

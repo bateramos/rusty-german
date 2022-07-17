@@ -145,4 +145,10 @@ mod create_schwache_verben_tests {
         assert_eq!(verb.verben[1].conjugations, ["wirkte mit", "wirktest mit", "wirkte mit", "wirkten mit", "wirktet mit", "wirkten mit"]);
         assert_eq!(verb.verben[2].conjugations[0], "habe mitgewirkt");
     }
+
+    #[test]
+    fn it_should_create_verbs_for_bummeln() {
+        let verb = create_schwache_verben("bummeln", PrefixVerb::Sein, None);
+        assert_eq!(verb.verben[0].conjugations, ["bummele", "bummelst", "bummelt", "bummeln", "bummelt", "bummeln"]);
+    }
 }

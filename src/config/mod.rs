@@ -9,6 +9,7 @@ pub struct MenuOption <'a> {
 
 pub enum VerbExercise {
     OnlyPresent,
-    All
+    All,
+    OnlyVerb(String)
 }
 

@@ -13,7 +13,7 @@ use runner::{run_exercise, run_personal_pronoun_exercise, run_articles_exercise,
 pub use runner::ProcessInput;
 
 const RANDOM_ORDER : bool = true;
-const NOT_RANDOM : bool = true;
+const NOT_RANDOM : bool = false;
 
 pub struct Exercises <'a> {
     process_input: ProcessInput<'a>,
@@ -56,11 +56,11 @@ impl <'a> Exercises <'a> {
     }
 
     pub fn local_adverb(&self) {
-        run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), .., RANDOM_ORDER, self.process_input, self.create_on_answer);
+        run_exercise(&|| get_multiple_options_exercise("data/lokaladverbien.txt", "lokaladverbien"), ..5, RANDOM_ORDER, self.process_input, self.create_on_answer);
     }
 
     pub fn konjuntiv_ii(&self) {
-        run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), .., RANDOM_ORDER, self.process_input, self.create_on_answer);
+        run_exercise(&|| get_multiple_options_exercise("data/konjuntiv-ii.txt", "konjuntiv II"), ..4, RANDOM_ORDER, self.process_input, self.create_on_answer);
     }
 
     pub fn verb(&self, exercise_type: VerbExercise) {

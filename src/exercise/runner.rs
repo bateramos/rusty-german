@@ -46,11 +46,22 @@ pub async fn run_verb_exercise(exercise_run_type: VerbExercise, process_input: P
 
     let mut rng = rand::thread_rng();
 
-    let verben_list = vec![
-        schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
-        stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
-        stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
-    ];
+    let verben_list = match exercise_run_type {
+        VerbExercise::OnlyVerb(ref verb) => {
+            if let Some(position) = stark_verb_list.iter().position(|v| v.verb.eq(verb)) {
+                vec![stark_verb_list.remove(position)]
+            } else if let Some(position) = schwache_verb_list.iter().position(|v| v.verb.eq(verb)) {
+                vec![schwache_verb_list.remove(position)]
+            } else {
+                panic!("No verb found for string {}", verb);
+            }
+        },
+        _ => vec![
+            schwache_verb_list.remove(rng.gen_range(0, schwache_verb_list.len())),
+            stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
+            stark_verb_list.remove(rng.gen_range(0, stark_verb_list.len())),
+        ],
+    };
 
     for exercise in verben_list.iter() {
         let search_verb = exercise.verb.to_owned();
