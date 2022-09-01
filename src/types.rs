@@ -127,10 +127,15 @@ pub struct VerbPrapositionExercise {
 
 impl Exercise for PrepositionCaseExercise {
     fn get_description(&self) -> String {
-        format!("akkusativ dativ genitiv\nPreposition: {}", self.preposition)
+        format!("Preposition\nakkusativ dativ genitiv\nPreposition: {}", self.preposition)
     }
 
-    fn get_expected_result(&self) -> String {
-        self.case.to_string()
+    fn get_expected_results(&self) -> Vec<String> {
+        let sort_cuts = self.case.split(" ").fold(String::new(), |acc, item| {
+            format!("{} {}", acc, item.chars().next().unwrap().to_string())
+        }).trim().to_string();
+        vec![
+            self.case.to_string(), sort_cuts,
+        ]
     }
 }

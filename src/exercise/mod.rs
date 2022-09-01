@@ -1,7 +1,7 @@
 mod runner;
 
 use crate::read_file_multi_options_exercise::get_multiple_options_exercise;
-use crate::prepositions::{get_prepositions_exercises,get_prepositions_case_exercises};
+use crate::prepositions::{get_prepositions_exercises, get_prepositions_case_exercises};
 use crate::conjunctions::get_conjunction_exercises;
 use crate::substantives::{get_substantives_list, get_substantives_tips_exercises};
 use crate::adjektivendungen::get_adjetivendungen_exercise;
