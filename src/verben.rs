@@ -48,6 +48,7 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
     let mut prefix = str(name);
     let sufix = prefix.split_off(name.len() - 2);
 
+    let begin_with_ent = prefix.starts_with("ent");
     let ending_with_rn = sufix == "rn";
     let ending_with_ln = sufix == "ln";
     let ending_with_alveolar = prefix.ends_with("gn") || prefix.ends_with("d") || prefix.ends_with("t");
@@ -81,7 +82,7 @@ fn create_schwache_verben(name: &str, prefix_verb: PrefixVerb, obs: Option<Strin
 
     let verb_has_prefix = name.starts_with("ge") || name.starts_with("er") || name.starts_with("be") || name.starts_with("ver");
 
-    let past_tense = if verb_has_prefix || name.ends_with("ieren") {
+    let past_tense = if verb_has_prefix || name.ends_with("ieren") || begin_with_ent {
         present_form[4].to_owned()
     } else if !trennbar.is_empty() {
         format!("{}{}{}", trennbar, "ge", present_form[4].replace(&format!(" {}", trennbar), ""))
