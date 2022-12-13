@@ -85,6 +85,26 @@ impl StorageInterface <String> for SqliteStorage {
 }
 
 impl SqliteStorage {
+    pub fn fetch_verb_exercises_count(&self) -> Vec<(String, i64)> {
+        let mut exercises_count = Vec::new();
+        let connection = self.connection.lock().unwrap();
+        let mut cursor = connection
+            .prepare("select SUBSTR(e.name, 6, INSTR(e.name, ' (') - 6) as VERB, COUNT(er.id) from ExerciseResult er
+                left join Exercise e on e.id = er.exercise
+                left join Category c on c.id = e.category
+                where c.name = 'verb_exercise'
+                group by VERB
+            ")
+            .unwrap()
+            .into_cursor();
+
+        while let Some(row) = cursor.next().unwrap() {
+            exercises_count.push((row[0].as_string().unwrap().to_string(), row[1].as_integer().unwrap()));
+        }
+
+        exercises_count
+    }
+
     pub fn fetch_exercises_with_result_false(&self) -> Vec<String> {
         let mut exercises = Vec::new();
         let connection = self.connection.lock().unwrap();

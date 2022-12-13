@@ -38,6 +38,8 @@ fn menu() {
 
     let ts = SqliteStorage::initialize();
 
+    ts.fetch_verb_exercises_count();
+
     clean_screen();
 
     let on_answer : CreateOnAnswer = &|category, exercise, expected_values| -> OnAnswer {
