@@ -14,6 +14,7 @@ use crate::articles::get_articles;
 pub type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 pub type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 pub type ProcessInput <'a> = &'a dyn Fn(Vec<String>, Option<OnAnswer>);
+pub type ReprocessInput <'a> = &'a dyn Fn(String) -> bool;
 
 pub fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool, process_input: ProcessInput, on_answer: CreateOnAnswer)
     where

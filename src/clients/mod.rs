@@ -1,6 +1,10 @@
 #[cfg(not(test))]
 use std::borrow::Cow;
 
+mod chat_gpt;
+
+pub use chat_gpt::*;
+
 #[cfg(not(test))]
 async fn fetch(url: &str) -> Result<String, Box<dyn std::error::Error>> {
     Ok(reqwest::get(url)

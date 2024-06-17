@@ -1432,6 +1432,7 @@ dependencies = [
  "rusty_german_entity_macro",
  "rusty_german_types",
  "select",
+ "serde",
  "sqlite",
  "tokio",
  "typed-html",

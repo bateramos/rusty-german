@@ -29,6 +29,11 @@ use exercise::{Exercises, ProcessInput};
 type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 
+enum OnInputResponse {
+    Break, Continue
+}
+type OnInput <'a> = Box<dyn Fn(String) -> OnInputResponse + 'a>;
+
 fn main() {
     menu();
 }
@@ -51,7 +56,21 @@ fn menu() {
     };
 
     let process_input : ProcessInput = &|exercise, on_answer| {
-        wait_for_expected_inputs(exercise, on_answer);
+        let on_answer = on_answer;
+        wait_for_input(Box::new(move |input| {
+            let correct_input = is_match(input.to_string(), &exercise);
+
+            match on_answer {
+                Some(ref f) => f(correct_input),
+                None => {}
+            }
+
+            if correct_input {
+                OnInputResponse::Break
+            } else {
+                OnInputResponse::Continue
+            }
+        }));
     };
 
     let exercises = Exercises::init(&process_input, &on_answer);
@@ -69,11 +88,13 @@ fn menu() {
     let run_verb_prap = || exercises.verb_preposition();
     let run_lokaladverbien = || exercises.local_adverb();
     let run_konjuntiv_ii  = || exercises.konjuntiv_ii();
+    let run_translate_phrase_from_verb = || exercises.translate_phrase_from_verb("".to_string());
     let run_review_exercises_menu = || run_review_exercises(&ts);
 
     let options = vec![
         MenuOption { text: "verbs", exec: &run_verben_all_times },
         MenuOption { text: "verbs (only present)", exec: &run_verben_only_present },
+        MenuOption { text: "translate phrase from verb", exec: &run_translate_phrase_from_verb },
         MenuOption { text: "personal pronoums", exec: &run_personal_pronoun },
         MenuOption { text: "prepositions", exec: &run_preposition },
         MenuOption { text: "articles", exec: &run_articles },
@@ -151,12 +172,49 @@ fn run_review_exercises(ts: &SqliteStorage) {
             }
         }).collect();
         println!("{}", description);
-        wait_for_expected_inputs(expected_results, None);
+        wait_for_input(Box::new(move |input| {
+            let correct_input = is_match(input.to_string(), &expected_results);
+
+            if correct_input {
+                OnInputResponse::Break
+            } else {
+                OnInputResponse::Continue
+            }
+        }));
     });
 }
 
 fn clean_screen() {
     print!("\x1B[2J\x1B[1;1H");
+}
+
+fn wait_for_input(on_input: OnInput) {
+    loop {
+        let mut input = String::new();
+        match io::stdin().read_line(&mut input) {
+            Ok(_n) => {
+                if input.trim() == "exit" {
+                    std::process::exit(1);
+                }
+                if input.trim() == "skip" {
+                    break;
+                }
+                if input.trim() == "menu" {
+                    menu();
+                    break;
+                }
+
+                match on_input(input.trim().to_owned()) {
+                    OnInputResponse::Break => break,
+                    OnInputResponse::Continue => continue,
+                }
+            }
+            Err(error) => {
+                println!("error: {}", error);
+            }
+        }
+    }
+    clean_screen();
 }
 
 fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAnswer>) {
@@ -172,15 +230,6 @@ fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAn
                 }
                 if input.trim() == "menu" {
                     menu();
-                    break;
-                }
-                let correct_input = is_match(input.to_string(), &expected_inputs);
-
-                match on_answer {
-                    Some(ref f) => f(correct_input),
-                    None => {}
-                }
-                if correct_input {
                     break;
                 }
             }

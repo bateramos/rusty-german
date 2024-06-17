@@ -105,7 +105,7 @@ fn get_trennbar_verb_parts(verb: &str) -> (&str, &str) {
     let to_capture = verb;
     if let Some(captures) = regex.captures(&to_capture) {
         let prefix = if let Some(p) = captures.get(2) {
-            p.as_str().clone()
+            p.as_str()
         } else {
             ""
         };

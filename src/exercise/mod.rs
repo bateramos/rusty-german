@@ -74,4 +74,7 @@ impl <'a> Exercises <'a> {
     pub fn articles(&self) {
         run_articles_exercise(self.process_input, self.create_on_answer);
     }
+
+    pub fn translate_phrase_from_verb(&self, verb: String) {
+    }
 }
