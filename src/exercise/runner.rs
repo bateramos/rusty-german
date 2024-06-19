@@ -10,6 +10,7 @@ use crate::verben::{get_verben_phrase_exercise, get_starken_verben, get_schwache
 use crate::pronouns::get_personal_pronouns;
 use crate::types::ZeitType;
 use crate::articles::get_articles;
+use crate::clients;
 
 pub type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 pub type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
@@ -139,6 +140,33 @@ pub fn run_articles_exercise(process_input: ProcessInput, on_answer: CreateOnAns
             let exercise = format!("{} {}", article.case, article.gender);
             println!("{}:", exercise);
             process_input(vec![article.name.to_string()], Some(on_answer("article".to_owned(), exercise, article.name.to_string())));
+        }
+    }
+}
+
+#[tokio::main]
+pub async fn run_phrase_translation() {
+    println!("type a german verb");
+    let verb = crate::get_next_input();
+
+    let phrase = clients::fetch_phrase_for(verb.clone()).await;
+
+    let phrase = phrase.unwrap();
+    println!("{}", phrase);
+
+    loop {
+        let verb = verb.clone();
+        let translation = crate::get_next_input();
+
+        let result = clients::verify_translation(verb, &phrase, translation).await;
+        let result = result.unwrap();
+        let result = result.to_lowercase().replace(".", "");
+
+        if result.contains("true") {
+            break
+        } else {
+            println!("{}", result);
+            println!("try again");
         }
     }
 }

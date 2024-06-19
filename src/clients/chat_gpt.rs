@@ -26,22 +26,22 @@ struct ResponseBody {
 }
 
 impl RequestBody {
-    fn new(verb: &'static str) -> Self {
+    fn new(verb: String) -> Self {
         let messages = vec![
             Message { role: "system".to_owned(), content: "
             You are a C1 German teacher.
             You will receive a German verb from the student.
             You will give back a phrase using this verb in English for the student to translate into German.
-            You will say true to correct translation or false if it is incorrect.
+            You will say true to correct translation or false with some detailed tips for student to try again if it is incorrect.
             ".to_owned()},
-            Message { role: "user".to_owned(), content: verb.to_owned() },
+            Message { role: "user".to_owned(), content: verb },
         ];
         //RequestBody { model: "gpt-3.5-turbo".to_owned(), messages }
         RequestBody { model: "gpt-4o".to_owned(), messages }
     }
 
-    fn new_with_response(phrase: String, translation: &'static str) -> Self {
-        let mut request_body = Self::new("machen");
+    fn new_with_response(verb: String, phrase: String, translation: String) -> Self {
+        let mut request_body = Self::new(verb);
         request_body.messages.push(Message { role: "assistant".to_owned(), content: phrase.to_owned() });
         request_body.messages.push(Message { role: "user".to_owned(), content: translation.to_owned() });
 
@@ -71,13 +71,12 @@ async fn fetch<'a>(request_body: RequestBody) -> Result<ResponseBody, Box<dyn st
         .await?)
 }
 
-pub async fn fetch_phrase_for(_verb: &str) -> Result<String, Box<dyn std::error::Error>> {
-    let result = fetch(RequestBody::new("machen")).await?;
+pub async fn fetch_phrase_for(verb: String) -> Result<String, Box<dyn std::error::Error>> {
+    let result = fetch(RequestBody::new(verb)).await?;
     Ok(result.choices[0].message.content.to_string())
 }
 
-pub async fn send_translation(verb: &'static str, phrase: &'static str, translation: &'static str) -> Result<String, Box<dyn std::error::Error>> {
-    let result = fetch(RequestBody::new_with_response(phrase.to_string(), translation)).await?;
-    println!("{:?}", result.choices);
+pub async fn verify_translation(verb: String, phrase: &String, translation: String) -> Result<String, Box<dyn std::error::Error>> {
+    let result = fetch(RequestBody::new_with_response(verb, phrase.to_string(), translation)).await?;
     Ok(result.choices[0].message.content.to_string())
 }

@@ -32,7 +32,7 @@ type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 enum OnInputResponse {
     Break, Continue
 }
-type OnInput <'a> = Box<dyn Fn(String) -> OnInputResponse + 'a>;
+pub type OnInput <'a> = Box<dyn Fn(String) -> OnInputResponse + 'a>;
 
 fn main() {
     menu();
@@ -77,6 +77,7 @@ fn menu() {
 
     let run_preposition = || exercises.preposition();
     let run_conjunctions = || exercises.conjunctions();
+    let run_translate_phrase_from_verb = || exercises.translate_phrase_from_verb();
     let run_relativ_pronomen = || exercises.relativ_pronomen();
     let run_nenbensatze = || exercises.nebensatze();
     let run_substantive = || exercises.substantive();
@@ -88,7 +89,6 @@ fn menu() {
     let run_verb_prap = || exercises.verb_preposition();
     let run_lokaladverbien = || exercises.local_adverb();
     let run_konjuntiv_ii  = || exercises.konjuntiv_ii();
-    let run_translate_phrase_from_verb = || exercises.translate_phrase_from_verb("".to_string());
     let run_review_exercises_menu = || run_review_exercises(&ts);
 
     let options = vec![
@@ -188,6 +188,25 @@ fn clean_screen() {
     print!("\x1B[2J\x1B[1;1H");
 }
 
+pub fn get_next_input() -> String {
+    let mut input = String::new();
+    match io::stdin().read_line(&mut input) {
+        Ok(_n) => {
+            if input.trim() == "exit" {
+                std::process::exit(1);
+            }
+            if input.trim() == "menu" {
+                menu();
+            }
+
+            return input.trim().to_owned()
+        }
+        Err(error) => {
+            panic!("error: {}", error);
+        }
+    }
+}
+
 fn wait_for_input(on_input: OnInput) {
     loop {
         let mut input = String::new();
@@ -207,30 +226,6 @@ fn wait_for_input(on_input: OnInput) {
                 match on_input(input.trim().to_owned()) {
                     OnInputResponse::Break => break,
                     OnInputResponse::Continue => continue,
-                }
-            }
-            Err(error) => {
-                println!("error: {}", error);
-            }
-        }
-    }
-    clean_screen();
-}
-
-fn wait_for_expected_inputs(expected_inputs: Vec<String>, on_answer: Option<OnAnswer>) {
-    loop {
-        let mut input = String::new();
-        match io::stdin().read_line(&mut input) {
-            Ok(_n) => {
-                if input.trim() == "exit" {
-                    std::process::exit(1);
-                }
-                if input.trim() == "skip" {
-                    break;
-                }
-                if input.trim() == "menu" {
-                    menu();
-                    break;
                 }
             }
             Err(error) => {

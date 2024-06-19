@@ -8,7 +8,7 @@ use crate::adjektivendungen::get_adjetivendungen_exercise;
 use crate::verben_praposition::get_verb_preposition_exercises;
 use crate::config::VerbExercise;
 
-use runner::{run_exercise, run_personal_pronoun_exercise, run_articles_exercise, run_verb_exercise, CreateOnAnswer};
+use runner::{run_phrase_translation, run_exercise, run_personal_pronoun_exercise, run_articles_exercise, run_verb_exercise, CreateOnAnswer};
 
 pub use runner::ProcessInput;
 
@@ -75,6 +75,7 @@ impl <'a> Exercises <'a> {
         run_articles_exercise(self.process_input, self.create_on_answer);
     }
 
-    pub fn translate_phrase_from_verb(&self, verb: String) {
+    pub fn translate_phrase_from_verb(&self) {
+        run_phrase_translation()
     }
 }
