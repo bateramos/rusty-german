@@ -6,7 +6,7 @@ use rand::seq::SliceRandom;
 use rusty_german_types::Exercise;
 
 use crate::config::VerbExercise;
-use crate::verben::{get_verben_phrase_exercise, get_starken_verben, get_schwachen_verben};
+use crate::verben::{get_starken_verben, get_schwachen_verben};
 use crate::pronouns::get_personal_pronouns;
 use crate::types::ZeitType;
 use crate::articles::get_articles;
@@ -15,7 +15,6 @@ use crate::clients;
 pub type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 pub type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 pub type ProcessInput <'a> = &'a dyn Fn(Vec<String>, Option<OnAnswer>);
-pub type ReprocessInput <'a> = &'a dyn Fn(String) -> bool;
 
 pub fn run_exercise<T, R>(exercise_fn: &dyn Fn() -> Vec<T>, range: R, random_exercises: bool, process_input: ProcessInput, on_answer: CreateOnAnswer)
     where
@@ -66,52 +65,31 @@ pub async fn run_verb_exercise(exercise_run_type: VerbExercise, process_input: P
     };
 
     for exercise in verben_list.iter() {
-        let search_verb = exercise.verb.to_owned();
-        let verb_phrases_exercises = tokio::spawn(async move {
-            get_verben_phrase_exercise(&search_verb).await
-        });
+        for verb in exercise.verben.iter() {
 
-        let run_exercise_async = async {
-            for verb in exercise.verben.iter() {
-
-                if verb.zeit_type == ZeitType::Plusquamperfekt {
-                    break;
-                }
-                let mut conjugation_ite = 0;
-                for conjugation in verb.conjugations.iter() {
-                    let mut verb_exercise = format!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
-                    if let Some(obs) = &exercise.obs {
-                        verb_exercise = format!("{}\n Obs: {}", verb_exercise, obs);
-                    };
-                    let time = person[conjugation_ite];
-                    verb_exercise = format!("{}\n{}:", verb_exercise, time);
-                    println!("{}", verb_exercise);
-                    process_input(vec![conjugation.into()], Some(on_answer("verb_exercise".into(), verb_exercise, conjugation.into())));
-                    conjugation_ite += 1;
-                }
-
-                match exercise_run_type {
-                    VerbExercise::OnlyPresent => break,
-                    _ => continue,
-                };
+            if verb.zeit_type == ZeitType::Plusquamperfekt {
+                break;
             }
-        };
+            let mut conjugation_ite = 0;
+            for conjugation in verb.conjugations.iter() {
+                let mut verb_exercise = format!(" --- {} ({:?} {:?}) --- ", exercise.verb, exercise.verb_type, verb.zeit_type);
+                if let Some(obs) = &exercise.obs {
+                    verb_exercise = format!("{}\n Obs: {}", verb_exercise, obs);
+                };
+                let time = person[conjugation_ite];
+                verb_exercise = format!("{}\n{}:", verb_exercise, time);
+                println!("{}", verb_exercise);
+                process_input(vec![conjugation.into()], Some(on_answer("verb_exercise".into(), verb_exercise, conjugation.into())));
+                conjugation_ite += 1;
+            }
 
-        let (_, verb_phrases) = tokio::join!(run_exercise_async, verb_phrases_exercises);
-
-        let verb_phrases_exercises = verb_phrases.unwrap();
-        if !verb_phrases_exercises.is_empty() {
-            let index = rng.gen_range(0, verb_phrases_exercises.len().min(5));
-
-            let category = "verb_translation";
-
-            let phrase_exercise = &verb_phrases_exercises[index];
-
-            println!("{}\n{}", category, phrase_exercise.description);
-
-            let expect = phrase_exercise.expect.to_string();
-            process_input(vec![expect.to_string()], Some(on_answer(category.into(), phrase_exercise.description.to_string(), expect)));
+            match exercise_run_type {
+                VerbExercise::OnlyPresent => break,
+                _ => continue,
+            };
         }
+
+        run_phrase_translation(Some(exercise.verb.to_owned())).await;
     }
 }
 
@@ -144,10 +122,13 @@ pub fn run_articles_exercise(process_input: ProcessInput, on_answer: CreateOnAns
     }
 }
 
-#[tokio::main]
-pub async fn run_phrase_translation() {
-    println!("type a german verb");
-    let verb = crate::get_next_input();
+pub async fn run_phrase_translation(verb: Option<String>) {
+    let verb = if let Some(verb) = verb {
+        verb
+    } else {
+        println!("type a german verb");
+        crate::get_next_input()
+    };
 
     let phrase = clients::fetch_phrase_for(verb.clone()).await;
 
@@ -160,9 +141,8 @@ pub async fn run_phrase_translation() {
 
         let result = clients::verify_translation(verb, &phrase, translation).await;
         let result = result.unwrap();
-        let result = result.to_lowercase().replace(".", "");
 
-        if result.contains("true") {
+        if result.to_lowercase().replace(".", "").contains("true") {
             break
         } else {
             println!("{}", result);

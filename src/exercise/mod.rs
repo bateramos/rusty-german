@@ -75,7 +75,8 @@ impl <'a> Exercises <'a> {
         run_articles_exercise(self.process_input, self.create_on_answer);
     }
 
-    pub fn translate_phrase_from_verb(&self) {
-        run_phrase_translation()
+    #[tokio::main]
+    pub async fn translate_phrase_from_verb(&self) {
+        run_phrase_translation(None).await;
     }
 }
