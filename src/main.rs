@@ -29,7 +29,7 @@ use exercise::{Exercises, ProcessInput};
 type OnAnswer <'a> = Box<dyn Fn(bool) + 'a>;
 type CreateOnAnswer <'a> = &'a dyn Fn(String, String, String) -> OnAnswer<'a>;
 
-enum OnInputResponse {
+pub enum OnInputResponse {
     Break, Continue
 }
 pub type OnInput <'a> = Box<dyn Fn(String) -> OnInputResponse + 'a>;
@@ -77,7 +77,7 @@ fn menu() {
 
     let run_preposition = || exercises.preposition();
     let run_conjunctions = || exercises.conjunctions();
-    let run_translate_phrase_from_verb = || exercises.translate_phrase_from_verb();
+    let run_translate_phrase_with_word = || exercises.translate_phrase_with_word();
     let run_relativ_pronomen = || exercises.relativ_pronomen();
     let run_nenbensatze = || exercises.nebensatze();
     let run_substantive = || exercises.substantive();
@@ -94,7 +94,7 @@ fn menu() {
     let options = vec![
         MenuOption { text: "verbs", exec: &run_verben_all_times },
         MenuOption { text: "verbs (only present)", exec: &run_verben_only_present },
-        MenuOption { text: "translate phrase from verb", exec: &run_translate_phrase_from_verb },
+        MenuOption { text: "translate phrase with word", exec: &run_translate_phrase_with_word },
         MenuOption { text: "personal pronoums", exec: &run_personal_pronoun },
         MenuOption { text: "prepositions", exec: &run_preposition },
         MenuOption { text: "articles", exec: &run_articles },

@@ -76,7 +76,7 @@ impl <'a> Exercises <'a> {
     }
 
     #[tokio::main]
-    pub async fn translate_phrase_from_verb(&self) {
+    pub async fn translate_phrase_with_word(&self) {
         run_phrase_translation(None).await;
     }
 }

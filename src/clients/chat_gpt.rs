@@ -30,13 +30,12 @@ impl RequestBody {
         let messages = vec![
             Message { role: "system".to_owned(), content: "
             You are a C1 German teacher.
-            You will receive a German verb from the student.
-            You will give back a phrase using this verb in English for the student to translate into German.
+            You will receive a German word from the student.
+            You will give back a phrase using this word in English for the student to translate into German.
             You will say true to correct translation or false with some detailed tips for student to try again if it is incorrect.
             ".to_owned()},
             Message { role: "user".to_owned(), content: verb },
         ];
-        //RequestBody { model: "gpt-3.5-turbo".to_owned(), messages }
         RequestBody { model: "gpt-4o".to_owned(), messages }
     }
 
@@ -46,6 +45,10 @@ impl RequestBody {
         request_body.messages.push(Message { role: "user".to_owned(), content: translation.to_owned() });
 
         request_body
+    }
+
+    fn new_with_messages(messages: Vec<Message>) -> Self {
+        RequestBody { model: "gpt-4o".to_owned(), messages }
     }
 }
 
@@ -71,12 +74,22 @@ async fn fetch<'a>(request_body: RequestBody) -> Result<ResponseBody, Box<dyn st
         .await?)
 }
 
-pub async fn fetch_phrase_for(verb: String) -> Result<String, Box<dyn std::error::Error>> {
-    let result = fetch(RequestBody::new(verb)).await?;
+pub async fn fetch_phrase_for(word: String) -> Result<String, Box<dyn std::error::Error>> {
+    let messages = vec![
+        Message { role: "system".to_owned(), content: "
+            You are a C1 German teacher.
+            You will receive a German word from the student.
+            You will give back a phrase using this word in English for the student to translate into German.
+            You will say true to correct translation or false with some detailed tips for student to try again if it is incorrect.
+        ".to_owned()},
+        Message { role: "user".to_owned(), content: word },
+    ];
+
+    let result = fetch(RequestBody::new_with_messages(messages)).await?;
     Ok(result.choices[0].message.content.to_string())
 }
 
-pub async fn verify_translation(verb: String, phrase: &String, translation: String) -> Result<String, Box<dyn std::error::Error>> {
-    let result = fetch(RequestBody::new_with_response(verb, phrase.to_string(), translation)).await?;
+pub async fn verify_translation(word: String, phrase: &String, translation: String) -> Result<String, Box<dyn std::error::Error>> {
+    let result = fetch(RequestBody::new_with_response(word, phrase.to_string(), translation)).await?;
     Ok(result.choices[0].message.content.to_string())
 }

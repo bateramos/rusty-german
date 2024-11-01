@@ -12,7 +12,7 @@
 #bekommen;bekamen;bekommen;haben
 #betreffen;betrafen;betroffen;haben
 #besitzen;besaßen;besessen;haben
-#blasen;bliesen;gelasen;haben;a>ä
+#blasen;bliesen;geblasen;haben;a>ä
 #binden;banden;gebunden;haben
 #biegen;bogen;gebogen;haben
 #bitten;baten;gebeten;haben
@@ -54,7 +54,7 @@ habe;hast;hat;haben;habt;haben
 hatte;hattest;hatte;hatten;hattet;hatten
 
 #helfen;halfen;geholfen;haben;e>i
-#hinterlassen;hinterließen;hinterlassen;haben;a>ä
+#hinterlassen;hinterließen;hintergelassen;haben;a>ä
 #heißen;hießen;geheißen;haben
 
 #pfeifen;pfiffen;gepfiffen;haben
