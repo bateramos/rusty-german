@@ -43,7 +43,7 @@ fn menu() {
 
     let ts = SqliteStorage::initialize();
 
-    ts.fetch_verb_exercises_count();
+    //ts.fetch_verb_exercises_count();
 
     clean_screen();
 
